@@ -1,9 +1,19 @@
-[gd_scene load_steps=4 format=3 uid="uid://dms3slrv65dvl"]
+[gd_scene load_steps=6 format=3 uid="uid://dms3slrv65dvl"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_wirdj"]
 [ext_resource type="Texture2D" uid="uid://cik516rqcirit" path="res://icon.svg" id="2_x71tv"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_f86re"]
+
+[sub_resource type="Gradient" id="Gradient_mgn46"]
+offsets = PackedFloat32Array(0, 0.571429, 1)
+colors = PackedColorArray(0.815686, 0.815686, 0.815686, 0.443137, 0.321569, 0.321569, 0.321569, 0.611765, 0, 0, 0, 0.588235)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_pj5x5"]
+gradient = SubResource("Gradient_mgn46")
+fill = 1
+fill_from = Vector2(0.513761, 0.536697)
+fill_to = Vector2(0.862385, 0.165138)
 
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_wirdj")
@@ -12,4 +22,16 @@ script = ExtResource("1_wirdj")
 shape = SubResource("CircleShape2D_f86re")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.5, 0.5)
 texture = ExtResource("2_x71tv")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+process_callback = 0
+position_smoothing_enabled = true
+position_smoothing_speed = 10.0
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+light_mask = 3
+visibility_layer = 3
+scale = Vector2(8, 8)
+texture = SubResource("GradientTexture2D_pj5x5")

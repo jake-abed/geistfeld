@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 
-const BASE_SPEED = 300.0
+const BASE_SPEED = 250.0
 const JUMP_VELOCITY = -400.0
 const ACCEL = 10.0
 const MAX_ENERGY = 100.0
@@ -15,7 +15,7 @@ func _physics_process(delta: float) -> void:
 	
 	if Input.is_action_pressed("sprint") and energy > 0:
 		energy -= 1.0
-		speed_scaling = 2.0
+		speed_scaling = 1.5
 	else:
 		speed_scaling = 1.0
 	
