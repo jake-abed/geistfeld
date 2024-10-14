@@ -1,29 +1,92 @@
-[gd_scene load_steps=6 format=3 uid="uid://dms3slrv65dvl"]
+[gd_scene load_steps=10 format=3 uid="uid://dms3slrv65dvl"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_wirdj"]
-[ext_resource type="Texture2D" uid="uid://cik516rqcirit" path="res://icon.svg" id="2_x71tv"]
+[ext_resource type="Texture2D" uid="uid://bfntsm54oqry0" path="res://assets/images/player-sheet.png" id="2_ecwew"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_f86re"]
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_w8jg2"]
+radius = 5.0
+height = 76.0
 
 [sub_resource type="Gradient" id="Gradient_mgn46"]
-offsets = PackedFloat32Array(0, 0.571429, 1)
-colors = PackedColorArray(0.815686, 0.815686, 0.815686, 0.443137, 0.321569, 0.321569, 0.321569, 0.611765, 0, 0, 0, 0.588235)
+offsets = PackedFloat32Array(0.441558, 0.714286, 1)
+colors = PackedColorArray(0.621524, 0.621524, 0.621524, 0.443137, 0.396889, 0.396889, 0.396889, 0.500501, 0, 0, 0, 0.588235)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_pj5x5"]
 gradient = SubResource("Gradient_mgn46")
+width = 128
+height = 128
 fill = 1
-fill_from = Vector2(0.513761, 0.536697)
-fill_to = Vector2(0.862385, 0.165138)
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.8, 0.2)
+
+[sub_resource type="Animation" id="Animation_h30y4"]
+resource_name = "idle"
+length = 0.6
+loop_mode = 1
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.15, 0.3, 0.45),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [1, 0, 3, 0]
+}
+
+[sub_resource type="Animation" id="Animation_6eqdl"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_j6ys5"]
+resource_name = "move"
+loop_mode = 1
+step = 0.0833
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0833333, 0.166667, 0.25, 0.333333, 0.416667, 0.5, 0.583333, 0.666667, 0.75, 0.833333, 0.916667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_l3i2l"]
+_data = {
+"RESET": SubResource("Animation_6eqdl"),
+"idle": SubResource("Animation_h30y4"),
+"move": SubResource("Animation_j6ys5")
+}
 
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_wirdj")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_f86re")
-
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(0.5, 0.5)
-texture = ExtResource("2_x71tv")
+texture = ExtResource("2_ecwew")
+hframes = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 9)
+shape = SubResource("CapsuleShape2D_w8jg2")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 process_callback = 0
@@ -35,3 +98,8 @@ light_mask = 3
 visibility_layer = 3
 scale = Vector2(8, 8)
 texture = SubResource("GradientTexture2D_pj5x5")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_l3i2l")
+}
