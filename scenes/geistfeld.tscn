@@ -130,7 +130,7 @@ But you know what is? Getting behind on your game jam :(
 Now I'm scared."
 
 [node name="Geist" parent="Notes" instance=ExtResource("6_8tooo")]
-position = Vector2(12326, 3752)
+position = Vector2(1505, 1076)
 
 [node name="Fog" parent="." instance=ExtResource("10_e4pvg")]
 
@@ -147,10 +147,9 @@ position = Vector2(774, 452)
 position = Vector2(1386, 1000)
 
 [node name="Player" parent="." instance=ExtResource("1_8g5j1")]
-position = Vector2(346, 372)
+position = Vector2(652, 602)
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
-visible = false
 light_mask = 15
 visibility_layer = 15
 color = Color(0, 0, 0, 1)

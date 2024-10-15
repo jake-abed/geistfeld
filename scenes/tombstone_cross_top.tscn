@@ -1,12 +1,29 @@
-[gd_scene load_steps=3 format=3 uid="uid://c7dlvn8r6xo2c"]
+[gd_scene load_steps=5 format=3 uid="uid://c7dlvn8r6xo2c"]
 
 [ext_resource type="Texture2D" uid="uid://c3o2322dca4sp" path="res://assets/images/tombstone-cross-top.png" id="1_sex7o"]
+
+[sub_resource type="Gradient" id="Gradient_vt680"]
+offsets = PackedFloat32Array(0, 0.959596)
+colors = PackedColorArray(0, 0, 0, 0.713726, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_cs23w"]
+gradient = SubResource("Gradient_vt680")
+width = 320
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.799145, 0.25641)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2gvd1"]
 size = Vector2(24, 57)
 
 [node name="Tombstone" type="StaticBody2D"]
 y_sort_enabled = true
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+position = Vector2(-1, -37)
+scale = Vector2(0.4, 0.4)
+texture = SubResource("GradientTexture2D_cs23w")
+offset = Vector2(0, 100)
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 y_sort_enabled = true
