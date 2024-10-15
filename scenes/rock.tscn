@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://denylfj378nco"]
+
+[ext_resource type="Texture2D" uid="uid://bso1nay871562" path="res://assets/images/rock.png" id="1_k7gph"]
+
+[sub_resource type="ConvexPolygonShape2D" id="ConvexPolygonShape2D_jwi15"]
+points = PackedVector2Array(-50, 10, -40, -16, 35, -16, 50, 10)
+
+[node name="Rock" type="StaticBody2D"]
+y_sort_enabled = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+y_sort_enabled = true
+position = Vector2(0, 3)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_k7gph")
+offset = Vector2(0, -60)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("ConvexPolygonShape2D_jwi15")
+one_way_collision_margin = 0.0

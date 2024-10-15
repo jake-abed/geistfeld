@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=3 uid="uid://bakvjtn5sarqu"]
+
+[ext_resource type="Texture2D" uid="uid://bjvkpaj624ryp" path="res://assets/images/verticalwall.png" id="1_frh1o"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_e5qmv"]
+size = Vector2(22, 128)
+
+[node name="VerticalFence" type="Node2D"]
+y_sort_enabled = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+y_sort_enabled = true
+position = Vector2(0, 34)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_frh1o")
+offset = Vector2(0, -100)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(1, 0)
+shape = SubResource("RectangleShape2D_e5qmv")

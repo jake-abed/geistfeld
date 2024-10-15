@@ -1,0 +1,75 @@
+[gd_scene load_steps=7 format=3 uid="uid://dun25w7jnnnam"]
+
+[ext_resource type="Script" path="res://scripts/note.gd" id="1_utjcj"]
+[ext_resource type="Theme" uid="uid://cjbcircl2ubh2" path="res://assets/themes/note_theme.tres" id="2_3unht"]
+[ext_resource type="Texture2D" uid="uid://cxxqaxdeprkef" path="res://assets/images/paper-note.png" id="3_1q2xh"]
+[ext_resource type="FontFile" uid="uid://b0ku14gk7g15g" path="res://assets/misc/Treamd.ttf" id="3_yylbm"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_oaexx"]
+line_spacing = -6.0
+font = ExtResource("3_yylbm")
+font_size = 32
+font_color = Color(0, 0, 0, 1)
+outline_size = 1
+outline_color = Color(0.277528, 0.277528, 0.277528, 1)
+shadow_size = 3
+shadow_color = Color(0.109804, 0.109804, 0.109804, 0.576471)
+shadow_offset = Vector2(0, 0)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ds7em"]
+radius = 40.3113
+
+[node name="Note" type="Area2D" groups=["notes"]]
+script = ExtResource("1_utjcj")
+type = "note"
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 15
+visible = false
+
+[node name="Control" type="Control" parent="CanvasLayer"]
+z_index = 10
+layout_mode = 3
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -192.0
+offset_top = -256.0
+offset_right = -1088.0
+offset_bottom = -464.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
+
+[node name="Panel" type="Panel" parent="CanvasLayer/Control"]
+layout_direction = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 3.832
+anchor_bottom = 1.906
+offset_left = 434.0
+offset_top = 111.0
+offset_right = -461.488
+offset_bottom = -96.8721
+theme = ExtResource("2_3unht")
+
+[node name="Label" type="Label" parent="CanvasLayer/Control/Panel"]
+layout_mode = 0
+offset_left = 30.0
+offset_top = 25.0
+offset_right = 350.0
+offset_bottom = 477.0
+label_settings = SubResource("LabelSettings_oaexx")
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_ds7em")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+rotation = -5.63916
+scale = Vector2(0.025, 0.025)
+skew = 0.724312
+texture = ExtResource("3_1q2xh")

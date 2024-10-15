@@ -1,23 +1,49 @@
-[gd_scene load_steps=10 format=3 uid="uid://dms3slrv65dvl"]
+[gd_scene load_steps=12 format=3 uid="uid://dms3slrv65dvl"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_wirdj"]
 [ext_resource type="Texture2D" uid="uid://bfntsm54oqry0" path="res://assets/images/player-sheet.png" id="2_ecwew"]
 
+[sub_resource type="Gradient" id="Gradient_umjpq"]
+offsets = PackedFloat32Array(0.02, 0.99)
+colors = PackedColorArray(0, 0, 0, 0.866667, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_8cb76"]
+gradient = SubResource("Gradient_umjpq")
+width = 72
+height = 28
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.75, 0.292683)
+
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_w8jg2"]
-radius = 5.0
-height = 76.0
+height = 32.0
 
 [sub_resource type="Gradient" id="Gradient_mgn46"]
-offsets = PackedFloat32Array(0.441558, 0.714286, 1)
-colors = PackedColorArray(0.621524, 0.621524, 0.621524, 0.443137, 0.396889, 0.396889, 0.396889, 0.500501, 0, 0, 0, 0.588235)
+offsets = PackedFloat32Array(0, 0.324675, 0.668831, 1)
+colors = PackedColorArray(0.873298, 0.873298, 0.873298, 0.729412, 0.556953, 0.556953, 0.556953, 0.607843, 0.31802, 0.31802, 0.31802, 0.670588, 0, 0, 0, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_pj5x5"]
 gradient = SubResource("Gradient_mgn46")
-width = 128
-height = 128
+width = 256
+height = 256
 fill = 1
 fill_from = Vector2(0.5, 0.5)
-fill_to = Vector2(0.8, 0.2)
+fill_to = Vector2(0.85, 0.15)
+
+[sub_resource type="Animation" id="Animation_6eqdl"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
 
 [sub_resource type="Animation" id="Animation_h30y4"]
 resource_name = "idle"
@@ -35,21 +61,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
 "values": [1, 0, 3, 0]
-}
-
-[sub_resource type="Animation" id="Animation_6eqdl"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [0]
 }
 
 [sub_resource type="Animation" id="Animation_j6ys5"]
@@ -77,29 +88,50 @@ _data = {
 }
 
 [node name="Player" type="CharacterBody2D"]
+y_sort_enabled = true
 script = ExtResource("1_wirdj")
 
+[node name="Shadow" type="Sprite2D" parent="."]
+position = Vector2(1, -50)
+texture = SubResource("GradientTexture2D_8cb76")
+offset = Vector2(0, 100)
+
 [node name="Sprite2D" type="Sprite2D" parent="."]
+y_sort_enabled = true
+position = Vector2(0, 51)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("2_ecwew")
+offset = Vector2(0, -100)
 hframes = 16
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 9)
+position = Vector2(0, 35)
 shape = SubResource("CapsuleShape2D_w8jg2")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 process_callback = 0
+limit_left = -24
+limit_top = -52
+limit_right = 12684
+limit_bottom = 7356
 position_smoothing_enabled = true
 position_smoothing_speed = 10.0
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
-light_mask = 3
-visibility_layer = 3
-scale = Vector2(8, 8)
+light_mask = 15
+visibility_layer = 15
+y_sort_enabled = true
+position = Vector2(0, 36)
+scale = Vector2(6, 6)
+color = Color(1, 0.835294, 0.623529, 1)
+energy = 1.2
 texture = SubResource("GradientTexture2D_pj5x5")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_l3i2l")
 }
+
+[node name="LightTimer" type="Timer" parent="."]
+wait_time = 2.0
+autostart = true

@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=3 uid="uid://c7dlvn8r6xo2c"]
+
+[ext_resource type="Texture2D" uid="uid://c3o2322dca4sp" path="res://assets/images/tombstone-cross-top.png" id="1_sex7o"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2gvd1"]
+size = Vector2(24, 57)
+
+[node name="Tombstone" type="StaticBody2D"]
+y_sort_enabled = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+y_sort_enabled = true
+position = Vector2(0, 0.999998)
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("1_sex7o")
+offset = Vector2(0, -86)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+y_sort_enabled = true
+position = Vector2(-1.49999, -7.00001)
+rotation = 1.57078
+shape = SubResource("RectangleShape2D_2gvd1")

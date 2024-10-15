@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=3 uid="uid://bv01eh80ermx7"]
+
+[ext_resource type="Texture2D" uid="uid://dsgqgwq5igkrp" path="res://assets/images/tombstone.png" id="1_bj7wj"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2gvd1"]
+size = Vector2(26, 66.9999)
+
+[node name="Tombstone" type="StaticBody2D"]
+y_sort_enabled = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+y_sort_enabled = true
+position = Vector2(0, -2)
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("1_bj7wj")
+offset = Vector2(0, -80)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+y_sort_enabled = true
+position = Vector2(0.500039, -7.00001)
+rotation = 1.57078
+shape = SubResource("RectangleShape2D_2gvd1")

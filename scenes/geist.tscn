@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://cke2ha77kmt1d"]
+
+[ext_resource type="Script" path="res://scenes/geist.gd" id="1_5y0dw"]
+[ext_resource type="Texture2D" uid="uid://cik516rqcirit" path="res://icon.svg" id="1_68hip"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_lfups"]
+radius = 13.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_8uqbr"]
+radius = 1250.0
+
+[node name="Geist" type="Node2D"]
+script = ExtResource("1_5y0dw")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("1_68hip")
+
+[node name="Hitbox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+shape = SubResource("CircleShape2D_lfups")
+
+[node name="ContactBox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ContactBox"]
+shape = SubResource("CircleShape2D_8uqbr")
+debug_color = Color(0.84612, 0.294808, 0.604185, 0.42)

@@ -1,0 +1,9 @@
+[gd_resource type="Theme" load_steps=3 format=3 uid="uid://cjbcircl2ubh2"]
+
+[ext_resource type="Texture2D" uid="uid://cxxqaxdeprkef" path="res://assets/images/paper-note.png" id="1_ywflb"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_idhag"]
+texture = ExtResource("1_ywflb")
+
+[resource]
+Panel/styles/panel = SubResource("StyleBoxTexture_idhag")

@@ -1,4 +1,4 @@
-extends CharacterBody2D
+class_name Player extends CharacterBody2D
 
 const BASE_SPEED = 250.0
 const JUMP_VELOCITY = -400.0
@@ -11,9 +11,15 @@ var facing_factor := 1.0
 
 @onready var sprite := $Sprite2D
 @onready var anim_player := $AnimationPlayer
+@onready var light := $PointLight2D
+@onready var light_timer := $LightTimer
+
+var interactable: Interactable
 
 func _ready() -> void:
 	anim_player.play("idle")
+	glow_light()
+	light_timer.timeout.connect(_on_light_timer_timeout)
 
 func _physics_process(delta: float) -> void:	
 	var x_input := Input.get_axis("move_left", "move_right")
@@ -45,11 +51,45 @@ func _physics_process(delta: float) -> void:
 		velocity = velocity.lerp(direction * speed_scaling * BASE_SPEED, ACCEL * delta)
 	else:
 		velocity = velocity.lerp(Vector2(0.0, 0.0), ACCEL * delta)
-	print(velocity)
 	
 	if velocity.length() != 0 and direction.length() != 0:
 		anim_player.play("move")
 	else:
 		anim_player.play("idle")
+	
+	if Input.is_action_just_pressed("interact"):
+		print("interact pressed")
+		interact()
 
 	move_and_slide()
+
+func interact() -> void:
+	print("trying to interact")
+	if !interactable:
+		return
+	match interactable.type:
+		"note":
+			interactable.toggle_note()
+
+func glow_light() -> void:
+	var tween := get_tree().create_tween()
+	var current: Vector2 = light.scale
+	var small: Vector2 = light.scale * 0.75
+	tween.set_ease(Tween.EASE_IN_OUT)
+	tween.set_loops(0)
+	tween.set_trans(Tween.TRANS_SINE)
+	tween.set_parallel(false)
+	tween.tween_property(light, "scale", small, randf_range(2, 3))
+	tween.tween_property(light, "scale", current, randf_range(2, 3))
+
+func _on_light_timer_timeout() -> void:
+	flicker_light()
+	light_timer.wait_time = randf_range(0.25, 3)
+
+func flicker_light() -> void:
+	var tween := get_tree().create_tween()
+	var low := randf_range(1, 1.1)
+	tween.set_ease(Tween.EASE_IN_OUT)
+	tween.set_parallel(false)
+	tween.tween_property(light, "energy", low, 0.25)
+	tween.tween_property(light, "energy", 1.25, 0.25)
