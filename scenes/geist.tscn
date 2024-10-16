@@ -11,13 +11,13 @@ height = 140.0
 radius = 1250.0
 
 [sub_resource type="Gradient" id="Gradient_vpdly"]
-offsets = PackedFloat32Array(0.010101, 0.026936, 0.518519, 0.851852, 0.936027, 1)
+offsets = PackedFloat32Array(0, 0.023569, 0.518519, 0.851852, 0.936027, 1)
 colors = PackedColorArray(0.787851, 0.359938, 0.995707, 0.862745, 0.391221, 0.0015371, 0.631736, 0.8, 0.239565, 0.000565897, 0.39794, 0.866667, 0.223529, 0, 0.376471, 0.933333, 0.0431373, 0, 0.0901961, 0.933333, 0, 0, 0, 0.94902)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_lhu38"]
 gradient = SubResource("Gradient_vpdly")
-width = 256
-height = 256
+width = 512
+height = 512
 fill = 1
 fill_from = Vector2(0.5, 0.5)
 fill_to = Vector2(0.8, 0.2)
@@ -45,3 +45,7 @@ debug_color = Color(0.84612, 0.294808, 0.604185, 0.42)
 position = Vector2(17, -90)
 scale = Vector2(2, 2)
 texture = SubResource("GradientTexture2D_lhu38")
+
+[node name="LevelUpTimer" type="Timer" parent="."]
+wait_time = 30.0
+autostart = true

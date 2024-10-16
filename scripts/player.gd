@@ -93,3 +93,7 @@ func flicker_light() -> void:
 	tween.set_parallel(false)
 	tween.tween_property(light, "energy", low, 0.25)
 	tween.tween_property(light, "energy", 1.25, 0.25)
+
+func die() -> void:
+	self.queue_free()
+	get_tree().quit()
