@@ -7,6 +7,8 @@ const BOTTOM_BOUND := 7200
 const BASE_SPEED := 50
 const BASE_RADIUS := 1250
 
+@onready var sprite := $Sprite2D
+@onready var light := $PointLight2D
 @onready var contact_box := $ContactBox
 @onready var contact_shape := $ContactBox/CollisionShape2D
 @onready var hit_box := $Hitbox
@@ -28,9 +30,11 @@ func _process(delta: float) -> void:
 	if !player_targeted:
 		var movement = (target_location - global_position).normalized()
 		global_position += movement * BASE_SPEED * delta
+		set_sprite_direction(movement)
 	else:
 		var movement = (player.global_position - global_position).normalized()
 		global_position += movement * BASE_SPEED * delta
+		set_sprite_direction(movement)
 
 func choose_new_location() -> void:
 	if player_targeted:
@@ -46,6 +50,15 @@ func _on_contact_body_entered(body) -> void:
 	if body is Player:
 		player_targeted = true
 		player = body
+
+func set_sprite_direction(movement: Vector2) -> void:
+	if movement.x > 0:
+		sprite.flip_h = true
+		light.position.x = -15
+	if movement.x < 0:
+		sprite.flip_h = false
+		light.position.x = 15
+
 
 func _on_contact_body_exited(body) -> void:
 	if body is StaticBody2D:

@@ -1,28 +1,47 @@
-[gd_scene load_steps=5 format=3 uid="uid://cke2ha77kmt1d"]
+[gd_scene load_steps=7 format=3 uid="uid://cke2ha77kmt1d"]
 
-[ext_resource type="Script" path="res://scenes/geist.gd" id="1_5y0dw"]
-[ext_resource type="Texture2D" uid="uid://cik516rqcirit" path="res://icon.svg" id="1_68hip"]
+[ext_resource type="Script" path="res://scripts/geist.gd" id="1_5y0dw"]
+[ext_resource type="Texture2D" uid="uid://qxr6oy0dl2ue" path="res://assets/images/geist.png" id="2_2usc4"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_lfups"]
-radius = 13.0
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ypsw5"]
+radius = 14.0
+height = 140.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_8uqbr"]
 radius = 1250.0
 
+[sub_resource type="Gradient" id="Gradient_vpdly"]
+offsets = PackedFloat32Array(0.010101, 0.026936, 0.518519, 0.851852, 0.936027, 1)
+colors = PackedColorArray(0.787851, 0.359938, 0.995707, 0.862745, 0.391221, 0.0015371, 0.631736, 0.8, 0.239565, 0.000565897, 0.39794, 0.866667, 0.223529, 0, 0.376471, 0.933333, 0.0431373, 0, 0.0901961, 0.933333, 0, 0, 0, 0.94902)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_lhu38"]
+gradient = SubResource("Gradient_vpdly")
+width = 256
+height = 256
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.8, 0.2)
+
 [node name="Geist" type="Node2D"]
+z_index = 3
 script = ExtResource("1_5y0dw")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(0.25, 0.25)
-texture = ExtResource("1_68hip")
+texture = ExtResource("2_2usc4")
 
 [node name="Hitbox" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
-shape = SubResource("CircleShape2D_lfups")
+shape = SubResource("CapsuleShape2D_ypsw5")
 
 [node name="ContactBox" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ContactBox"]
 shape = SubResource("CircleShape2D_8uqbr")
 debug_color = Color(0.84612, 0.294808, 0.604185, 0.42)
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(17, -90)
+scale = Vector2(2, 2)
+texture = SubResource("GradientTexture2D_lhu38")

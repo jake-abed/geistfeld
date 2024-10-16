@@ -130,7 +130,7 @@ But you know what is? Getting behind on your game jam :(
 Now I'm scared."
 
 [node name="Geist" parent="Notes" instance=ExtResource("6_8tooo")]
-position = Vector2(1505, 1076)
+position = Vector2(1778, 1114)
 
 [node name="Fog" parent="." instance=ExtResource("10_e4pvg")]
 
