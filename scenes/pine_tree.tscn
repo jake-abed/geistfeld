@@ -1,0 +1,56 @@
+[gd_scene load_steps=8 format=3 uid="uid://bkgei8useacp7"]
+
+[ext_resource type="Texture2D" uid="uid://cwmysgbab7whr" path="res://assets/images/pine-tree.png" id="1_njbda"]
+[ext_resource type="Script" path="res://scripts/pine_tree.gd" id="1_us26n"]
+[ext_resource type="Shader" path="res://scripts/wind_wave.gdshader" id="2_5slx2"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_pdkny"]
+shader = ExtResource("2_5slx2")
+shader_parameter/speed = 0.5
+shader_parameter/minStrength = 0.1
+shader_parameter/maxStrength = 0.2
+shader_parameter/strengthScale = 100.0
+shader_parameter/interval = 5.0
+shader_parameter/detail = 1.0
+shader_parameter/distortion = 0.0
+shader_parameter/heightOffset = 0.0
+shader_parameter/offset = 0.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2gvd1"]
+size = Vector2(22.5005, 62.4998)
+
+[sub_resource type="Gradient" id="Gradient_ry8up"]
+offsets = PackedFloat32Array(0, 0.959596)
+colors = PackedColorArray(0, 0, 0, 0.866667, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_520ku"]
+gradient = SubResource("Gradient_ry8up")
+width = 768
+height = 192
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.799145, 0.25641)
+
+[node name="PineTree" type="StaticBody2D"]
+y_sort_enabled = true
+script = ExtResource("1_us26n")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+y_sort_enabled = true
+material = SubResource("ShaderMaterial_pdkny")
+position = Vector2(0, 19)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_njbda")
+offset = Vector2(0, -520)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+y_sort_enabled = true
+position = Vector2(2.75011, 26.7498)
+rotation = 1.57078
+shape = SubResource("RectangleShape2D_2gvd1")
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+position = Vector2(12, -3)
+scale = Vector2(0.4, 0.4)
+texture = SubResource("GradientTexture2D_520ku")
+offset = Vector2(0, 100)

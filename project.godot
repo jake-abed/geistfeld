@@ -12,7 +12,12 @@ config_version=5
 
 config/name="Geistfeld"
 config/features=PackedStringArray("4.3", "GL Compatibility")
+boot_splash/bg_color=Color(0, 0, 0, 1)
 config/icon="res://icon.svg"
+
+[autoload]
+
+Game="*res://scripts/game.gd"
 
 [display]
 
@@ -72,3 +77,4 @@ interact={
 
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
+viewport/transparent_background=true

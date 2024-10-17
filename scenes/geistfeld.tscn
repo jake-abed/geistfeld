@@ -1,7 +1,8 @@
-[gd_scene load_steps=21 format=4 uid="uid://bqyeli8brywwx"]
+[gd_scene load_steps=23 format=4 uid="uid://bqyeli8brywwx"]
 
 [ext_resource type="PackedScene" uid="uid://dms3slrv65dvl" path="res://scenes/player.tscn" id="1_8g5j1"]
 [ext_resource type="Texture2D" uid="uid://cq6ecyt6j4lfv" path="res://assets/images/bg_grass.jpg" id="1_m0lys"]
+[ext_resource type="Script" path="res://scenes/geistfeld.gd" id="1_rdruu"]
 [ext_resource type="Script" path="res://scripts/note.gd" id="2_q8bfy"]
 [ext_resource type="Theme" uid="uid://cjbcircl2ubh2" path="res://assets/themes/note_theme.tres" id="3_ftcy8"]
 [ext_resource type="PackedScene" uid="uid://denylfj378nco" path="res://scenes/rock.tscn" id="3_ongvj"]
@@ -11,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://c7dlvn8r6xo2c" path="res://scenes/tombstone_cross_top.tscn" id="5_e6i5h"]
 [ext_resource type="PackedScene" uid="uid://bakvjtn5sarqu" path="res://scenes/vertical_fence.tscn" id="6_3w8i5"]
 [ext_resource type="PackedScene" uid="uid://cke2ha77kmt1d" path="res://scenes/geist.tscn" id="6_8tooo"]
+[ext_resource type="PackedScene" uid="uid://bkgei8useacp7" path="res://scenes/pine_tree.tscn" id="7_5s2fi"]
 [ext_resource type="Texture2D" uid="uid://bjvkpaj624ryp" path="res://assets/images/verticalwall.png" id="7_ukye7"]
 [ext_resource type="PackedScene" uid="uid://hyi8hkm3iobu" path="res://scenes/horizontal_fence.tscn" id="7_wbrjn"]
 [ext_resource type="PackedScene" uid="uid://dun25w7jnnnam" path="res://scenes/note.tscn" id="8_jn7no"]
@@ -44,6 +46,145 @@ size = Vector2(22, 128)
 
 [node name="Geistfeld" type="Node2D"]
 y_sort_enabled = true
+script = ExtResource("1_rdruu")
+
+[node name="Player" parent="." instance=ExtResource("1_8g5j1")]
+position = Vector2(961, 3461)
+
+[node name="Trees" type="Node2D" parent="."]
+y_sort_enabled = true
+
+[node name="PineTree" parent="Trees" instance=ExtResource("7_5s2fi")]
+position = Vector2(240, 717)
+
+[node name="PineTree2" parent="Trees" instance=ExtResource("7_5s2fi")]
+position = Vector2(1253, 4356)
+
+[node name="PineTree3" parent="Trees" instance=ExtResource("7_5s2fi")]
+position = Vector2(1475, 4415)
+
+[node name="PineTree4" parent="Trees" instance=ExtResource("7_5s2fi")]
+position = Vector2(1079, 4433)
+
+[node name="PineTree5" parent="Trees" instance=ExtResource("7_5s2fi")]
+position = Vector2(899, 4336)
+
+[node name="PineTree6" parent="Trees" instance=ExtResource("7_5s2fi")]
+position = Vector2(717, 4557)
+
+[node name="PineTree7" parent="Trees" instance=ExtResource("7_5s2fi")]
+position = Vector2(847, 4687)
+
+[node name="PineTree8" parent="Trees" instance=ExtResource("7_5s2fi")]
+position = Vector2(645, 4896)
+
+[node name="PineTree9" parent="Trees" instance=ExtResource("7_5s2fi")]
+position = Vector2(1699, 4542)
+
+[node name="PineTree10" parent="Trees" instance=ExtResource("7_5s2fi")]
+position = Vector2(1567, 4711)
+
+[node name="PineTree11" parent="Trees" instance=ExtResource("7_5s2fi")]
+position = Vector2(1748, 4917)
+
+[node name="PineTree12" parent="Trees" instance=ExtResource("7_5s2fi")]
+position = Vector2(785, 5095)
+
+[node name="PineTree13" parent="Trees" instance=ExtResource("7_5s2fi")]
+position = Vector2(969, 5238)
+
+[node name="PineTree14" parent="Trees" instance=ExtResource("7_5s2fi")]
+position = Vector2(1490, 5022)
+
+[node name="PineTree15" parent="Trees" instance=ExtResource("7_5s2fi")]
+position = Vector2(1352, 5268)
+
+[node name="PineTree16" parent="Trees" instance=ExtResource("7_5s2fi")]
+position = Vector2(688, 5302)
+
+[node name="PineTree17" parent="Trees" instance=ExtResource("7_5s2fi")]
+position = Vector2(1154, 5321)
+
+[node name="PineTree18" parent="Trees" instance=ExtResource("7_5s2fi")]
+position = Vector2(1619, 5247)
+
+[node name="PineTree19" parent="Trees" instance=ExtResource("7_5s2fi")]
+position = Vector2(349, 5107)
+
+[node name="PineTree20" parent="Trees" instance=ExtResource("7_5s2fi")]
+position = Vector2(337, 4321)
+
+[node name="PineTree21" parent="Trees" instance=ExtResource("7_5s2fi")]
+position = Vector2(666, 3827)
+
+[node name="PineTree22" parent="Trees" instance=ExtResource("7_5s2fi")]
+position = Vector2(1790, 3815)
+
+[node name="PineTree23" parent="Trees" instance=ExtResource("7_5s2fi")]
+position = Vector2(2318, 5337)
+
+[node name="PineTree24" parent="Trees" instance=ExtResource("7_5s2fi")]
+position = Vector2(2297, 4465)
+
+[node name="PineTree25" parent="Trees" instance=ExtResource("7_5s2fi")]
+position = Vector2(1251, 5937)
+
+[node name="PineTree26" parent="Trees" instance=ExtResource("7_5s2fi")]
+position = Vector2(10651, 2632)
+
+[node name="PineTree27" parent="Trees" instance=ExtResource("7_5s2fi")]
+position = Vector2(10318, 2823)
+
+[node name="PineTree28" parent="Trees" instance=ExtResource("7_5s2fi")]
+position = Vector2(10839, 2718)
+
+[node name="PineTree29" parent="Trees" instance=ExtResource("7_5s2fi")]
+position = Vector2(10488, 2743)
+
+[node name="PineTree30" parent="Trees" instance=ExtResource("7_5s2fi")]
+position = Vector2(11064, 2758)
+
+[node name="PineTree31" parent="Trees" instance=ExtResource("7_5s2fi")]
+position = Vector2(10203, 3559)
+
+[node name="PineTree32" parent="Trees" instance=ExtResource("7_5s2fi")]
+position = Vector2(11252, 3555)
+
+[node name="PineTree33" parent="Trees" instance=ExtResource("7_5s2fi")]
+position = Vector2(11049, 3519)
+
+[node name="PineTree34" parent="Trees" instance=ExtResource("7_5s2fi")]
+position = Vector2(9969, 3552)
+
+[node name="PineTree36" parent="Trees" instance=ExtResource("7_5s2fi")]
+position = Vector2(10665, 3532)
+
+[node name="PineTree37" parent="Trees" instance=ExtResource("7_5s2fi")]
+position = Vector2(10822, 3615)
+
+[node name="PineTree35" parent="Trees" instance=ExtResource("7_5s2fi")]
+position = Vector2(10424, 3601)
+
+[node name="PineTree38" parent="Trees" instance=ExtResource("7_5s2fi")]
+position = Vector2(10139, 2729)
+
+[node name="PineTree39" parent="Trees" instance=ExtResource("7_5s2fi")]
+position = Vector2(9970, 2813)
+
+[node name="PineTree40" parent="Trees" instance=ExtResource("7_5s2fi")]
+position = Vector2(9774, 3870)
+
+[node name="PineTree41" parent="Trees" instance=ExtResource("7_5s2fi")]
+position = Vector2(9294, 3492)
+
+[node name="PineTree42" parent="Trees" instance=ExtResource("7_5s2fi")]
+position = Vector2(9432, 2638)
+
+[node name="PineTree43" parent="Trees" instance=ExtResource("7_5s2fi")]
+position = Vector2(11703, 2843)
+
+[node name="PineTree44" parent="Trees" instance=ExtResource("7_5s2fi")]
+position = Vector2(11816, 3665)
 
 [node name="Notes" type="Node2D" parent="."]
 
@@ -57,9 +198,9 @@ Ye may be the next to escape, though ye may end up a wisp o' blessings..."
 
 [node name="IntroNote2" parent="Notes" instance=ExtResource("8_jn7no")]
 position = Vector2(730, 720)
-message = "To the east there lie an exit tunnel from this geistfeld. But I cannot open it. Each time it is either rusted shut or the handle is missing
+message = "To the east there lie an exit tunnel from this geistfeld. But I cannot open it. Each time I awaken, it is rusted shut, jammed, missing the handle, and locked.
 
-The floating skulls know the location of the necessary items"
+The floating skulls know the location of the necessary items. But be wary, friend! Some resent ye for living and will lie to ye."
 
 [node name="IntroNote3" type="Area2D" parent="Notes" groups=["notes"]]
 position = Vector2(1066, 861)
@@ -130,7 +271,7 @@ But you know what is? Getting behind on your game jam :(
 Now I'm scared."
 
 [node name="Geist" parent="Notes" instance=ExtResource("6_8tooo")]
-position = Vector2(1778, 1114)
+position = Vector2(11582, 3862)
 
 [node name="Fog" parent="." instance=ExtResource("10_e4pvg")]
 
@@ -145,9 +286,6 @@ position = Vector2(774, 452)
 
 [node name="Rock7" parent="." instance=ExtResource("3_ongvj")]
 position = Vector2(1386, 1000)
-
-[node name="Player" parent="." instance=ExtResource("1_8g5j1")]
-position = Vector2(652, 602)
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 light_mask = 15

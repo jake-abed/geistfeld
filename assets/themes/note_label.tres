@@ -1,0 +1,14 @@
+[gd_resource type="LabelSettings" load_steps=2 format=3 uid="uid://3ngeua8xxa3e"]
+
+[ext_resource type="FontFile" uid="uid://b0ku14gk7g15g" path="res://assets/misc/Treamd.ttf" id="1_phiy3"]
+
+[resource]
+line_spacing = -6.0
+font = ExtResource("1_phiy3")
+font_size = 32
+font_color = Color(0, 0, 0, 1)
+outline_size = 1
+outline_color = Color(0.277528, 0.277528, 0.277528, 1)
+shadow_size = 2
+shadow_color = Color(0.109804, 0.109804, 0.109804, 0.576471)
+shadow_offset = Vector2(0, 0)

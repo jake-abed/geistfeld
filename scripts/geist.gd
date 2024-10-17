@@ -41,7 +41,6 @@ func _process(delta: float) -> void:
 		set_sprite_direction(target_location - global_position)
 	else:
 		var movement = (player.global_position - global_position).normalized()
-		print(player.global_position - global_position)
 		global_position += movement * speed * delta
 		set_sprite_direction(player.global_position - global_position)
 
@@ -67,7 +66,6 @@ func _on_hitbox_body_entered(body) -> void:
 		body.die()
 
 func set_sprite_direction(movement: Vector2) -> void:
-	print(movement)
 	if movement.x > 1.0:
 		sprite.flip_h = true
 		light.position.x = -15
@@ -78,7 +76,6 @@ func set_sprite_direction(movement: Vector2) -> void:
 func _on_contact_body_exited(body) -> void:
 	if body is StaticBody2D:
 		return
-	print(body, " exited")
 	if body is Player:
 		player_targeted = false
 		choose_new_location()
@@ -113,7 +110,7 @@ func level_up() -> void:
 		return
 	level += 1
 	speed *= 1.1
-	contact_radius *= 1.1
+	contact_radius *= 1.2
 	contact_shape.shape.radius = contact_radius
 
 func level_down() -> void:
@@ -121,7 +118,7 @@ func level_down() -> void:
 		return
 	level -= 1
 	speed /= 1.1
-	contact_radius /= 1.1 
+	contact_radius /= 1.2
 	contact_shape.shape.radius = contact_radius
 
 func _on_level_up_timeout() -> void:

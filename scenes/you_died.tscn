@@ -1,0 +1,67 @@
+[gd_scene load_steps=4 format=3 uid="uid://cbjy82knwjkpe"]
+
+[ext_resource type="Theme" uid="uid://cjbcircl2ubh2" path="res://assets/themes/note_theme.tres" id="1_hrr62"]
+[ext_resource type="FontFile" uid="uid://b0ku14gk7g15g" path="res://assets/misc/Treamd.ttf" id="2_ibuce"]
+[ext_resource type="LabelSettings" uid="uid://3ngeua8xxa3e" path="res://assets/themes/note_label.tres" id="3_riw06"]
+
+[node name="YouDied" type="Control"]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -384.0
+offset_top = -288.0
+offset_right = 384.0
+offset_bottom = 288.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_hrr62")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Panel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -321.0
+offset_top = 32.0
+offset_right = 325.0
+offset_bottom = 93.0
+grow_horizontal = 2
+theme_override_fonts/normal_font = ExtResource("2_ibuce")
+theme_override_fonts/bold_font = ExtResource("2_ibuce")
+theme_override_font_sizes/normal_font_size = 48
+theme_override_font_sizes/bold_font_size = 52
+bbcode_enabled = true
+text = "[center][color=#000000][b]Oh, dear![/b] You are [wave amp=40.0 freq=5.0 connected=1][color=#590016]DEAD[/color][/wave]![/color][/center]"
+
+[node name="Label" type="Label" parent="Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -310.0
+offset_top = -188.0
+offset_right = 313.0
+offset_bottom = -74.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Fear not, for death is not the end. You will become a wisp 'o blessings and offer aid to the living."
+label_settings = ExtResource("3_riw06")
+horizontal_alignment = 1
+autowrap_mode = 3
