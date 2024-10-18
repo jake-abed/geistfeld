@@ -4,11 +4,11 @@
 [ext_resource type="Texture2D" uid="uid://qxr6oy0dl2ue" path="res://assets/images/geist.png" id="2_2usc4"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ypsw5"]
-radius = 14.0
-height = 140.0
+radius = 15.0
+height = 58.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_8uqbr"]
-radius = 8025.0
+radius = 1300.0
 
 [sub_resource type="Gradient" id="Gradient_vpdly"]
 offsets = PackedFloat32Array(0, 0.023569, 0.518519, 0.851852, 0.936027, 1)
@@ -22,18 +22,17 @@ fill = 1
 fill_from = Vector2(0.5, 0.5)
 fill_to = Vector2(0.8, 0.2)
 
-[node name="Geist" type="Node2D"]
+[node name="Geist" type="Area2D"]
 z_index = 3
 script = ExtResource("1_5y0dw")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(3, 43)
+shape = SubResource("CapsuleShape2D_ypsw5")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(0.25, 0.25)
 texture = ExtResource("2_2usc4")
-
-[node name="Hitbox" type="Area2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
-shape = SubResource("CapsuleShape2D_ypsw5")
 
 [node name="ContactBox" type="Area2D" parent="."]
 
@@ -49,3 +48,6 @@ texture = SubResource("GradientTexture2D_lhu38")
 [node name="LevelUpTimer" type="Timer" parent="."]
 wait_time = 30.0
 autostart = true
+
+[node name="BanishTimer" type="Timer" parent="."]
+wait_time = 3.0

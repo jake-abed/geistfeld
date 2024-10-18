@@ -1,0 +1,90 @@
+[gd_scene load_steps=12 format=3 uid="uid://c87u1ha5t57e5"]
+
+[ext_resource type="Texture2D" uid="uid://crqoibwx1o6c5" path="res://assets/images/campfire.png" id="1_r1ecq"]
+[ext_resource type="Shader" path="res://scripts/fire.gdshader" id="2_eeg6t"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_uamyy"]
+shader = ExtResource("2_eeg6t")
+shader_parameter/fire_color = Color(0.838891, 0.369861, 7.70092e-07, 1)
+shader_parameter/fire_power_factor = 1.2
+shader_parameter/fire_intensity = 1.0
+shader_parameter/fire_start = 1.0
+shader_parameter/ball_size = 1.075
+shader_parameter/roughness = 0.5
+shader_parameter/detail = 4
+shader_parameter/scale = 3.0
+shader_parameter/lacunarity = 2.0
+
+[sub_resource type="Gradient" id="Gradient_j6hxa"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_1nyoe"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_pvdhr"]
+color_ramp = SubResource("Gradient_j6hxa")
+noise = SubResource("FastNoiseLite_1nyoe")
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_jug0j"]
+radius = 14.0
+height = 80.0
+
+[sub_resource type="Gradient" id="Gradient_2nt3c"]
+offsets = PackedFloat32Array(0, 0.20202, 0.50505, 1)
+colors = PackedColorArray(1, 0.647059, 0.529412, 0.901961, 0.878431, 0.396078, 0.211765, 0.886275, 0.380195, 0.125815, 0.0261912, 0.698039, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_okpwk"]
+gradient = SubResource("Gradient_2nt3c")
+width = 256
+height = 128
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.85, 0.15)
+
+[sub_resource type="Gradient" id="Gradient_jyh5l"]
+offsets = PackedFloat32Array(0, 0.959596)
+colors = PackedColorArray(0, 0, 0, 0.713726, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_h7nhu"]
+gradient = SubResource("Gradient_jyh5l")
+width = 320
+height = 96
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.799145, 0.25641)
+
+[node name="Campfire" type="StaticBody2D"]
+y_sort_enabled = true
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0.0901961)
+self_modulate = Color(1, 1, 1, 0.301961)
+y_sort_enabled = true
+material = SubResource("ShaderMaterial_uamyy")
+position = Vector2(0, 5)
+rotation = 1.5708
+scale = Vector2(0.25, 0.290635)
+texture = SubResource("NoiseTexture2D_pvdhr")
+offset = Vector2(-280, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+y_sort_enabled = true
+position = Vector2(0, -3)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_r1ecq")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2(4, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_jug0j")
+one_way_collision_margin = 0.0
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(0, -18)
+texture = SubResource("GradientTexture2D_okpwk")
+texture_scale = 4.0
+
+[node name="Sprite2D3" type="Sprite2D" parent="."]
+position = Vector2(1, -51)
+scale = Vector2(0.420316, 0.548955)
+texture = SubResource("GradientTexture2D_h7nhu")
+offset = Vector2(0, 100)

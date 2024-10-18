@@ -7,14 +7,20 @@ class_name Wisp extends Interactable
 @onready var panel := $Panel
 @onready var name_label := $Panel/NameLabel
 @onready var message_label := $Panel/MessageLabel
+@onready var blessing_label := $Panel/BlessingLabel
 @onready var sprite := $Sprite2D
+
+var blessing: String
+var blessing_types := ["Speed", "Energy", "Banish", "Luck"]
 
 func _ready() -> void:
 	type = "wisp"
+	blessing = blessing_types.pick_random()
 	body_entered.connect(_on_body_entered)
 	body_exited.connect(_on_body_exited)
 	name_label.text = wisp_name
 	message_label.text = message
+	blessing_label.text= "Blessing 'o " + blessing
 	play_float_anim()
 
 func _on_body_entered(body) -> void:
@@ -50,3 +56,21 @@ func play_float_anim() -> void:
 	tween2.tween_property(sprite, "scale", sprite.scale * 0.9, duration * 2.1)
 	tween.set_loops()
 	tween2.set_loops()
+
+func bless(player: Player) -> void:
+	match blessing:
+		"Speed":
+			player.base_speed += 25
+		"Energy":
+			player.max_energy += 15
+			player.energy += 15
+		"Banish":
+			player.banish_cooldown -= 0.5
+			player.banish_radius += 15
+		"Luck":
+			var geists: Array[Node] = get_tree().get_nodes_in_group("geists")
+			for geist in geists:
+				if geist is Geist:
+					geist.level_down()
+	
+	self.queue_free()

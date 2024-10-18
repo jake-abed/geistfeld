@@ -1,19 +1,19 @@
-extends Node2D
+class_name Geist extends Area2D
 
 const LEFT_BOUND := 1280
 const RIGHT_BOUND := 11550
 const TOP_BOUND := 1000
 const BOTTOM_BOUND := 6380
 const BASE_SPEED := 100.0
-const BASE_RADIUS := 1500.0
+const BASE_RADIUS := 1300.0
 const LEVEL_UP_TIME := 30.0
 
 @onready var sprite := $Sprite2D
 @onready var light := $PointLight2D
 @onready var contact_box := $ContactBox
 @onready var contact_shape := $ContactBox/CollisionShape2D
-@onready var hit_box := $Hitbox
 @onready var level_up_timer := $LevelUpTimer
+@onready var banish_timer := $BanishTimer
 
 @onready var speed: float
 @onready var contact_radius: float
@@ -22,14 +22,16 @@ const LEVEL_UP_TIME := 30.0
 var player_targeted := false
 var player: Player
 var target_location: Vector2
+var banished := false
 
 func _ready() -> void:
 	reset_ghost()
 	gloob_and_shoob()
 	contact_box.body_entered.connect(_on_contact_body_entered)
 	contact_box.body_exited.connect(_on_contact_body_exited)
-	hit_box.body_entered.connect(_on_hitbox_body_entered)
+	body_entered.connect(_on_hitbox_body_entered)
 	level_up_timer.timeout.connect(_on_level_up_timeout)
+	banish_timer.timeout.connect(_on_banish_timeout)
 
 func _process(delta: float) -> void:
 	if global_position == target_location:
@@ -37,10 +39,14 @@ func _process(delta: float) -> void:
 	
 	if !player_targeted:
 		var movement = (target_location - global_position).normalized()
+		if banished:
+			movement *= -1 * (8 / level)
 		global_position += movement * speed * delta
 		set_sprite_direction(target_location - global_position)
 	else:
 		var movement = (player.global_position - global_position).normalized()
+		if banished:
+			movement *= -1 * (8 / level)
 		global_position += movement * speed * delta
 		set_sprite_direction(player.global_position - global_position)
 
@@ -110,7 +116,7 @@ func level_up() -> void:
 		return
 	level += 1
 	speed *= 1.1
-	contact_radius *= 1.2
+	contact_radius *= 1.15
 	contact_shape.shape.radius = contact_radius
 
 func level_down() -> void:
@@ -118,8 +124,16 @@ func level_down() -> void:
 		return
 	level -= 1
 	speed /= 1.1
-	contact_radius /= 1.2
+	contact_radius /= 1.15
 	contact_shape.shape.radius = contact_radius
+
+func banish() -> void:
+	banished = true
+	banish_timer.start()
+
+func _on_banish_timeout() -> void:
+	banished = false
+	banish_timer.wait_time = 3
 
 func _on_level_up_timeout() -> void:
 	level_up()

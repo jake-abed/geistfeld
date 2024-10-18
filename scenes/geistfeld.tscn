@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=4 uid="uid://bqyeli8brywwx"]
+[gd_scene load_steps=25 format=4 uid="uid://bqyeli8brywwx"]
 
 [ext_resource type="PackedScene" uid="uid://dms3slrv65dvl" path="res://scenes/player.tscn" id="1_8g5j1"]
 [ext_resource type="Texture2D" uid="uid://cq6ecyt6j4lfv" path="res://assets/images/bg_grass.jpg" id="1_m0lys"]
@@ -17,6 +17,8 @@
 [ext_resource type="PackedScene" uid="uid://hyi8hkm3iobu" path="res://scenes/horizontal_fence.tscn" id="7_wbrjn"]
 [ext_resource type="PackedScene" uid="uid://dun25w7jnnnam" path="res://scenes/note.tscn" id="8_jn7no"]
 [ext_resource type="PackedScene" uid="uid://br15ifyfpniow" path="res://scenes/fog.tscn" id="10_e4pvg"]
+[ext_resource type="PackedScene" uid="uid://c87u1ha5t57e5" path="res://scenes/campfire.tscn" id="18_yiuju"]
+[ext_resource type="PackedScene" uid="uid://b6jvx4t5eq18m" path="res://scenes/doghouse.tscn" id="19_qiox7"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_oaexx"]
 line_spacing = -6.0
@@ -49,175 +51,239 @@ y_sort_enabled = true
 script = ExtResource("1_rdruu")
 
 [node name="Player" parent="." instance=ExtResource("1_8g5j1")]
-position = Vector2(467, 435)
+position = Vector2(356, 284)
 
-[node name="Geist" parent="." instance=ExtResource("6_8tooo")]
-position = Vector2(6448, 3684)
+[node name="Geist" parent="." groups=["geists"] instance=ExtResource("6_8tooo")]
+position = Vector2(1887, 1112)
 
-[node name="Trees" type="Node2D" parent="."]
+[node name="WestGrove" type="Node2D" parent="."]
 y_sort_enabled = true
+position = Vector2(1428, 5349)
 
-[node name="PineTree" parent="Trees" instance=ExtResource("7_5s2fi")]
-position = Vector2(240, 717)
+[node name="PineTree2" parent="WestGrove" instance=ExtResource("7_5s2fi")]
+position = Vector2(65, -322)
 
-[node name="PineTree2" parent="Trees" instance=ExtResource("7_5s2fi")]
-position = Vector2(1253, 4356)
+[node name="PineTree3" parent="WestGrove" instance=ExtResource("7_5s2fi")]
+position = Vector2(287, -263)
 
-[node name="PineTree3" parent="Trees" instance=ExtResource("7_5s2fi")]
-position = Vector2(1475, 4415)
+[node name="PineTree4" parent="WestGrove" instance=ExtResource("7_5s2fi")]
+position = Vector2(-109, -245)
 
-[node name="PineTree4" parent="Trees" instance=ExtResource("7_5s2fi")]
-position = Vector2(1079, 4433)
+[node name="PineTree5" parent="WestGrove" instance=ExtResource("7_5s2fi")]
+position = Vector2(-289, -342)
 
-[node name="PineTree5" parent="Trees" instance=ExtResource("7_5s2fi")]
-position = Vector2(899, 4336)
+[node name="PineTree6" parent="WestGrove" instance=ExtResource("7_5s2fi")]
+position = Vector2(-471, -121)
 
-[node name="PineTree6" parent="Trees" instance=ExtResource("7_5s2fi")]
-position = Vector2(717, 4557)
+[node name="PineTree7" parent="WestGrove" instance=ExtResource("7_5s2fi")]
+position = Vector2(-341, 9)
 
-[node name="PineTree7" parent="Trees" instance=ExtResource("7_5s2fi")]
-position = Vector2(847, 4687)
+[node name="PineTree8" parent="WestGrove" instance=ExtResource("7_5s2fi")]
+position = Vector2(-543, 218)
 
-[node name="PineTree8" parent="Trees" instance=ExtResource("7_5s2fi")]
-position = Vector2(645, 4896)
+[node name="PineTree9" parent="WestGrove" instance=ExtResource("7_5s2fi")]
+position = Vector2(511, -136)
 
-[node name="PineTree9" parent="Trees" instance=ExtResource("7_5s2fi")]
-position = Vector2(1699, 4542)
+[node name="PineTree10" parent="WestGrove" instance=ExtResource("7_5s2fi")]
+position = Vector2(379, 33)
 
-[node name="PineTree10" parent="Trees" instance=ExtResource("7_5s2fi")]
-position = Vector2(1567, 4711)
+[node name="PineTree11" parent="WestGrove" instance=ExtResource("7_5s2fi")]
+position = Vector2(560, 239)
 
-[node name="PineTree11" parent="Trees" instance=ExtResource("7_5s2fi")]
-position = Vector2(1748, 4917)
+[node name="PineTree12" parent="WestGrove" instance=ExtResource("7_5s2fi")]
+position = Vector2(-403, 417)
 
-[node name="PineTree12" parent="Trees" instance=ExtResource("7_5s2fi")]
-position = Vector2(785, 5095)
+[node name="PineTree13" parent="WestGrove" instance=ExtResource("7_5s2fi")]
+position = Vector2(-219, 560)
 
-[node name="PineTree13" parent="Trees" instance=ExtResource("7_5s2fi")]
-position = Vector2(969, 5238)
+[node name="PineTree14" parent="WestGrove" instance=ExtResource("7_5s2fi")]
+position = Vector2(302, 344)
 
-[node name="PineTree14" parent="Trees" instance=ExtResource("7_5s2fi")]
-position = Vector2(1490, 5022)
+[node name="PineTree15" parent="WestGrove" instance=ExtResource("7_5s2fi")]
+position = Vector2(164, 590)
 
-[node name="PineTree15" parent="Trees" instance=ExtResource("7_5s2fi")]
-position = Vector2(1352, 5268)
+[node name="PineTree16" parent="WestGrove" instance=ExtResource("7_5s2fi")]
+position = Vector2(-500, 624)
 
-[node name="PineTree16" parent="Trees" instance=ExtResource("7_5s2fi")]
-position = Vector2(688, 5302)
+[node name="PineTree17" parent="WestGrove" instance=ExtResource("7_5s2fi")]
+position = Vector2(-34, 643)
 
-[node name="PineTree17" parent="Trees" instance=ExtResource("7_5s2fi")]
-position = Vector2(1154, 5321)
+[node name="PineTree18" parent="WestGrove" instance=ExtResource("7_5s2fi")]
+position = Vector2(431, 569)
 
-[node name="PineTree18" parent="Trees" instance=ExtResource("7_5s2fi")]
-position = Vector2(1619, 5247)
+[node name="PineTree19" parent="WestGrove" instance=ExtResource("7_5s2fi")]
+position = Vector2(-839, 429)
 
-[node name="PineTree19" parent="Trees" instance=ExtResource("7_5s2fi")]
-position = Vector2(349, 5107)
+[node name="PineTree20" parent="WestGrove" instance=ExtResource("7_5s2fi")]
+position = Vector2(-851, -357)
 
-[node name="PineTree20" parent="Trees" instance=ExtResource("7_5s2fi")]
-position = Vector2(337, 4321)
+[node name="PineTree21" parent="WestGrove" instance=ExtResource("7_5s2fi")]
+position = Vector2(-522, -851)
 
-[node name="PineTree21" parent="Trees" instance=ExtResource("7_5s2fi")]
-position = Vector2(666, 3827)
+[node name="PineTree22" parent="WestGrove" instance=ExtResource("7_5s2fi")]
+position = Vector2(602, -863)
 
-[node name="PineTree22" parent="Trees" instance=ExtResource("7_5s2fi")]
-position = Vector2(1790, 3815)
+[node name="PineTree23" parent="WestGrove" instance=ExtResource("7_5s2fi")]
+position = Vector2(1130, 659)
 
-[node name="PineTree23" parent="Trees" instance=ExtResource("7_5s2fi")]
-position = Vector2(2318, 5337)
+[node name="PineTree24" parent="WestGrove" instance=ExtResource("7_5s2fi")]
+position = Vector2(1109, -213)
 
-[node name="PineTree24" parent="Trees" instance=ExtResource("7_5s2fi")]
-position = Vector2(2297, 4465)
+[node name="PineTree25" parent="WestGrove" instance=ExtResource("7_5s2fi")]
+position = Vector2(63, 1259)
 
-[node name="PineTree25" parent="Trees" instance=ExtResource("7_5s2fi")]
-position = Vector2(1251, 5937)
+[node name="Note" parent="WestGrove" instance=ExtResource("8_jn7no")]
+position = Vector2(433, 3)
+message = "Geistfeld... tis not even proper German tongue if I am not mistaken. And what a queer field to be fenced in by impassable wooden stakes?
 
-[node name="PineTree26" parent="Trees" instance=ExtResource("7_5s2fi")]
-position = Vector2(10651, 2632)
+And the well... my spine trembles terribly whenever I pass by. The smell is deathly and I could swear there are faint gurgling or cooing sounds emanating from the bottom."
 
-[node name="PineTree27" parent="Trees" instance=ExtResource("7_5s2fi")]
-position = Vector2(10318, 2823)
+[node name="FairyCircle" type="Node2D" parent="."]
+y_sort_enabled = true
+position = Vector2(8430, 5684)
 
-[node name="PineTree28" parent="Trees" instance=ExtResource("7_5s2fi")]
-position = Vector2(10839, 2718)
+[node name="EastGrove" type="Node2D" parent="."]
+y_sort_enabled = true
+position = Vector2(10672, 2960)
 
-[node name="PineTree29" parent="Trees" instance=ExtResource("7_5s2fi")]
-position = Vector2(10488, 2743)
+[node name="PineTree" parent="EastGrove" instance=ExtResource("7_5s2fi")]
+position = Vector2(-10432, -2243)
 
-[node name="PineTree30" parent="Trees" instance=ExtResource("7_5s2fi")]
-position = Vector2(11064, 2758)
+[node name="PineTree26" parent="EastGrove" instance=ExtResource("7_5s2fi")]
+position = Vector2(-21, -328)
 
-[node name="PineTree31" parent="Trees" instance=ExtResource("7_5s2fi")]
-position = Vector2(10203, 3559)
+[node name="PineTree27" parent="EastGrove" instance=ExtResource("7_5s2fi")]
+position = Vector2(-354, -137)
 
-[node name="PineTree32" parent="Trees" instance=ExtResource("7_5s2fi")]
-position = Vector2(11252, 3555)
+[node name="PineTree28" parent="EastGrove" instance=ExtResource("7_5s2fi")]
+position = Vector2(167, -242)
 
-[node name="PineTree33" parent="Trees" instance=ExtResource("7_5s2fi")]
-position = Vector2(11049, 3519)
+[node name="PineTree29" parent="EastGrove" instance=ExtResource("7_5s2fi")]
+position = Vector2(-184, -217)
 
-[node name="PineTree34" parent="Trees" instance=ExtResource("7_5s2fi")]
-position = Vector2(9969, 3552)
+[node name="PineTree30" parent="EastGrove" instance=ExtResource("7_5s2fi")]
+position = Vector2(392, -202)
 
-[node name="PineTree36" parent="Trees" instance=ExtResource("7_5s2fi")]
-position = Vector2(10665, 3532)
+[node name="PineTree31" parent="EastGrove" instance=ExtResource("7_5s2fi")]
+position = Vector2(-469, 599)
 
-[node name="PineTree37" parent="Trees" instance=ExtResource("7_5s2fi")]
-position = Vector2(10822, 3615)
+[node name="PineTree32" parent="EastGrove" instance=ExtResource("7_5s2fi")]
+position = Vector2(580, 595)
 
-[node name="PineTree35" parent="Trees" instance=ExtResource("7_5s2fi")]
-position = Vector2(10424, 3601)
+[node name="PineTree33" parent="EastGrove" instance=ExtResource("7_5s2fi")]
+position = Vector2(377, 559)
 
-[node name="PineTree38" parent="Trees" instance=ExtResource("7_5s2fi")]
-position = Vector2(10139, 2729)
+[node name="PineTree34" parent="EastGrove" instance=ExtResource("7_5s2fi")]
+position = Vector2(-703, 592)
 
-[node name="PineTree39" parent="Trees" instance=ExtResource("7_5s2fi")]
-position = Vector2(9970, 2813)
+[node name="PineTree36" parent="EastGrove" instance=ExtResource("7_5s2fi")]
+position = Vector2(-7, 572)
 
-[node name="PineTree40" parent="Trees" instance=ExtResource("7_5s2fi")]
-position = Vector2(9774, 3870)
+[node name="PineTree37" parent="EastGrove" instance=ExtResource("7_5s2fi")]
+position = Vector2(150, 655)
 
-[node name="PineTree41" parent="Trees" instance=ExtResource("7_5s2fi")]
-position = Vector2(9294, 3492)
+[node name="PineTree35" parent="EastGrove" instance=ExtResource("7_5s2fi")]
+position = Vector2(-248, 641)
 
-[node name="PineTree42" parent="Trees" instance=ExtResource("7_5s2fi")]
-position = Vector2(9432, 2638)
+[node name="PineTree38" parent="EastGrove" instance=ExtResource("7_5s2fi")]
+position = Vector2(-533, -231)
 
-[node name="PineTree43" parent="Trees" instance=ExtResource("7_5s2fi")]
-position = Vector2(11703, 2843)
+[node name="PineTree39" parent="EastGrove" instance=ExtResource("7_5s2fi")]
+position = Vector2(-702, -147)
 
-[node name="PineTree44" parent="Trees" instance=ExtResource("7_5s2fi")]
-position = Vector2(11816, 3665)
+[node name="PineTree40" parent="EastGrove" instance=ExtResource("7_5s2fi")]
+position = Vector2(-898, 910)
+
+[node name="PineTree41" parent="EastGrove" instance=ExtResource("7_5s2fi")]
+position = Vector2(-1378, 532)
+
+[node name="PineTree42" parent="EastGrove" instance=ExtResource("7_5s2fi")]
+position = Vector2(-1240, -322)
+
+[node name="PineTree43" parent="EastGrove" instance=ExtResource("7_5s2fi")]
+position = Vector2(1031, -117)
+
+[node name="PineTree44" parent="EastGrove" instance=ExtResource("7_5s2fi")]
+position = Vector2(1144, 705)
+
+[node name="NWGraveyard" type="Node2D" parent="."]
+y_sort_enabled = true
+position = Vector2(1983, 1011)
+
+[node name="Tombstone" parent="NWGraveyard" instance=ExtResource("4_54odp")]
+position = Vector2(-248, 184)
+
+[node name="Tombstone2" parent="NWGraveyard" instance=ExtResource("5_e6i5h")]
+position = Vector2(-710, -36)
+
+[node name="NwGraveyardNote" parent="NWGraveyard" instance=ExtResource("8_jn7no")]
+position = Vector2(-514, 66)
+message = "Curse this place...
+
+The exit seems to move every time I return. But so far the oil can never seems to move... perhaps the other objects do not move as well."
+
+[node name="Tombstone3" parent="NWGraveyard" instance=ExtResource("4_54odp")]
+position = Vector2(-675, 351)
+
+[node name="Tombstone4" parent="NWGraveyard" instance=ExtResource("5_e6i5h")]
+position = Vector2(317, 178)
+
+[node name="Tombstone5" parent="NWGraveyard" instance=ExtResource("4_54odp")]
+position = Vector2(322, -225)
+
+[node name="Rock2" parent="NWGraveyard" instance=ExtResource("3_ongvj")]
+position = Vector2(69, 443)
+
+[node name="Rock7" parent="NWGraveyard" instance=ExtResource("3_ongvj")]
+position = Vector2(-345, -86)
+
+[node name="SEGraveyard" type="Node2D" parent="."]
+y_sort_enabled = true
+position = Vector2(10638, 6399)
 
 [node name="Notes" type="Node2D" parent="."]
+y_sort_enabled = true
 
 [node name="IntroNote1" parent="Notes" instance=ExtResource("8_jn7no")]
-position = Vector2(558, 576)
+position = Vector2(555, 472)
+message = "Controls:
+
+WASD - Movement
+E - Interact
+Shift - Sprint
+Space - Banish
+
+Banish allows you to repel the ghost for a short time. But beware, the timing window is narrow and failure means death.
+
+Sprint and Banish have invisible cooldowns. Use them thoughtfully."
+
+[node name="IntroNote2" parent="Notes" instance=ExtResource("8_jn7no")]
+position = Vector2(727, 644)
 message = "Damn this geistfeld!
 
 Friend, if you're reading this, there remains hope. The geist stalks relentlessly. He wanders the geistfeld. Get too close and he will pursue! The longer ye linger, the more quickly and terrible he becomes.
 
 Ye may be the next to escape, though ye may end up a wisp o' blessings..."
 
-[node name="IntroNote2" parent="Notes" instance=ExtResource("8_jn7no")]
-position = Vector2(730, 720)
+[node name="IntroNote3" parent="Notes" instance=ExtResource("8_jn7no")]
+position = Vector2(957, 714)
 message = "To the east there lie an exit tunnel from this geistfeld. But I cannot open it. Each time I awaken, it is rusted shut, jammed, missing the handle, and locked.
 
 The floating skulls know the location of the necessary items. But be wary, friend! Some resent ye for living and will lie to ye."
 
-[node name="IntroNote3" type="Area2D" parent="Notes" groups=["notes"]]
-position = Vector2(1066, 861)
+[node name="IntroNote4" type="Area2D" parent="Notes" groups=["notes"]]
+position = Vector2(1093, 869)
 script = ExtResource("2_q8bfy")
 message = "The wisps o' blessings! The dead, oh the tragic dead! They seek to aid ye out the geistfeld. Legend has it they met their cruelest fate here in this cursed place.
 
 Oh, they rightly babble incoherently, but their assistance is too great to pass up. Take it and escape."
 type = "note"
 
-[node name="CanvasLayer" type="CanvasLayer" parent="Notes/IntroNote3"]
+[node name="CanvasLayer" type="CanvasLayer" parent="Notes/IntroNote4"]
 layer = 15
 visible = false
 
-[node name="Control" type="Control" parent="Notes/IntroNote3/CanvasLayer"]
+[node name="Control" type="Control" parent="Notes/IntroNote4/CanvasLayer"]
 z_index = 10
 layout_mode = 3
 anchors_preset = 15
@@ -232,7 +298,7 @@ grow_vertical = 2
 size_flags_horizontal = 6
 size_flags_vertical = 6
 
-[node name="Panel" type="Panel" parent="Notes/IntroNote3/CanvasLayer/Control"]
+[node name="Panel" type="Panel" parent="Notes/IntroNote4/CanvasLayer/Control"]
 layout_direction = 1
 layout_mode = 1
 anchors_preset = -1
@@ -246,7 +312,7 @@ offset_right = -461.488
 offset_bottom = -96.8721
 theme = ExtResource("3_ftcy8")
 
-[node name="Label" type="Label" parent="Notes/IntroNote3/CanvasLayer/Control/Panel"]
+[node name="Label" type="Label" parent="Notes/IntroNote4/CanvasLayer/Control/Panel"]
 layout_mode = 0
 offset_left = 30.0
 offset_top = 25.0
@@ -256,20 +322,14 @@ label_settings = SubResource("LabelSettings_oaexx")
 vertical_alignment = 1
 autowrap_mode = 3
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Notes/IntroNote3"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Notes/IntroNote4"]
 shape = SubResource("CircleShape2D_ds7em")
 
-[node name="Sprite2D" type="Sprite2D" parent="Notes/IntroNote3"]
+[node name="Sprite2D" type="Sprite2D" parent="Notes/IntroNote4"]
 rotation = -5.76268
 scale = Vector2(0.025, 0.025)
 skew = 0.724312
 texture = ExtResource("5_d0khx")
-
-[node name="NwGraveyardNote" parent="Notes" instance=ExtResource("8_jn7no")]
-position = Vector2(1729, 1131)
-message = "Curse this place...
-
-The exit seems to move every time I return. But so far the oil can never seems to move... perhaps the other objects do not move as well."
 
 [node name="Fog" parent="." instance=ExtResource("10_e4pvg")]
 
@@ -282,31 +342,10 @@ tile_set = SubResource("TileSet_gslox")
 [node name="Rock" parent="." instance=ExtResource("3_ongvj")]
 position = Vector2(774, 452)
 
-[node name="Rock7" parent="." instance=ExtResource("3_ongvj")]
-position = Vector2(1386, 1000)
-
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 light_mask = 15
 visibility_layer = 15
 color = Color(0, 0, 0, 1)
-
-[node name="Tombstone" parent="." instance=ExtResource("4_54odp")]
-position = Vector2(1483, 1270)
-
-[node name="Tombstone2" parent="." instance=ExtResource("5_e6i5h")]
-position = Vector2(1021, 1050)
-
-[node name="Tombstone3" parent="." instance=ExtResource("4_54odp")]
-position = Vector2(1056, 1437)
-
-[node name="Tombstone4" parent="." instance=ExtResource("5_e6i5h")]
-position = Vector2(2048, 1264)
-
-[node name="Tombstone5" parent="." instance=ExtResource("4_54odp")]
-position = Vector2(2053, 861)
-
-[node name="Rock2" parent="." instance=ExtResource("3_ongvj")]
-position = Vector2(1800, 1529)
 
 [node name="Fences" type="Node2D" parent="."]
 y_sort_enabled = true
@@ -1263,3 +1302,12 @@ position = Vector2(12485, 7337)
 
 [node name="HorizontalFence99" parent="Fences" instance=ExtResource("7_wbrjn")]
 position = Vector2(12613, 7337)
+
+[node name="Campfire" parent="." instance=ExtResource("18_yiuju")]
+position = Vector2(2668, 2877)
+
+[node name="Campfire2" parent="." instance=ExtResource("18_yiuju")]
+position = Vector2(11764, 879)
+
+[node name="Doghouse" parent="." instance=ExtResource("19_qiox7")]
+position = Vector2(410, 6748)

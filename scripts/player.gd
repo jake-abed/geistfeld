@@ -1,25 +1,40 @@
 class_name Player extends CharacterBody2D
 
-const BASE_SPEED = 250.0
-const JUMP_VELOCITY = -400.0
-const ACCEL = 10.0
-const MAX_ENERGY = 100.0
+const ACCEL := 10.0
 
-var speed_scaling = 1.0
+var base_speed := 250.0
+var speed_scaling := 1.0
+var max_energy := 100.0
 var energy := 100.0
+var banish_cooldown := 5.0
+var banish_radius := 50.0
+var can_banish := true
+var banishing := false
 var facing_factor := 1.0
+
+var banish_scene := preload("res://scenes/banish.tscn")
 
 @onready var sprite := $Sprite2D
 @onready var anim_player := $AnimationPlayer
 @onready var light := $PointLight2D
 @onready var light_timer := $LightTimer
+@onready var banish_timer := $BanishTimer
 
 var interactables: Array[Interactable] = []
+
+var inventory := {
+	"Key": false,
+	"Oil Can": false,
+	"Crow Bar": false,
+	"Handle": false,
+	"Gormfeld": false
+}
 
 func _ready() -> void:
 	anim_player.play("idle")
 	glow_light()
 	light_timer.timeout.connect(_on_light_timer_timeout)
+	banish_timer.timeout.connect(_on_banish_timer_timeout)
 
 func _physics_process(delta: float) -> void:	
 	var x_input := Input.get_axis("move_left", "move_right")
@@ -35,31 +50,34 @@ func _physics_process(delta: float) -> void:
 	
 	if Input.is_action_pressed("sprint") and energy > 0:
 		energy -= 1.0
-		speed_scaling = 1.5
+		speed_scaling = 1.75
 	else:
 		speed_scaling = 1.0
 	
-	if not Input.is_action_pressed("sprint") and energy < MAX_ENERGY:
+	if not Input.is_action_pressed("sprint") and energy < max_energy:
 		energy += 0.75
-		if energy > MAX_ENERGY:
-			energy = MAX_ENERGY
+		if energy > max_energy:
+			energy = max_energy
 	
 	if direction.length() > 1.0:
 		direction = direction.normalized()
 		
-	if x_input || y_input:
-		velocity = velocity.lerp(direction * speed_scaling * BASE_SPEED, ACCEL * delta)
+	if (x_input || y_input) and not banishing:
+		velocity = velocity.lerp(direction * speed_scaling * base_speed, ACCEL * delta)
 	else:
 		velocity = velocity.lerp(Vector2(0.0, 0.0), ACCEL * delta)
 	
-	if velocity.length() != 0 and direction.length() != 0:
+	if velocity.length() != 0 and direction.length() != 0 and not banishing:
 		anim_player.play("move")
-	else:
+	elif not banishing:
 		anim_player.play("idle")
 	
 	if Input.is_action_just_pressed("interact"):
 		print("interact pressed")
 		interact()
+	
+	if Input.is_action_just_pressed("banish") and can_banish:
+		banish()
 
 	move_and_slide()
 
@@ -72,7 +90,11 @@ func interact() -> void:
 		"note":
 			interactables[0].toggle_note()
 		"wisp":
-			interactables[0].toggle_blessing()
+			interactables[0].bless(self)
+		"item_container":
+			inventory[interactables[0].item_name] = true
+			interactables[0].contains_item = false
+			interactables[0].delete_collision_shape()
 
 func glow_light() -> void:
 	var tween := get_tree().create_tween()
@@ -89,6 +111,10 @@ func _on_light_timer_timeout() -> void:
 	flicker_light()
 	light_timer.wait_time = randf_range(0.25, 3)
 
+func _on_banish_timer_timeout() -> void:
+	can_banish = true
+	banish_timer.wait_time = banish_cooldown
+
 func flicker_light() -> void:
 	var tween := get_tree().create_tween()
 	var low := randf_range(1, 1.1)
@@ -96,6 +122,18 @@ func flicker_light() -> void:
 	tween.set_parallel(false)
 	tween.tween_property(light, "energy", low, 0.25)
 	tween.tween_property(light, "energy", 1.25, 0.25)
+
+func banish() -> void:
+	print("banishing")
+	banishing = true
+	anim_player.play("banish")
+	can_banish = false
+	var banish_inst := banish_scene.instantiate()
+	banish_inst.radius = banish_radius
+	add_child(banish_inst)
+	banish_timer.start()
+	await anim_player.animation_finished
+	banishing = false
 
 func die() -> void:
 	Game.player_death_location = global_position
