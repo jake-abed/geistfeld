@@ -8,7 +8,7 @@ radius = 14.0
 height = 140.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_8uqbr"]
-radius = 1250.0
+radius = 8025.0
 
 [sub_resource type="Gradient" id="Gradient_vpdly"]
 offsets = PackedFloat32Array(0, 0.023569, 0.518519, 0.851852, 0.936027, 1)

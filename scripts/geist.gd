@@ -1,11 +1,11 @@
 extends Node2D
 
-const LEFT_BOUND := 100
-const RIGHT_BOUND := 12550
-const TOP_BOUND := 100
-const BOTTOM_BOUND := 7200
+const LEFT_BOUND := 1280
+const RIGHT_BOUND := 11550
+const TOP_BOUND := 1000
+const BOTTOM_BOUND := 6380
 const BASE_SPEED := 100.0
-const BASE_RADIUS := 1250.0
+const BASE_RADIUS := 1500.0
 const LEVEL_UP_TIME := 30.0
 
 @onready var sprite := $Sprite2D

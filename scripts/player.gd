@@ -14,7 +14,7 @@ var facing_factor := 1.0
 @onready var light := $PointLight2D
 @onready var light_timer := $LightTimer
 
-var interactable: Interactable
+var interactables: Array[Interactable] = []
 
 func _ready() -> void:
 	anim_player.play("idle")
@@ -65,11 +65,14 @@ func _physics_process(delta: float) -> void:
 
 func interact() -> void:
 	print("trying to interact")
-	if !interactable:
+	if len(interactables) == 0:
+		print("Nothing to interact with!")
 		return
-	match interactable.type:
+	match interactables[0].type:
 		"note":
-			interactable.toggle_note()
+			interactables[0].toggle_note()
+		"wisp":
+			interactables[0].toggle_blessing()
 
 func glow_light() -> void:
 	var tween := get_tree().create_tween()
@@ -95,5 +98,6 @@ func flicker_light() -> void:
 	tween.tween_property(light, "energy", 1.25, 0.25)
 
 func die() -> void:
+	Game.player_death_location = global_position
 	self.queue_free()
-	get_tree().quit()
+	get_tree().change_scene_to_file("res://scenes/you_died.tscn")

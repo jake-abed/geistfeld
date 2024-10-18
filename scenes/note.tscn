@@ -21,6 +21,7 @@ radius = 40.3113
 
 [node name="Note" type="Area2D" groups=["notes"]]
 script = ExtResource("1_utjcj")
+message = null
 type = "note"
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]

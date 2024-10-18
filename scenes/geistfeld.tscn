@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://dms3slrv65dvl" path="res://scenes/player.tscn" id="1_8g5j1"]
 [ext_resource type="Texture2D" uid="uid://cq6ecyt6j4lfv" path="res://assets/images/bg_grass.jpg" id="1_m0lys"]
-[ext_resource type="Script" path="res://scenes/geistfeld.gd" id="1_rdruu"]
+[ext_resource type="Script" path="res://scripts/geistfeld.gd" id="1_rdruu"]
 [ext_resource type="Script" path="res://scripts/note.gd" id="2_q8bfy"]
 [ext_resource type="Theme" uid="uid://cjbcircl2ubh2" path="res://assets/themes/note_theme.tres" id="3_ftcy8"]
 [ext_resource type="PackedScene" uid="uid://denylfj378nco" path="res://scenes/rock.tscn" id="3_ongvj"]
@@ -49,7 +49,10 @@ y_sort_enabled = true
 script = ExtResource("1_rdruu")
 
 [node name="Player" parent="." instance=ExtResource("1_8g5j1")]
-position = Vector2(961, 3461)
+position = Vector2(467, 435)
+
+[node name="Geist" parent="." instance=ExtResource("6_8tooo")]
+position = Vector2(6448, 3684)
 
 [node name="Trees" type="Node2D" parent="."]
 y_sort_enabled = true
@@ -262,16 +265,11 @@ scale = Vector2(0.025, 0.025)
 skew = 0.724312
 texture = ExtResource("5_d0khx")
 
-[node name="Note" parent="Notes" instance=ExtResource("8_jn7no")]
+[node name="NwGraveyardNote" parent="Notes" instance=ExtResource("8_jn7no")]
 position = Vector2(1729, 1131)
-message = "Hi! Not very scary, huh?
+message = "Curse this place...
 
-But you know what is? Getting behind on your game jam :(
-
-Now I'm scared."
-
-[node name="Geist" parent="Notes" instance=ExtResource("6_8tooo")]
-position = Vector2(11582, 3862)
+The exit seems to move every time I return. But so far the oil can never seems to move... perhaps the other objects do not move as well."
 
 [node name="Fog" parent="." instance=ExtResource("10_e4pvg")]
 
