@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=4 uid="uid://bqyeli8brywwx"]
+[gd_scene load_steps=27 format=4 uid="uid://bqyeli8brywwx"]
 
 [ext_resource type="PackedScene" uid="uid://dms3slrv65dvl" path="res://scenes/player.tscn" id="1_8g5j1"]
 [ext_resource type="Texture2D" uid="uid://cq6ecyt6j4lfv" path="res://assets/images/bg_grass.jpg" id="1_m0lys"]
@@ -12,11 +12,13 @@
 [ext_resource type="PackedScene" uid="uid://c7dlvn8r6xo2c" path="res://scenes/tombstone_cross_top.tscn" id="5_e6i5h"]
 [ext_resource type="PackedScene" uid="uid://bakvjtn5sarqu" path="res://scenes/vertical_fence.tscn" id="6_3w8i5"]
 [ext_resource type="PackedScene" uid="uid://cke2ha77kmt1d" path="res://scenes/geist.tscn" id="6_8tooo"]
+[ext_resource type="PackedScene" uid="uid://cue57noc5nfcs" path="res://scenes/obelisk.tscn" id="6_khlsi"]
 [ext_resource type="PackedScene" uid="uid://bkgei8useacp7" path="res://scenes/pine_tree.tscn" id="7_5s2fi"]
 [ext_resource type="Texture2D" uid="uid://bjvkpaj624ryp" path="res://assets/images/verticalwall.png" id="7_ukye7"]
 [ext_resource type="PackedScene" uid="uid://hyi8hkm3iobu" path="res://scenes/horizontal_fence.tscn" id="7_wbrjn"]
 [ext_resource type="PackedScene" uid="uid://dun25w7jnnnam" path="res://scenes/note.tscn" id="8_jn7no"]
 [ext_resource type="PackedScene" uid="uid://br15ifyfpniow" path="res://scenes/fog.tscn" id="10_e4pvg"]
+[ext_resource type="PackedScene" uid="uid://cvu5ywcldpsb6" path="res://scenes/mushroom.tscn" id="11_nffv2"]
 [ext_resource type="PackedScene" uid="uid://c87u1ha5t57e5" path="res://scenes/campfire.tscn" id="18_yiuju"]
 [ext_resource type="PackedScene" uid="uid://b6jvx4t5eq18m" path="res://scenes/doghouse.tscn" id="19_qiox7"]
 
@@ -51,14 +53,14 @@ y_sort_enabled = true
 script = ExtResource("1_rdruu")
 
 [node name="Player" parent="." instance=ExtResource("1_8g5j1")]
-position = Vector2(356, 284)
+position = Vector2(215, 324)
 
 [node name="Geist" parent="." groups=["geists"] instance=ExtResource("6_8tooo")]
-position = Vector2(1887, 1112)
+position = Vector2(6526, 3537)
 
 [node name="WestGrove" type="Node2D" parent="."]
 y_sort_enabled = true
-position = Vector2(1428, 5349)
+position = Vector2(1543, 4880)
 
 [node name="PineTree2" parent="WestGrove" instance=ExtResource("7_5s2fi")]
 position = Vector2(65, -322)
@@ -142,9 +144,113 @@ And the well... my spine trembles terribly whenever I pass by. The smell is deat
 y_sort_enabled = true
 position = Vector2(8430, 5684)
 
+[node name="NorthShrine" type="Node2D" parent="."]
+y_sort_enabled = true
+position = Vector2(8103, 1019)
+
+[node name="Obelisk" parent="NorthShrine" instance=ExtResource("6_khlsi")]
+position = Vector2(-235, -92)
+
+[node name="PineTree" parent="NorthShrine" instance=ExtResource("7_5s2fi")]
+position = Vector2(319, -259)
+
+[node name="Rock" parent="NorthShrine" instance=ExtResource("3_ongvj")]
+position = Vector2(-457, -57)
+
+[node name="PineTree2" parent="NorthShrine" instance=ExtResource("7_5s2fi")]
+position = Vector2(-639, -491)
+
+[node name="Note" parent="NorthShrine" instance=ExtResource("8_jn7no")]
+position = Vector2(-565, -43)
+message = "Funny, is it not? The symbols on this obelisk must carry some meaning...
+
+Eye, cat, finger, tree, skull, candle, scythe... I have not seen these things round these parts. Unless the scythe represents the geist, heh!
+
+Curse it all..."
+
+[node name="Outhouse" type="Node2D" parent="."]
+y_sort_enabled = true
+position = Vector2(10229, 1557)
+
+[node name="Well" type="Node2D" parent="."]
+y_sort_enabled = true
+position = Vector2(6354, 3508)
+
+[node name="SouthShrine" type="Node2D" parent="."]
+y_sort_enabled = true
+position = Vector2(4706, 6324)
+
+[node name="Obelisk" parent="SouthShrine" instance=ExtResource("6_khlsi")]
+position = Vector2(274, 57)
+
+[node name="Obelisk2" parent="SouthShrine" instance=ExtResource("6_khlsi")]
+position = Vector2(-289, 57)
+
+[node name="Sprite2D" parent="SouthShrine/Obelisk2" index="0"]
+position = Vector2(-8, 53)
+flip_h = true
+
+[node name="CollisionShape2D" parent="SouthShrine/Obelisk2" index="1"]
+position = Vector2(-4.50049, 19)
+
+[node name="Rock" parent="SouthShrine" instance=ExtResource("3_ongvj")]
+position = Vector2(-4, 310)
+
+[node name="PineTree" parent="SouthShrine" instance=ExtResource("7_5s2fi")]
+position = Vector2(-681, 638)
+
+[node name="PineTree2" parent="SouthShrine" instance=ExtResource("7_5s2fi")]
+position = Vector2(886, 314)
+
+[node name="Note" parent="SouthShrine" instance=ExtResource("8_jn7no")]
+position = Vector2(369, 78)
+message = "No more! No more of this nonsense! I cannot take it. What an awful place. The wisps help, they lie, they babble...
+
+Will I be a fool in death? Speaking incoherently... I'm best off going to sleep through the night in the North-Eastern camp site. The fire burns ever-so hot and I may rest a little.
+
+Who cares if the geist kills me?"
+
+[node name="WestCamp" type="Node2D" parent="."]
+y_sort_enabled = true
+position = Vector2(3015, 3190)
+
+[node name="Campfire" parent="WestCamp" instance=ExtResource("18_yiuju")]
+position = Vector2(133, 4)
+
+[node name="PineTree" parent="WestCamp" instance=ExtResource("7_5s2fi")]
+position = Vector2(680, -113)
+
+[node name="Rock" parent="WestCamp" instance=ExtResource("3_ongvj")]
+position = Vector2(-113, 5)
+
+[node name="Rock2" parent="WestCamp" instance=ExtResource("3_ongvj")]
+position = Vector2(338, 156)
+
+[node name="EastCamp" type="Node2D" parent="."]
+y_sort_enabled = true
+position = Vector2(11693, 717)
+
+[node name="Campfire2" parent="EastCamp" instance=ExtResource("18_yiuju")]
+position = Vector2(180, 9)
+
+[node name="PineTree" parent="EastCamp" instance=ExtResource("7_5s2fi")]
+position = Vector2(846, -298)
+
+[node name="Rock3" parent="EastCamp" instance=ExtResource("3_ongvj")]
+position = Vector2(-17, -97)
+
+[node name="Rock" parent="EastCamp" instance=ExtResource("3_ongvj")]
+position = Vector2(354, -95)
+
+[node name="Rock2" parent="EastCamp" instance=ExtResource("3_ongvj")]
+position = Vector2(169, 210)
+
+[node name="PineTree2" parent="EastCamp" instance=ExtResource("7_5s2fi")]
+position = Vector2(-426, -224)
+
 [node name="EastGrove" type="Node2D" parent="."]
 y_sort_enabled = true
-position = Vector2(10672, 2960)
+position = Vector2(10941, 3471)
 
 [node name="PineTree" parent="EastGrove" instance=ExtResource("7_5s2fi")]
 position = Vector2(-10432, -2243)
@@ -237,9 +343,83 @@ position = Vector2(69, 443)
 [node name="Rock7" parent="NWGraveyard" instance=ExtResource("3_ongvj")]
 position = Vector2(-345, -86)
 
+[node name="Rock3" parent="NWGraveyard" instance=ExtResource("3_ongvj")]
+position = Vector2(615, 592)
+
+[node name="PineTree" parent="NWGraveyard" instance=ExtResource("7_5s2fi")]
+position = Vector2(943, 529)
+
+[node name="Tombstone6" parent="NWGraveyard" instance=ExtResource("5_e6i5h")]
+position = Vector2(-16, -192)
+
+[node name="Mushroom" parent="NWGraveyard" instance=ExtResource("11_nffv2")]
+position = Vector2(-1835, -403)
+
+[node name="Mushroom2" parent="NWGraveyard" instance=ExtResource("11_nffv2")]
+position = Vector2(-1025, -705)
+
 [node name="SEGraveyard" type="Node2D" parent="."]
 y_sort_enabled = true
-position = Vector2(10638, 6399)
+position = Vector2(11078, 6271)
+
+[node name="Tombstone" parent="SEGraveyard" instance=ExtResource("4_54odp")]
+position = Vector2(328, -52)
+
+[node name="Tombstone2" parent="SEGraveyard" instance=ExtResource("5_e6i5h")]
+position = Vector2(-237, 178)
+
+[node name="Tombstone3" parent="SEGraveyard" instance=ExtResource("4_54odp")]
+position = Vector2(97, 306)
+
+[node name="Tombstone4" parent="SEGraveyard" instance=ExtResource("5_e6i5h")]
+position = Vector2(516, 284)
+
+[node name="Tombstone5" parent="SEGraveyard" instance=ExtResource("4_54odp")]
+position = Vector2(-432, -50)
+
+[node name="Tombstone6" parent="SEGraveyard" instance=ExtResource("5_e6i5h")]
+position = Vector2(-30, -281)
+
+[node name="Tombstone7" parent="SEGraveyard" instance=ExtResource("4_54odp")]
+position = Vector2(-607, 283)
+
+[node name="Tombstone8" parent="SEGraveyard" instance=ExtResource("5_e6i5h")]
+position = Vector2(-370, -379)
+
+[node name="Tombstone9" parent="SEGraveyard" instance=ExtResource("5_e6i5h")]
+position = Vector2(472, -52)
+
+[node name="Tombstone10" parent="SEGraveyard" instance=ExtResource("4_54odp")]
+position = Vector2(373, -376)
+
+[node name="PineTree" parent="SEGraveyard" instance=ExtResource("7_5s2fi")]
+position = Vector2(946, -163)
+
+[node name="PineTree2" parent="SEGraveyard" instance=ExtResource("7_5s2fi")]
+position = Vector2(-1237, 611)
+
+[node name="Rock" parent="SEGraveyard" instance=ExtResource("3_ongvj")]
+position = Vector2(1225, 90)
+
+[node name="Rock2" parent="SEGraveyard" instance=ExtResource("3_ongvj")]
+position = Vector2(-315, 445)
+
+[node name="Rock3" parent="SEGraveyard" instance=ExtResource("3_ongvj")]
+position = Vector2(-757, -453)
+
+[node name="Rock4" parent="SEGraveyard" instance=ExtResource("3_ongvj")]
+position = Vector2(189, -234)
+
+[node name="PineTree3" parent="SEGraveyard" instance=ExtResource("7_5s2fi")]
+position = Vector2(449, 841)
+
+[node name="Note" parent="SEGraveyard" instance=ExtResource("8_jn7no")]
+position = Vector2(514, 319)
+message = "This geistfeld houses so many of the dead... To what end does it exist?
+
+Oh my... could it be that I am dead already? No, it must not be the case. First of all, how trite? Dying and going to a haunted field with tombstones.
+
+But perhaps this is no field at all... a room or a cavern itself. I must give it some thought."
 
 [node name="Notes" type="Node2D" parent="."]
 y_sort_enabled = true
@@ -1303,11 +1483,7 @@ position = Vector2(12485, 7337)
 [node name="HorizontalFence99" parent="Fences" instance=ExtResource("7_wbrjn")]
 position = Vector2(12613, 7337)
 
-[node name="Campfire" parent="." instance=ExtResource("18_yiuju")]
-position = Vector2(2668, 2877)
-
-[node name="Campfire2" parent="." instance=ExtResource("18_yiuju")]
-position = Vector2(11764, 879)
-
 [node name="Doghouse" parent="." instance=ExtResource("19_qiox7")]
 position = Vector2(410, 6748)
+
+[editable path="SouthShrine/Obelisk2"]

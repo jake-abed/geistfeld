@@ -3,11 +3,10 @@ class_name TrapDoor extends Interactable
 @onready var sprite := $Sprite2D
 @onready var handle_sprite := $HandleSprite
 
+var has_handle := false
+var has_oil := false
+var has_crowbar := false
+var has_key := false
 
-func _ready() -> void:
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
+func add_handle() -> void:
+	handle_sprite.visible = true

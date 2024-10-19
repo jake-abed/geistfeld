@@ -1,0 +1,55 @@
+[gd_scene load_steps=8 format=3 uid="uid://cvu5ywcldpsb6"]
+
+[ext_resource type="Script" path="res://scripts/mushroom.gd" id="1_jjg0a"]
+[ext_resource type="Shader" path="res://scripts/wind_wave.gdshader" id="2_4b3og"]
+[ext_resource type="Texture2D" uid="uid://oywc7q2h2cx" path="res://assets/images/mushroom.png" id="3_wpnod"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_pdkny"]
+shader = ExtResource("2_4b3og")
+shader_parameter/speed = 0.3
+shader_parameter/minStrength = 0.05
+shader_parameter/maxStrength = 0.1
+shader_parameter/strengthScale = 100.0
+shader_parameter/interval = 5.0
+shader_parameter/detail = 1.0
+shader_parameter/distortion = 0.0
+shader_parameter/heightOffset = 0.0
+shader_parameter/offset = 0.0
+
+[sub_resource type="Gradient" id="Gradient_ry8up"]
+offsets = PackedFloat32Array(0, 0.959596)
+colors = PackedColorArray(0, 0, 0, 0.866667, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_520ku"]
+gradient = SubResource("Gradient_ry8up")
+width = 768
+height = 192
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.799145, 0.25641)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_rr4xt"]
+radius = 6.0
+
+[node name="Mushroom" type="StaticBody2D"]
+y_sort_enabled = true
+script = ExtResource("1_jjg0a")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+y_sort_enabled = true
+material = SubResource("ShaderMaterial_pdkny")
+position = Vector2(-1, -2)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("3_wpnod")
+offset = Vector2(0, -72)
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+modulate = Color(1, 0.929412, 1, 1)
+position = Vector2(1, -6)
+scale = Vector2(0.1, 0.1)
+texture = SubResource("GradientTexture2D_520ku")
+offset = Vector2(0, 100)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -2)
+shape = SubResource("CircleShape2D_rr4xt")

@@ -1,39 +1,40 @@
-[gd_scene load_steps=5 format=3 uid="uid://bv01eh80ermx7"]
+[gd_scene load_steps=5 format=3 uid="uid://cue57noc5nfcs"]
 
-[ext_resource type="Texture2D" uid="uid://dsgqgwq5igkrp" path="res://assets/images/tombstone.png" id="1_bj7wj"]
+[ext_resource type="Texture2D" uid="uid://dqfvjsfr78afj" path="res://assets/images/obelisk.png" id="2_7uku5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2gvd1"]
-size = Vector2(26, 66.9999)
+size = Vector2(46.0002, 81.0003)
 
-[sub_resource type="Gradient" id="Gradient_gojg1"]
+[sub_resource type="Gradient" id="Gradient_ry8up"]
 offsets = PackedFloat32Array(0, 0.959596)
-colors = PackedColorArray(0, 0, 0, 0.713726, 0, 0, 0, 0)
+colors = PackedColorArray(0, 0, 0, 0.866667, 0, 0, 0, 0)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_520ku"]
-gradient = SubResource("Gradient_gojg1")
-width = 320
+gradient = SubResource("Gradient_ry8up")
+width = 384
+height = 256
 fill = 1
 fill_from = Vector2(0.5, 0.5)
 fill_to = Vector2(0.799145, 0.25641)
 
-[node name="Tombstone" type="StaticBody2D"]
+[node name="Obelisk" type="StaticBody2D"]
 y_sort_enabled = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 y_sort_enabled = true
-position = Vector2(0, -2)
-scale = Vector2(0.4, 0.4)
-texture = ExtResource("1_bj7wj")
-offset = Vector2(0, -80)
+position = Vector2(0, 53)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_7uku5")
+offset = Vector2(0, -350)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 y_sort_enabled = true
-position = Vector2(0.500039, -7.00001)
+position = Vector2(-3.4999, 18.4998)
 rotation = 1.57078
 shape = SubResource("RectangleShape2D_2gvd1")
 
 [node name="Sprite2D2" type="Sprite2D" parent="."]
-position = Vector2(1, -36)
+position = Vector2(-4, -14)
 scale = Vector2(0.4, 0.4)
 texture = SubResource("GradientTexture2D_520ku")
 offset = Vector2(0, 100)
