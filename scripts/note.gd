@@ -16,11 +16,11 @@ func _process(_d: float) -> void:
 func toggle_note() -> void:
 	control.visible = !control.visible
 
-func _on_body_entered(body: CharacterBody2D) -> void:
+func _on_body_entered(body) -> void:
 	if body is Player:
 		body.interactables.push_back(self)
 
-func _on_body_exited(body: CharacterBody2D) -> void:
+func _on_body_exited(body) -> void:
 	if body is Player:
 		if body.interactables[0] == self:
 			body.interactables.pop_front()

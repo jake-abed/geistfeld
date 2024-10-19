@@ -30,7 +30,7 @@ func getWisps() -> void:
 		return
 	await get_wisps_req.request_completed
 
-func _add_wisp_req_completed(result, response_code, headers, body) -> void:
+func _add_wisp_req_completed(_result, response_code, _headers, _body) -> void:
 	if response_code == 200:
 		return
 	else:

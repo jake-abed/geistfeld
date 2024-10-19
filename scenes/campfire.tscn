@@ -28,13 +28,13 @@ radius = 14.0
 height = 80.0
 
 [sub_resource type="Gradient" id="Gradient_2nt3c"]
-offsets = PackedFloat32Array(0, 0.20202, 0.50505, 1)
+offsets = PackedFloat32Array(0, 0.020202, 0.50505, 1)
 colors = PackedColorArray(1, 0.647059, 0.529412, 0.901961, 0.878431, 0.396078, 0.211765, 0.886275, 0.380195, 0.125815, 0.0261912, 0.698039, 0, 0, 0, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_okpwk"]
 gradient = SubResource("Gradient_2nt3c")
-width = 256
-height = 128
+width = 512
+height = 320
 fill = 1
 fill_from = Vector2(0.5, 0.5)
 fill_to = Vector2(0.85, 0.15)
@@ -80,6 +80,7 @@ one_way_collision_margin = 0.0
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
 position = Vector2(0, -18)
+energy = 1.25
 texture = SubResource("GradientTexture2D_okpwk")
 texture_scale = 4.0
 

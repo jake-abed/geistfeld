@@ -1,12 +1,15 @@
-[gd_scene load_steps=27 format=4 uid="uid://bqyeli8brywwx"]
+[gd_scene load_steps=38 format=4 uid="uid://bqyeli8brywwx"]
 
 [ext_resource type="PackedScene" uid="uid://dms3slrv65dvl" path="res://scenes/player.tscn" id="1_8g5j1"]
 [ext_resource type="Texture2D" uid="uid://cq6ecyt6j4lfv" path="res://assets/images/bg_grass.jpg" id="1_m0lys"]
 [ext_resource type="Script" path="res://scripts/geistfeld.gd" id="1_rdruu"]
 [ext_resource type="Script" path="res://scripts/note.gd" id="2_q8bfy"]
+[ext_resource type="StyleBox" uid="uid://bwvbrshh8ilyo" path="res://scenes/ui_panel.tres" id="3_cnq2v"]
 [ext_resource type="Theme" uid="uid://cjbcircl2ubh2" path="res://assets/themes/note_theme.tres" id="3_ftcy8"]
 [ext_resource type="PackedScene" uid="uid://denylfj378nco" path="res://scenes/rock.tscn" id="3_ongvj"]
 [ext_resource type="PackedScene" uid="uid://bv01eh80ermx7" path="res://scenes/tombstone.tscn" id="4_54odp"]
+[ext_resource type="PackedScene" uid="uid://bui61sw03gp07" path="res://scenes/crate.tscn" id="4_duu2l"]
+[ext_resource type="Script" path="res://scripts/key_location.gd" id="4_idf06"]
 [ext_resource type="FontFile" uid="uid://b0ku14gk7g15g" path="res://assets/misc/Treamd.ttf" id="4_xfwxn"]
 [ext_resource type="Texture2D" uid="uid://cxxqaxdeprkef" path="res://assets/images/paper-note.png" id="5_d0khx"]
 [ext_resource type="PackedScene" uid="uid://c7dlvn8r6xo2c" path="res://scenes/tombstone_cross_top.tscn" id="5_e6i5h"]
@@ -18,9 +21,22 @@
 [ext_resource type="PackedScene" uid="uid://hyi8hkm3iobu" path="res://scenes/horizontal_fence.tscn" id="7_wbrjn"]
 [ext_resource type="PackedScene" uid="uid://dun25w7jnnnam" path="res://scenes/note.tscn" id="8_jn7no"]
 [ext_resource type="PackedScene" uid="uid://br15ifyfpniow" path="res://scenes/fog.tscn" id="10_e4pvg"]
+[ext_resource type="PackedScene" uid="uid://ctwpfrxf3cr7l" path="res://scenes/candle.tscn" id="10_h1kpw"]
+[ext_resource type="PackedScene" uid="uid://bj8a0f5r8vf6s" path="res://scenes/large_mushroom.tscn" id="11_6cy2h"]
 [ext_resource type="PackedScene" uid="uid://cvu5ywcldpsb6" path="res://scenes/mushroom.tscn" id="11_nffv2"]
+[ext_resource type="PackedScene" uid="uid://cn22qmsuuue30" path="res://scenes/trap_door.tscn" id="13_6fqk3"]
+[ext_resource type="PackedScene" uid="uid://j5410f0gpbek" path="res://scenes/well.tscn" id="15_rbhqp"]
 [ext_resource type="PackedScene" uid="uid://c87u1ha5t57e5" path="res://scenes/campfire.tscn" id="18_yiuju"]
 [ext_resource type="PackedScene" uid="uid://b6jvx4t5eq18m" path="res://scenes/doghouse.tscn" id="19_qiox7"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_hlp30"]
+line_spacing = -4.0
+font = ExtResource("4_xfwxn")
+font_size = 32
+outline_color = Color(0.277528, 0.277528, 0.277528, 1)
+shadow_size = 0
+shadow_color = Color(0.109804, 0.109804, 0.109804, 0.576471)
+shadow_offset = Vector2(0, 0)
 
 [sub_resource type="LabelSettings" id="LabelSettings_oaexx"]
 line_spacing = -6.0
@@ -48,19 +64,103 @@ sources/1 = SubResource("TileSetAtlasSource_2cjby")
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_e5qmv"]
 size = Vector2(22, 128)
 
+[sub_resource type="Animation" id="Animation_cssxr"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/UI/Panel:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_qu5uk"]
+resource_name = "message_fade"
+length = 3.0
+step = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/UI/Panel:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 2.5, 3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_4mir8"]
+_data = {
+"RESET": SubResource("Animation_cssxr"),
+"message_fade": SubResource("Animation_qu5uk")
+}
+
 [node name="Geistfeld" type="Node2D"]
 y_sort_enabled = true
 script = ExtResource("1_rdruu")
 
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 2
+
+[node name="UI" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="CanvasLayer/UI"]
+modulate = Color(1, 1, 1, 0)
+z_index = 9
+custom_minimum_size = Vector2(1344, 64)
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = ExtResource("3_cnq2v")
+
+[node name="Label" type="Label" parent="CanvasLayer/UI/Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -75.0
+offset_top = -16.5
+offset_right = 75.0
+offset_bottom = 16.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "This is Crazy"
+label_settings = SubResource("LabelSettings_hlp30")
+
 [node name="Player" parent="." instance=ExtResource("1_8g5j1")]
-position = Vector2(215, 324)
+position = Vector2(223, 295)
+
+[node name="TrapDoor" parent="." instance=ExtResource("13_6fqk3")]
+position = Vector2(431, 355)
 
 [node name="Geist" parent="." groups=["geists"] instance=ExtResource("6_8tooo")]
 position = Vector2(6526, 3537)
 
-[node name="WestGrove" type="Node2D" parent="."]
+[node name="WestGrove" type="Node2D" parent="." groups=["door_spawns"]]
 y_sort_enabled = true
-position = Vector2(1543, 4880)
+position = Vector2(1103, 5949)
+script = ExtResource("4_idf06")
+location_name = "Western Grove"
+door_possible = true
 
 [node name="PineTree2" parent="WestGrove" instance=ExtResource("7_5s2fi")]
 position = Vector2(65, -322)
@@ -140,13 +240,63 @@ message = "Geistfeld... tis not even proper German tongue if I am not mistaken. 
 
 And the well... my spine trembles terribly whenever I pass by. The smell is deathly and I could swear there are faint gurgling or cooing sounds emanating from the bottom."
 
-[node name="FairyCircle" type="Node2D" parent="."]
+[node name="Mushroom" parent="WestGrove" instance=ExtResource("11_nffv2")]
+position = Vector2(-679, 389)
+
+[node name="Mushroom2" parent="WestGrove" instance=ExtResource("11_nffv2")]
+position = Vector2(527, 625)
+
+[node name="Mushroom3" parent="WestGrove" instance=ExtResource("11_nffv2")]
+position = Vector2(1030, -146)
+
+[node name="FairyCircle" type="Node2D" parent="." groups=["door_spawns"]]
 y_sort_enabled = true
 position = Vector2(8430, 5684)
+script = ExtResource("4_idf06")
+location_name = "Fairy Circle"
+door_possible = true
 
-[node name="NorthShrine" type="Node2D" parent="."]
+[node name="Mushroom" parent="FairyCircle" instance=ExtResource("11_nffv2")]
+position = Vector2(-211, -249)
+
+[node name="Mushroom2" parent="FairyCircle" instance=ExtResource("11_nffv2")]
+position = Vector2(19, -306)
+
+[node name="Mushroom3" parent="FairyCircle" instance=ExtResource("11_nffv2")]
+position = Vector2(235, -245)
+
+[node name="Mushroom4" parent="FairyCircle" instance=ExtResource("11_nffv2")]
+position = Vector2(-325, -59)
+
+[node name="Mushroom5" parent="FairyCircle" instance=ExtResource("11_nffv2")]
+position = Vector2(341, -57)
+
+[node name="Mushroom6" parent="FairyCircle" instance=ExtResource("11_nffv2")]
+position = Vector2(331, 143)
+
+[node name="Mushroom7" parent="FairyCircle" instance=ExtResource("11_nffv2")]
+position = Vector2(-294, 159)
+
+[node name="Mushroom8" parent="FairyCircle" instance=ExtResource("11_nffv2")]
+position = Vector2(-89, 297)
+
+[node name="Mushroom9" parent="FairyCircle" instance=ExtResource("11_nffv2")]
+position = Vector2(159, 289)
+
+[node name="Note" parent="FairyCircle" instance=ExtResource("8_jn7no")]
+position = Vector2(-380, 224)
+message = "Nine mushrooms in a circle? And fairly even... at least notably so for any fairy circle I have ever seen. I have seen the door here once.
+
+My weariness has grown immeasurably, so I took a chance to lie down in the fairy circle. When I looked up, I could have sworn I saw a strange, narrow beam of light from the sky.
+
+Tisk, this feels like a puzzle, but there is nary a hint of logic to it."
+
+[node name="NorthShrine" type="Node2D" parent="." groups=["door_spawns"]]
 y_sort_enabled = true
 position = Vector2(8103, 1019)
+script = ExtResource("4_idf06")
+location_name = "NorthernShrine"
+door_possible = true
 
 [node name="Obelisk" parent="NorthShrine" instance=ExtResource("6_khlsi")]
 position = Vector2(-235, -92)
@@ -168,17 +318,98 @@ Eye, cat, finger, tree, skull, candle, scythe... I have not seen these things ro
 
 Curse it all..."
 
-[node name="Outhouse" type="Node2D" parent="."]
+[node name="Candle" parent="NorthShrine" instance=ExtResource("10_h1kpw")]
+position = Vector2(-473, 15)
+
+[node name="Candle2" parent="NorthShrine" instance=ExtResource("10_h1kpw")]
+position = Vector2(-157, -63)
+
+[node name="Outhouse" type="Node2D" parent="." groups=["door_spawns"]]
 y_sort_enabled = true
 position = Vector2(10229, 1557)
+script = ExtResource("4_idf06")
+location_name = "Outhouse"
+door_possible = true
 
 [node name="Well" type="Node2D" parent="."]
 y_sort_enabled = true
 position = Vector2(6354, 3508)
+script = ExtResource("4_idf06")
+location_name = "Well"
 
-[node name="SouthShrine" type="Node2D" parent="."]
+[node name="Crate" parent="Well" instance=ExtResource("4_duu2l")]
+position = Vector2(-202, -30)
+item_name = "Key"
+
+[node name="Candle" parent="Well" instance=ExtResource("10_h1kpw")]
+position = Vector2(-300, 24)
+
+[node name="PineTree" parent="Well" instance=ExtResource("7_5s2fi")]
+position = Vector2(828, -168)
+
+[node name="Rock" parent="Well" instance=ExtResource("3_ongvj")]
+position = Vector2(-166, -494)
+
+[node name="Well" parent="Well" instance=ExtResource("15_rbhqp")]
+position = Vector2(97, -92)
+
+[node name="Candle2" parent="Well" instance=ExtResource("10_h1kpw")]
+position = Vector2(217, -82)
+
+[node name="BeegMushroom" type="Node2D" parent="."]
+y_sort_enabled = true
+position = Vector2(5155, 1003)
+script = ExtResource("4_idf06")
+location_name = "Well"
+
+[node name="LargeMushroom" parent="BeegMushroom" instance=ExtResource("11_6cy2h")]
+position = Vector2(-225, -66)
+
+[node name="Mushroom" parent="BeegMushroom" instance=ExtResource("11_nffv2")]
+position = Vector2(-465, 175)
+
+[node name="Mushroom2" parent="BeegMushroom" instance=ExtResource("11_nffv2")]
+position = Vector2(365, -170)
+
+[node name="Mushroom3" parent="BeegMushroom" instance=ExtResource("11_nffv2")]
+position = Vector2(353, 324)
+
+[node name="Mushroom4" parent="BeegMushroom" instance=ExtResource("11_nffv2")]
+position = Vector2(-555, -336)
+
+[node name="Mushroom5" parent="BeegMushroom" instance=ExtResource("11_nffv2")]
+position = Vector2(62, -398)
+
+[node name="PineTree" parent="BeegMushroom" instance=ExtResource("7_5s2fi")]
+position = Vector2(891, 424)
+
+[node name="PineTree2" parent="BeegMushroom" instance=ExtResource("7_5s2fi")]
+position = Vector2(-1100, -424)
+
+[node name="Rock" parent="BeegMushroom" instance=ExtResource("3_ongvj")]
+position = Vector2(728, -330)
+
+[node name="Campfire" parent="BeegMushroom" instance=ExtResource("18_yiuju")]
+position = Vector2(159, 33)
+
+[node name="Note" parent="BeegMushroom" instance=ExtResource("8_jn7no")]
+position = Vector2(-180, 7)
+message = "What an odd mushroom? I swear that I have never seen one this big. Tis as tall as a small tree and wide as a damn bear.
+
+The oil can always seems to appear here fortunately. Every time I awaken, I come here straight-away!
+
+Everything goes well so long as I do not encounter that malevolent spirit on my trek."
+
+[node name="Crate" parent="BeegMushroom" instance=ExtResource("4_duu2l")]
+position = Vector2(72, -158)
+item_name = "Oil Can"
+
+[node name="SouthShrine" type="Node2D" parent="." groups=["door_spawns"]]
 y_sort_enabled = true
 position = Vector2(4706, 6324)
+script = ExtResource("4_idf06")
+location_name = "Southern Shrine"
+door_possible = true
 
 [node name="Obelisk" parent="SouthShrine" instance=ExtResource("6_khlsi")]
 position = Vector2(274, 57)
@@ -210,9 +441,21 @@ Will I be a fool in death? Speaking incoherently... I'm best off going to sleep 
 
 Who cares if the geist kills me?"
 
-[node name="WestCamp" type="Node2D" parent="."]
+[node name="Candle" parent="SouthShrine" instance=ExtResource("10_h1kpw")]
+position = Vector2(-210, 90)
+
+[node name="Candle2" parent="SouthShrine" instance=ExtResource("10_h1kpw")]
+position = Vector2(-367, 122)
+
+[node name="Candle3" parent="SouthShrine" instance=ExtResource("10_h1kpw")]
+position = Vector2(191, 95)
+
+[node name="WestCamp" type="Node2D" parent="." groups=["door_spawns"]]
 y_sort_enabled = true
-position = Vector2(3015, 3190)
+position = Vector2(2270, 3441)
+script = ExtResource("4_idf06")
+location_name = "Western Camp"
+door_possible = true
 
 [node name="Campfire" parent="WestCamp" instance=ExtResource("18_yiuju")]
 position = Vector2(133, 4)
@@ -226,9 +469,18 @@ position = Vector2(-113, 5)
 [node name="Rock2" parent="WestCamp" instance=ExtResource("3_ongvj")]
 position = Vector2(338, 156)
 
-[node name="EastCamp" type="Node2D" parent="."]
+[node name="Note" parent="WestCamp" instance=ExtResource("8_jn7no")]
+position = Vector2(683, -38)
+message = "This cursed field makes me appreciate the warmth of the fire so much more. The air is unnaturally cold, hued with a sickly green tint and hanging heavy. The fire clears that up a bit.
+
+Lest ye get confused, I am still terrified. I could have sworn I heard paw steps and growing directly East of the grove below. Although I have not seen any animals in the Geistfeld. Hmmm..."
+
+[node name="EastCamp" type="Node2D" parent="." groups=["door_spawns"]]
 y_sort_enabled = true
 position = Vector2(11693, 717)
+script = ExtResource("4_idf06")
+location_name = "Eastern Camp"
+door_possible = true
 
 [node name="Campfire2" parent="EastCamp" instance=ExtResource("18_yiuju")]
 position = Vector2(180, 9)
@@ -248,9 +500,12 @@ position = Vector2(169, 210)
 [node name="PineTree2" parent="EastCamp" instance=ExtResource("7_5s2fi")]
 position = Vector2(-426, -224)
 
-[node name="EastGrove" type="Node2D" parent="."]
+[node name="EastGrove" type="Node2D" parent="." groups=["door_spawns"]]
 y_sort_enabled = true
 position = Vector2(10941, 3471)
+script = ExtResource("4_idf06")
+location_name = "Eastern Grove"
+door_possible = true
 
 [node name="PineTree" parent="EastGrove" instance=ExtResource("7_5s2fi")]
 position = Vector2(-10432, -2243)
@@ -312,9 +567,17 @@ position = Vector2(1031, -117)
 [node name="PineTree44" parent="EastGrove" instance=ExtResource("7_5s2fi")]
 position = Vector2(1144, 705)
 
+[node name="Note" parent="EastGrove" instance=ExtResource("8_jn7no")]
+position = Vector2(-750, 585)
+message = "Ay, the trees do sway and the air is cold, but where is the wind? And the damn fires do not cease... What is this damn place?
+
+"
+
 [node name="NWGraveyard" type="Node2D" parent="."]
 y_sort_enabled = true
 position = Vector2(1983, 1011)
+script = ExtResource("4_idf06")
+location_name = "Northwestern Graveyard"
 
 [node name="Tombstone" parent="NWGraveyard" instance=ExtResource("4_54odp")]
 position = Vector2(-248, 184)
@@ -358,9 +621,12 @@ position = Vector2(-1835, -403)
 [node name="Mushroom2" parent="NWGraveyard" instance=ExtResource("11_nffv2")]
 position = Vector2(-1025, -705)
 
-[node name="SEGraveyard" type="Node2D" parent="."]
+[node name="SEGraveyard" type="Node2D" parent="." groups=["door_spawns"]]
 y_sort_enabled = true
 position = Vector2(11078, 6271)
+script = ExtResource("4_idf06")
+location_name = "Southeastern Graveyard"
+door_possible = true
 
 [node name="Tombstone" parent="SEGraveyard" instance=ExtResource("4_54odp")]
 position = Vector2(328, -52)
@@ -420,6 +686,12 @@ message = "This geistfeld houses so many of the dead... To what end does it exis
 Oh my... could it be that I am dead already? No, it must not be the case. First of all, how trite? Dying and going to a haunted field with tombstones.
 
 But perhaps this is no field at all... a room or a cavern itself. I must give it some thought."
+
+[node name="Candle" parent="SEGraveyard" instance=ExtResource("10_h1kpw")]
+position = Vector2(-93, -278)
+
+[node name="Candle2" parent="SEGraveyard" instance=ExtResource("10_h1kpw")]
+position = Vector2(94, 371)
 
 [node name="Notes" type="Node2D" parent="."]
 y_sort_enabled = true
@@ -507,7 +779,7 @@ shape = SubResource("CircleShape2D_ds7em")
 
 [node name="Sprite2D" type="Sprite2D" parent="Notes/IntroNote4"]
 rotation = -5.76268
-scale = Vector2(0.025, 0.025)
+scale = Vector2(0.05, 0.05)
 skew = 0.724312
 texture = ExtResource("5_d0khx")
 
@@ -523,6 +795,7 @@ tile_set = SubResource("TileSet_gslox")
 position = Vector2(774, 452)
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
+visible = false
 light_mask = 15
 visibility_layer = 15
 color = Color(0, 0, 0, 1)
@@ -1484,6 +1757,11 @@ position = Vector2(12485, 7337)
 position = Vector2(12613, 7337)
 
 [node name="Doghouse" parent="." instance=ExtResource("19_qiox7")]
-position = Vector2(410, 6748)
+position = Vector2(2488, 6583)
+
+[node name="UIAnims" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_4mir8")
+}
 
 [editable path="SouthShrine/Obelisk2"]

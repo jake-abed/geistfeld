@@ -21,7 +21,6 @@ radius = 40.3113
 
 [node name="Note" type="Area2D" groups=["notes"]]
 script = ExtResource("1_utjcj")
-message = null
 type = "note"
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
@@ -72,6 +71,6 @@ shape = SubResource("CircleShape2D_ds7em")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 rotation = -5.63916
-scale = Vector2(0.025, 0.025)
+scale = Vector2(0.05, 0.05)
 skew = 0.724312
 texture = ExtResource("3_1q2xh")

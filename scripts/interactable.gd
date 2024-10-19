@@ -11,8 +11,11 @@ func _process(_delta: float) -> void:
 
 func _on_body_entered(body: CharacterBody2D) -> void:
 	if body is Player:
-		body.interactable = self
+		body.interactables.push_back(self)
 
 func _on_body_exited(body: CharacterBody2D) -> void:
 	if body is Player:
-		body.interactable = null
+		var index: int = body.interactables.find(self)
+		if index >= 0:
+			body.interactables.pop_at(index)
+		return

@@ -66,7 +66,7 @@ func bless(player: Player) -> void:
 			player.energy += 15
 		"Banish":
 			player.banish_cooldown -= 0.5
-			player.banish_radius += 15
+			player.banish_radius += 10.0
 		"Luck":
 			var geists: Array[Node] = get_tree().get_nodes_in_group("geists")
 			for geist in geists:

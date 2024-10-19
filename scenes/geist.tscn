@@ -86,7 +86,7 @@ scale = Vector2(2, 2)
 texture = SubResource("GradientTexture2D_lhu38")
 
 [node name="LevelUpTimer" type="Timer" parent="."]
-wait_time = 30.0
+wait_time = 15.0
 autostart = true
 
 [node name="BanishTimer" type="Timer" parent="."]

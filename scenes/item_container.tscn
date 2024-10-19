@@ -4,6 +4,4 @@
 
 [node name="ItemContainer" type="Area2D"]
 script = ExtResource("1_e2cdx")
-item_name = null
-contains_item = null
 type = "item_container"

@@ -1,0 +1,41 @@
+[gd_scene load_steps=5 format=3 uid="uid://bj8a0f5r8vf6s"]
+
+[ext_resource type="Texture2D" uid="uid://b3jybpy1ruly" path="res://assets/images/lrg-mushroom.png" id="1_ngri1"]
+
+[sub_resource type="Gradient" id="Gradient_ry8up"]
+offsets = PackedFloat32Array(0, 0.959596)
+colors = PackedColorArray(0, 0, 0, 0.866667, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_nqgdh"]
+gradient = SubResource("Gradient_ry8up")
+width = 1024
+height = 224
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.799145, 0.25641)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_624ha"]
+radius = 11.0
+height = 54.0
+
+[node name="LargeMushroom" type="StaticBody2D"]
+y_sort_enabled = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+y_sort_enabled = true
+position = Vector2(0, 2)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_ngri1")
+offset = Vector2(-20, -170)
+
+[node name="Sprite2D2" type="Sprite2D" parent="Sprite2D"]
+position = Vector2(-2, -46)
+scale = Vector2(0.4, 0.4)
+texture = SubResource("GradientTexture2D_nqgdh")
+offset = Vector2(0, 100)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -8)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_624ha")
+one_way_collision_margin = 0.0

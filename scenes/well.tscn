@@ -1,0 +1,23 @@
+[gd_scene load_steps=3 format=3 uid="uid://j5410f0gpbek"]
+
+[ext_resource type="Texture2D" uid="uid://4r3wpi7clmta" path="res://assets/images/well.png" id="1_irrca"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_chl55"]
+radius = 15.0
+height = 110.0
+
+[node name="Well" type="StaticBody2D"]
+y_sort_enabled = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+y_sort_enabled = true
+position = Vector2(0, 11)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_irrca")
+offset = Vector2(0, -90)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -3)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_chl55")
+one_way_collision_margin = 0.0

@@ -1,12 +1,69 @@
 class_name TrapDoor extends Interactable
 
+signal door_repaired(item: String)
+signal door_finished()
+
 @onready var sprite := $Sprite2D
 @onready var handle_sprite := $HandleSprite
+@onready var panel := $Panel
 
 var has_handle := false
 var has_oil := false
-var has_crowbar := false
+var has_crow_bar := false
 var has_key := false
+var repaired := false
+
+func repair_door(p: Player) -> void:
+	if repaired:
+		open_door()
+	if p.has_all_necessary_items():
+		has_handle = true
+		has_oil = true
+		has_crow_bar = true
+		has_key = true
+		repaired = true
+		door_finished.emit()
+		return
+	if not has_handle and p.inventory["Handle"]:
+		add_handle()
+		has_handle = true
+		door_repaired.emit("Handle")
+		return
+	if not has_oil and p.inventory["Oil Can"]:
+		has_oil = true
+		door_repaired.emit("Oil Can")
+		return
+	if not has_crow_bar and p.inventory["Crow Bar"]:
+		has_crow_bar = true
+		door_repaired.emit("Crow Bar")
+		return
+	if not has_key and p.inventory["Key"]:
+		has_key = true
+		door_repaired.emit("Key")
+
+func is_door_repaired() -> bool:
+	return has_handle and has_oil and has_crow_bar and has_key
 
 func add_handle() -> void:
 	handle_sprite.visible = true
+
+func _on_body_entered(body: Node2D) -> void:
+	if body is Player:
+		panel.visible = true
+		body.interactables.push_back(self)
+
+func _on_body_exited(body: Node2D) -> void:
+	if body is Player:
+		panel.visible = false
+		var index: int = body.interactables.find(self)
+		if index >= 0:
+			body.interactables.pop_at(index)
+		return
+
+func open_door() -> void:
+	get_tree().quit()
+
+func delete_collision_shape() -> void:
+	var collision_shape = get_node("CollisionShape2D")
+	if collision_shape:
+		collision_shape.queue_free()

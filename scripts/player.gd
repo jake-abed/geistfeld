@@ -1,5 +1,7 @@
 class_name Player extends CharacterBody2D
 
+signal item_found(item: String)
+
 const ACCEL := 10.0
 
 var base_speed := 250.0
@@ -26,7 +28,7 @@ var inventory := {
 	"Key": false,
 	"Oil Can": false,
 	"Crow Bar": false,
-	"Handle": false,
+	"Handle": true,
 	"Gormfeld": false
 }
 
@@ -95,7 +97,10 @@ func interact() -> void:
 		"item_container":
 			inventory[interactables[0].item_name] = true
 			interactables[0].contains_item = false
+			item_found.emit(interactables[0].item_name)
 			interactables[0].delete_collision_shape()
+		"door":
+			interactables[0].repair_door(self)
 
 func glow_light() -> void:
 	var tween := get_tree().create_tween()
@@ -137,6 +142,12 @@ func banish() -> void:
 func _on_anim_finished(anim) -> void:
 	if anim == "banish":
 		banishing = false
+
+func has_all_necessary_items() -> bool:
+	return (inventory["Key"] and
+	inventory["Oil Can"] and
+	inventory ["Crow Bar"] and
+	inventory["Handle"])
 
 func die() -> void:
 	Game.player_death_location = global_position

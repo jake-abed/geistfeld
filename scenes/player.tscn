@@ -16,7 +16,8 @@ fill_from = Vector2(0.5, 0.5)
 fill_to = Vector2(0.75, 0.292683)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_w8jg2"]
-height = 32.0
+radius = 8.0
+height = 16.0
 
 [sub_resource type="Gradient" id="Gradient_mgn46"]
 offsets = PackedFloat32Array(0, 0.324675, 0.668831, 1)
@@ -123,7 +124,7 @@ offset = Vector2(0, -100)
 hframes = 19
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 35)
+position = Vector2(0, 43)
 shape = SubResource("CapsuleShape2D_w8jg2")
 
 [node name="Camera2D" type="Camera2D" parent="."]

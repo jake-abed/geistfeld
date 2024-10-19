@@ -10,12 +10,12 @@ func _ready() -> void:
 	body_entered.connect(_on_body_entered)
 	body_exited.connect(_on_body_exited)
 
-func _on_body_entered(body: CharacterBody2D) -> void:
+func _on_body_entered(body) -> void:
 	if body is Player:
 		body.interactables.push_back(self)
 		panel.visible = true
 
-func _on_body_exited(body: CharacterBody2D) -> void:
+func _on_body_exited(body) -> void:
 	if body is Player:
 		panel.visible = false
 		var index: int = body.interactables.find(self)

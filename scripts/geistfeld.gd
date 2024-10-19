@@ -1,8 +1,23 @@
 extends Node2D
 
 var wisp_scene := preload("res://scenes/wisp.tscn")
+var door_scene := preload("res://scenes/trap_door.tscn")
+var door_location_name: String
+
+@onready var door_spawns := get_tree().get_nodes_in_group("door_spawns")
+@onready var player := $Player
+@onready var player_message := $CanvasLayer/UI/Panel/Label
+@onready var ui_anims := $UIAnims
 
 func _ready() -> void:
+	spawn_wisps()
+	spawn_door()
+	player.item_found.connect(_on_item_found)
+
+func _process(_delta: float) -> void:
+	pass
+
+func spawn_wisps() -> void:
 	await Game.getWisps()
 	for wisp in Game.wisps:
 		var new_wisp = wisp_scene.instantiate()
@@ -17,5 +32,20 @@ func _ready() -> void:
 		new_wisp.message = wisp["message"]
 		get_tree().root.get_node("Geistfeld").add_child(new_wisp)
 
-func _process(_delta: float) -> void:
-	pass
+func spawn_door() -> void:
+	var door_inst := door_scene.instantiate()
+	var spawn_location = door_spawns.pick_random()
+	door_inst.door_repaired.connect(_on_door_repaired)
+	door_location_name = spawn_location.location_name
+	spawn_location.add_child(door_inst)
+	print(door_location_name)
+
+func _on_item_found(item: String) -> void:
+	print(item + " found")
+	player_message.text = item + " Found!"
+	ui_anims.play("message_fade")
+
+func _on_door_repaired(item: String) -> void:
+	print(item + " used to repair door")
+	player_message.text = item + " Used to Repair Door"
+	ui_anims.play("message_fade")

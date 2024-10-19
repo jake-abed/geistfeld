@@ -6,7 +6,7 @@ const TOP_BOUND := 1000
 const BOTTOM_BOUND := 6380
 const BASE_SPEED := 100.0
 const BASE_RADIUS := 1300.0
-const LEVEL_UP_TIME := 30.0
+const LEVEL_UP_TIME := 15.0
 
 @onready var sprite := $Sprite2D
 @onready var light := $PointLight2D

@@ -19,12 +19,12 @@ shader_parameter/offset = 0.0
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2gvd1"]
 size = Vector2(22.5005, 62.4998)
 
-[sub_resource type="Gradient" id="Gradient_ry8up"]
+[sub_resource type="Gradient" id="Gradient_fpplb"]
 offsets = PackedFloat32Array(0, 0.959596)
 colors = PackedColorArray(0, 0, 0, 0.866667, 0, 0, 0, 0)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_520ku"]
-gradient = SubResource("Gradient_ry8up")
+gradient = SubResource("Gradient_fpplb")
 width = 768
 height = 192
 fill = 1
