@@ -14,7 +14,7 @@ const LEVEL_UP_TIME := 30.0
 @onready var contact_shape := $ContactBox/CollisionShape2D
 @onready var level_up_timer := $LevelUpTimer
 @onready var banish_timer := $BanishTimer
-
+@onready var anim_player := $AnimationPlayer
 @onready var speed: float
 @onready var contact_radius: float
 @onready var level := 1
@@ -26,6 +26,7 @@ var banished := false
 
 func _ready() -> void:
 	reset_ghost()
+	anim_player.play("idle")
 	gloob_and_shoob()
 	contact_box.body_entered.connect(_on_contact_body_entered)
 	contact_box.body_exited.connect(_on_contact_body_exited)
@@ -40,13 +41,13 @@ func _process(delta: float) -> void:
 	if !player_targeted:
 		var movement = (target_location - global_position).normalized()
 		if banished:
-			movement *= -1 * (8 / level)
+			movement *= -8
 		global_position += movement * speed * delta
 		set_sprite_direction(target_location - global_position)
 	else:
 		var movement = (player.global_position - global_position).normalized()
 		if banished:
-			movement *= -1 * (8 / level)
+			movement *= -1 * 8
 		global_position += movement * speed * delta
 		set_sprite_direction(player.global_position - global_position)
 

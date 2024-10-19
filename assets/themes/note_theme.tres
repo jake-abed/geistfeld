@@ -2,7 +2,7 @@
 
 [ext_resource type="FontFile" uid="uid://b0ku14gk7g15g" path="res://assets/misc/Treamd.ttf" id="1_5mxv0"]
 [ext_resource type="Texture2D" uid="uid://cxxqaxdeprkef" path="res://assets/images/paper-note.png" id="1_ywflb"]
-[ext_resource type="StyleBox" uid="uid://r7gfo0ghlage" path="res://note_button_underlined.tres" id="2_eob0y"]
+[ext_resource type="StyleBox" uid="uid://r7gfo0ghlage" path="res://assets/themes/note_button_underlined.tres" id="2_eob0y"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nlujh"]
 bg_color = Color(0.619608, 0.592157, 0.611765, 0)

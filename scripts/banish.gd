@@ -5,12 +5,14 @@ class_name Banish extends Area2D
 
 func _ready() -> void:
 	print(global_position)
+	global_position.y += 32
+	print(global_position)
 	area_entered.connect(_on_area_entered)
 	banish(radius)
 
 func banish(radius: int) -> void:
 	var tween := create_tween()
-	tween.tween_property(collision_shape.shape, "radius", radius, 0.025)
+	tween.tween_property(collision_shape.shape, "radius", radius, 0.05)
 	await tween.finished
 	self.queue_free()
 

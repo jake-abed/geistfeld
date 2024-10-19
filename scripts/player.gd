@@ -35,6 +35,7 @@ func _ready() -> void:
 	glow_light()
 	light_timer.timeout.connect(_on_light_timer_timeout)
 	banish_timer.timeout.connect(_on_banish_timer_timeout)
+	anim_player.animation_finished.connect(_on_anim_finished)
 
 func _physics_process(delta: float) -> void:	
 	var x_input := Input.get_axis("move_left", "move_right")
@@ -132,8 +133,10 @@ func banish() -> void:
 	banish_inst.radius = banish_radius
 	add_child(banish_inst)
 	banish_timer.start()
-	await anim_player.animation_finished
-	banishing = false
+
+func _on_anim_finished(anim) -> void:
+	if anim == "banish":
+		banishing = false
 
 func die() -> void:
 	Game.player_death_location = global_position
