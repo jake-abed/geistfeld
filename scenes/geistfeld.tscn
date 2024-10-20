@@ -86,6 +86,21 @@ _data = {
 "message_fade": SubResource("Animation_qu5uk")
 }
 
+[sub_resource type="Animation" id="Animation_rg7b8"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:volume_db")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-80.0]
+}
+
 [sub_resource type="Animation" id="Animation_kx3ch"]
 resource_name = "fade_music_in"
 length = 0.5
@@ -101,21 +116,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
 "values": [-80.0, -80.0, 0.0]
-}
-
-[sub_resource type="Animation" id="Animation_rg7b8"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:volume_db")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [-80.0]
 }
 
 [sub_resource type="Animation" id="Animation_o7473"]
@@ -751,7 +751,7 @@ position = Vector2(449, 841)
 
 [node name="Note" parent="SEGraveyard" instance=ExtResource("8_jn7no")]
 position = Vector2(514, 319)
-message = "This geistfeld houses so many of the dead... To what end does it exist?
+message = "This Geistfeld houses so many of the dead... To what end does it exist?
 
 Oh my... could it be that I am dead already? No, it must not be the case. First of all, how trite? Dying and going to a haunted field with tombstones.
 
@@ -790,7 +790,7 @@ Sprint and Banish have invisible cooldowns. Use them thoughtfully."
 position = Vector2(727, 644)
 message = "Damn this geistfeld!
 
-Friend, if you're reading this, there remains hope. The geist stalks relentlessly. He wanders the geistfeld. Get too close and he will pursue! The longer ye linger, the more quickly and terrible he becomes.
+Friend, if you're reading this, there remains hope. The geist stalks relentlessly. He wanders the Geistfeld. Get too close and he will pursue! The longer ye linger, the more quickly and terrible he becomes.
 
 Ye may be the next to escape, though ye may end up a wisp o' blessings..."
 

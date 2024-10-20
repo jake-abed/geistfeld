@@ -4,7 +4,7 @@ signal item_found(item: String)
 
 const ACCEL := 10.0
 
-var base_speed := 450.0
+var base_speed := 250.0
 var speed_scaling := 1.0
 var max_energy := 100.0
 var energy := 100.0

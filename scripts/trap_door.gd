@@ -6,6 +6,7 @@ signal door_finished()
 @onready var sprite := $Sprite2D
 @onready var handle_sprite := $HandleSprite
 @onready var panel := $Panel
+@onready var label := $Panel/NameLabel
 @onready var repair_audio := $RepairAudio
 @onready var open_audio := $OpenAudio
 
@@ -24,6 +25,7 @@ func repair_door(p: Player) -> void:
 		has_crow_bar = true
 		has_key = true
 		repaired = true
+		label.text = "E - Exit Geistfeld?"
 		door_finished.emit()
 		return
 	if not has_handle and p.inventory["Handle"]:
