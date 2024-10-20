@@ -147,7 +147,7 @@ text = "This is Crazy"
 label_settings = SubResource("LabelSettings_hlp30")
 
 [node name="Player" parent="." instance=ExtResource("1_8g5j1")]
-position = Vector2(5720, 3361)
+position = Vector2(313, 401)
 
 [node name="Geist" parent="." groups=["geists"] instance=ExtResource("6_8tooo")]
 position = Vector2(6526, 3537)
@@ -344,8 +344,14 @@ position = Vector2(-193, -66)
 position = Vector2(-55, -100)
 
 [node name="Crate" parent="Outhouse" instance=ExtResource("4_duu2l")]
-position = Vector2(93, -140)
+position = Vector2(181, -146)
 item_name = "Crow Bar"
+
+[node name="Note" parent="Outhouse" instance=ExtResource("8_jn7no")]
+position = Vector2(-166, -10)
+message = "An outhouse in this nightmarish place? Why? At least there's a crowbar in the crate, elsewise it would be impossible to open.
+
+Curiously, the outhouse does not smell nearly as much as the well. The mushrooms of the fairy circle to the Southeast even smell more. What cursed magic makes an outhouse not smell?"
 
 [node name="Well" type="Node2D" parent="."]
 y_sort_enabled = true
@@ -412,7 +418,7 @@ position = Vector2(159, 33)
 position = Vector2(-180, 7)
 message = "What an odd mushroom? I swear that I have never seen one this big. Tis as tall as a small tree and wide as a damn bear.
 
-The oil can always seems to appear here fortunately. Every time I awaken, I come here straight-away!
+The door sometimes appears here. Without fail, the graveyard to the far South, past the grove, has the oil can.
 
 Everything goes well so long as I do not encounter that malevolent spirit on my trek."
 
@@ -485,7 +491,7 @@ position = Vector2(318, 360)
 position = Vector2(683, -38)
 message = "This cursed field makes me appreciate the warmth of the fire so much more. The air is unnaturally cold, hued with a sickly green tint and hanging heavy. The fire clears that up a bit.
 
-Lest ye get confused, I am still terrified. I could have sworn I heard paw steps and growing directly East of the grove below. Although I have not seen any animals in the Geistfeld. Hmmm..."
+Lest ye get confused, I am still terrified. I could have sworn I heard paw steps and growling East of the grove below. Although I have not seen any animals in the Geistfeld. Truly strange..."
 
 [node name="EastCamp" type="Node2D" parent="." groups=["door_spawns"]]
 y_sort_enabled = true
@@ -578,8 +584,9 @@ position = Vector2(1144, 705)
 
 [node name="Note" parent="EastGrove" instance=ExtResource("8_jn7no")]
 position = Vector2(-750, 585)
-message = "Ay, the trees do sway and the air is cold, but where is the wind? And the damn fires do not cease... What is this damn place?
+message = "Ay, the trees do sway and the air is cold, but where is the wind? And the damn fires do not cease... What is this damn place? The still air makes me feel sickly.
 
+My bowels churn terribly... I saw an outhouse earlier, but the door was jammed shut. I forgot to check the crate nearby, perhaps it contains a way to pry the door open.
 "
 
 [node name="NWGraveyard" type="Node2D" parent="."]
@@ -598,7 +605,9 @@ position = Vector2(-710, -36)
 position = Vector2(-514, 66)
 message = "Curse this place...
 
-The exit seems to move every time I return. But so far the oil can never seems to move... perhaps the other objects do not move as well."
+The exit seems to move every time I return. But the handle I found to the south has always stayed in the same spot. Always marked up by tooth marks. Perhaps the other objects do not move as well?
+
+Would be nice, ay?"
 
 [node name="Tombstone3" parent="NWGraveyard" instance=ExtResource("4_54odp")]
 position = Vector2(-675, 351)
@@ -733,7 +742,7 @@ E - Interact
 Shift - Sprint
 Space - Banish
 
-Banish allows you to repel the ghost for a short time. But beware, the timing window is narrow and failure means death.
+Banish allows you to repel the ghost for a short time. But beware, the timing is narrow and failure means death.
 
 Sprint and Banish have invisible cooldowns. Use them thoughtfully."
 
@@ -747,9 +756,9 @@ Ye may be the next to escape, though ye may end up a wisp o' blessings..."
 
 [node name="IntroNote3" parent="Notes" instance=ExtResource("8_jn7no")]
 position = Vector2(957, 714)
-message = "To the east there lie an exit tunnel from this geistfeld. But I cannot open it. Each time I awaken, it is rusted shut, jammed, missing the handle, and locked.
+message = "That damn trap door must guard an exit. But I cannot open it! Each time I awaken, it is rusted shut, jammed tight, missing the handle, and locked.
 
-The floating skulls know the location of the necessary items. But be wary, friend! Some resent ye for living and will lie to ye."
+It seems to be in a different place each time I awake though. And all the other notes strewn about the field seem to have clues... or they just idly chatter."
 
 [node name="IntroNote4" type="Area2D" parent="Notes" groups=["notes"]]
 position = Vector2(1093, 869)
@@ -823,6 +832,7 @@ tile_set = SubResource("TileSet_gslox")
 position = Vector2(774, 452)
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
+visible = false
 light_mask = 15
 visibility_layer = 15
 color = Color(0, 0, 0, 1)
