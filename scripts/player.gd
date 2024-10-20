@@ -95,9 +95,12 @@ func interact() -> void:
 			interactables[0].bless(self)
 			blessing_audio.play()
 		"item_container":
-			inventory[interactables[0].item_name] = true
-			interactables[0].contains_item = false
-			item_found.emit(interactables[0].item_name)
+			if interactables[0].item_name != "":
+				inventory[interactables[0].item_name] = true
+				interactables[0].contains_item = false
+				item_found.emit(interactables[0].item_name)
+			else:
+				item_found.emit("Nothing")
 			interactables[0].play_audio()
 			interactables[0].delete_collision_shape()
 		"door":

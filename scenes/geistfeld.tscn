@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=4 uid="uid://bqyeli8brywwx"]
+[gd_scene load_steps=44 format=4 uid="uid://bqyeli8brywwx"]
 
 [ext_resource type="PackedScene" uid="uid://dms3slrv65dvl" path="res://scenes/player.tscn" id="1_8g5j1"]
 [ext_resource type="Texture2D" uid="uid://cq6ecyt6j4lfv" path="res://assets/images/bg_grass.jpg" id="1_m0lys"]
@@ -25,6 +25,8 @@
 [ext_resource type="PackedScene" uid="uid://j5410f0gpbek" path="res://scenes/well.tscn" id="15_rbhqp"]
 [ext_resource type="PackedScene" uid="uid://c87u1ha5t57e5" path="res://scenes/campfire.tscn" id="18_yiuju"]
 [ext_resource type="PackedScene" uid="uid://b6jvx4t5eq18m" path="res://scenes/doghouse.tscn" id="19_qiox7"]
+[ext_resource type="Script" path="res://scenes/ui_canvas_layer.gd" id="27_1p1yb"]
+[ext_resource type="Theme" uid="uid://cjbcircl2ubh2" path="res://assets/themes/note_theme.tres" id="27_myvt1"]
 [ext_resource type="AudioStream" uid="uid://cxptrpqkdifs8" path="res://assets/audio/ambient_field.wav" id="29_fpqe3"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_hlp30"]
@@ -176,6 +178,33 @@ _data = {
 "fade_out": SubResource("Animation_vw1th")
 }
 
+[sub_resource type="LabelSettings" id="LabelSettings_7kydu"]
+font = ExtResource("4_xfwxn")
+font_size = 64
+
+[sub_resource type="LabelSettings" id="LabelSettings_ey7gp"]
+font = ExtResource("4_xfwxn")
+font_size = 32
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_xypu0"]
+line_spacing = -4.0
+font = ExtResource("4_xfwxn")
+font_size = 52
+outline_color = Color(0.277528, 0.277528, 0.277528, 1)
+shadow_size = 0
+shadow_color = Color(0.109804, 0.109804, 0.109804, 0.576471)
+shadow_offset = Vector2(0, 0)
+
+[sub_resource type="LabelSettings" id="LabelSettings_3ai1i"]
+line_spacing = 4.0
+font = ExtResource("4_xfwxn")
+font_size = 28
+outline_color = Color(0.277528, 0.277528, 0.277528, 1)
+shadow_size = 0
+shadow_color = Color(0.109804, 0.109804, 0.109804, 0.576471)
+shadow_offset = Vector2(0, 0)
+
 [node name="Geistfeld" type="Node2D"]
 modulate = Color(1, 1, 1, 0)
 y_sort_enabled = true
@@ -222,7 +251,7 @@ text = "This is Crazy"
 label_settings = SubResource("LabelSettings_hlp30")
 
 [node name="Player" parent="." instance=ExtResource("1_8g5j1")]
-position = Vector2(313, 401)
+position = Vector2(176, 293)
 
 [node name="Geist" parent="." groups=["geists"] instance=ExtResource("6_8tooo")]
 position = Vector2(6526, 3537)
@@ -497,6 +526,10 @@ The door sometimes appears here. Without fail, the graveyard to the far South, p
 
 Everything goes well so long as I do not encounter that malevolent spirit on my trek."
 
+[node name="Crate" parent="BeegMushroom" instance=ExtResource("4_duu2l")]
+position = Vector2(109, -210)
+contains_item = false
+
 [node name="SouthShrine" type="Node2D" parent="." groups=["door_spawns"]]
 y_sort_enabled = true
 position = Vector2(5031, 5708)
@@ -542,6 +575,10 @@ position = Vector2(-367, 122)
 
 [node name="Candle3" parent="SouthShrine" instance=ExtResource("10_h1kpw")]
 position = Vector2(191, 95)
+
+[node name="Crate2" parent="SouthShrine" instance=ExtResource("4_duu2l")]
+position = Vector2(1054, 381)
+contains_item = false
 
 [node name="WestCamp" type="Node2D" parent="." groups=["door_spawns"]]
 y_sort_enabled = true
@@ -592,6 +629,10 @@ position = Vector2(256, 149)
 
 [node name="PineTree2" parent="EastCamp" instance=ExtResource("7_5s2fi")]
 position = Vector2(-426, -224)
+
+[node name="Crate" parent="EastCamp" instance=ExtResource("4_duu2l")]
+position = Vector2(958, -819)
+item_name = "Gormfeld"
 
 [node name="EastGrove" type="Node2D" parent="." groups=["door_spawns"]]
 y_sort_enabled = true
@@ -664,6 +705,11 @@ message = "Ay, the trees do sway and the air is cold, but where is the wind? And
 My bowels churn terribly... I saw an outhouse earlier, but the door was jammed shut. I forgot to check the crate nearby, perhaps it contains a way to pry the door open.
 "
 
+[node name="Doghouse" parent="EastGrove" instance=ExtResource("19_qiox7")]
+position = Vector2(-588, -117)
+item_name = ""
+contains_item = false
+
 [node name="NWGraveyard" type="Node2D" parent="."]
 y_sort_enabled = true
 position = Vector2(2194, 1360)
@@ -725,6 +771,10 @@ position = Vector2(-343, 647)
 
 [node name="PineTree2" parent="NWGraveyard" instance=ExtResource("7_5s2fi")]
 position = Vector2(-1590, 3)
+
+[node name="Crate" parent="NWGraveyard" instance=ExtResource("4_duu2l")]
+position = Vector2(1, -23)
+contains_item = false
 
 [node name="SEGraveyard" type="Node2D" parent="." groups=["door_spawns"]]
 y_sort_enabled = true
@@ -1827,5 +1877,268 @@ autoplay = true
 libraries = {
 "": SubResource("AnimationLibrary_7m7we")
 }
+
+[node name="UICanvasLayer" type="CanvasLayer" parent="."]
+process_mode = 3
+layer = 100
+visible = false
+script = ExtResource("27_1p1yb")
+
+[node name="ColorRect" type="ColorRect" parent="UICanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Control" type="Control" parent="UICanvasLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Label" type="Label" parent="UICanvasLayer/Control"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -74.5
+offset_top = 27.0
+offset_right = 74.5
+offset_bottom = 92.0
+grow_horizontal = 2
+text = "Paused"
+label_settings = SubResource("LabelSettings_7kydu")
+
+[node name="Panel" type="Panel" parent="UICanvasLayer/Control"]
+custom_minimum_size = Vector2(512, 0)
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_left = 962.0
+offset_top = 98.0
+offset_right = 1538.0
+offset_bottom = 290.0
+grow_vertical = 2
+rotation = 1.5708
+theme = ExtResource("27_myvt1")
+
+[node name="Label" type="Label" parent="UICanvasLayer/Control/Panel"]
+layout_mode = 0
+offset_left = 60.0
+offset_top = 839.0
+offset_right = 205.0
+offset_bottom = 908.0
+rotation = -1.5708
+text = "Northwestern
+Graveyard"
+label_settings = SubResource("LabelSettings_ey7gp")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label2" type="Label" parent="UICanvasLayer/Control/Panel"]
+layout_mode = 0
+offset_left = 391.0
+offset_top = 786.0
+offset_right = 475.0
+offset_bottom = 839.0
+rotation = -1.5708
+text = "Western
+Grove"
+label_settings = SubResource("LabelSettings_ey7gp")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label4" type="Label" parent="UICanvasLayer/Control/Panel"]
+layout_mode = 0
+offset_left = 240.0
+offset_top = 717.0
+offset_right = 324.0
+offset_bottom = 786.0
+rotation = -1.5708
+text = "Western
+Camp"
+label_settings = SubResource("LabelSettings_ey7gp")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label6" type="Label" parent="UICanvasLayer/Control/Panel"]
+layout_mode = 0
+offset_left = 126.0
+offset_top = 428.0
+offset_right = 225.0
+offset_bottom = 497.0
+rotation = -1.5708
+text = "Northern
+Shrine"
+label_settings = SubResource("LabelSettings_ey7gp")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label7" type="Label" parent="UICanvasLayer/Control/Panel"]
+layout_mode = 0
+offset_left = 158.0
+offset_top = 253.0
+offset_right = 276.0
+offset_bottom = 322.0
+rotation = -1.5708
+text = "Giant
+Mushroom"
+label_settings = SubResource("LabelSettings_ey7gp")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label9" type="Label" parent="UICanvasLayer/Control/Panel"]
+layout_mode = 0
+offset_left = 286.0
+offset_top = 244.0
+offset_right = 404.0
+offset_bottom = 313.0
+rotation = -1.5708
+text = "Eastern
+Grove"
+label_settings = SubResource("LabelSettings_ey7gp")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label10" type="Label" parent="UICanvasLayer/Control/Panel"]
+layout_mode = 0
+offset_left = 414.0
+offset_top = 210.0
+offset_right = 532.0
+offset_bottom = 279.0
+rotation = -1.5708
+text = "Southeastern
+Graveyard"
+label_settings = SubResource("LabelSettings_ey7gp")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label11" type="Label" parent="UICanvasLayer/Control/Panel"]
+layout_mode = 0
+offset_left = 374.0
+offset_top = 407.0
+offset_right = 492.0
+offset_bottom = 476.0
+rotation = -1.5708
+text = "Fairy
+Circle"
+label_settings = SubResource("LabelSettings_ey7gp")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label12" type="Label" parent="UICanvasLayer/Control/Panel"]
+layout_mode = 0
+offset_left = 430.0
+offset_top = 593.0
+offset_right = 548.0
+offset_bottom = 662.0
+rotation = -1.5708
+text = "Southern
+Shrine"
+label_settings = SubResource("LabelSettings_ey7gp")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label8" type="Label" parent="UICanvasLayer/Control/Panel"]
+layout_mode = 0
+offset_left = 58.0
+offset_top = 166.0
+offset_right = 176.0
+offset_bottom = 235.0
+rotation = -1.5708
+text = "Eastern
+Camp"
+label_settings = SubResource("LabelSettings_ey7gp")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label3" type="Label" parent="UICanvasLayer/Control/Panel"]
+layout_mode = 0
+offset_left = 254.0
+offset_top = 509.0
+offset_right = 338.0
+offset_bottom = 562.0
+rotation = -1.5708
+text = "The Well"
+label_settings = SubResource("LabelSettings_ey7gp")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label5" type="Label" parent="UICanvasLayer/Control/Panel"]
+layout_mode = 0
+offset_left = 94.0
+offset_top = 612.0
+offset_right = 189.0
+offset_bottom = 665.0
+rotation = -1.5708
+text = "Outhouse"
+label_settings = SubResource("LabelSettings_ey7gp")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ControlsLabel" type="Label" parent="UICanvasLayer/Control"]
+layout_mode = 0
+offset_left = 1010.0
+offset_top = 124.0
+offset_right = 1194.0
+offset_bottom = 189.0
+text = "Controls"
+label_settings = SubResource("LabelSettings_xypu0")
+
+[node name="ControlsLabel2" type="Label" parent="UICanvasLayer/Control"]
+layout_mode = 0
+offset_left = 1010.0
+offset_top = 174.0
+offset_right = 1215.0
+offset_bottom = 422.0
+text = "WASD - Movement
+E - Interact
+Shift - Sprint
+Space - Banish
+Esccape - Pause"
+label_settings = SubResource("LabelSettings_3ai1i")
+
+[node name="Panel2" type="Panel" parent="UICanvasLayer/Control"]
+layout_mode = 0
+offset_left = 999.0
+offset_top = 437.0
+offset_right = 1191.0
+offset_bottom = 661.0
+theme = ExtResource("27_myvt1")
+
+[node name="Button" type="Button" parent="UICanvasLayer/Control/Panel2"]
+z_index = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("27_myvt1")
+theme_override_constants/h_separation = 6
+theme_override_font_sizes/font_size = 48
+text = "Return to
+Game"
+
+[node name="PineTree" parent="." instance=ExtResource("7_5s2fi")]
+position = Vector2(1840, 3184)
+
+[node name="Rock2" parent="." instance=ExtResource("3_ongvj")]
+position = Vector2(4347, 4494)
+
+[node name="Mushroom" parent="." instance=ExtResource("11_nffv2")]
+position = Vector2(5416, 2356)
+
+[node name="Mushroom2" parent="." instance=ExtResource("11_nffv2")]
+position = Vector2(5287, 2172)
+
+[node name="Rock3" parent="." instance=ExtResource("3_ongvj")]
+position = Vector2(7399, 6510)
 
 [editable path="SouthShrine/Obelisk2"]

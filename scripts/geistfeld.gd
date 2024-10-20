@@ -8,16 +8,21 @@ var door_location_name: String
 @onready var player := $Player
 @onready var player_message := $CanvasLayer/UI/Panel/Label
 @onready var ui_anims := $UIAnims
+@onready var ui_canvas := $UICanvasLayer
+@onready var pause_button := $UICanvasLayer/Control/Panel2/Button
 @onready var scene_anims := $SceneAnims
 
 func _ready() -> void:
 	spawn_wisps()
 	spawn_door()
 	player.item_found.connect(_on_item_found)
+	pause_button.pressed.connect(_on_pause_button_pressed)
 	scene_anims.play("fade_in")
 
 func _process(_delta: float) -> void:
-	pass
+	if Input.is_action_just_pressed("pause"):
+		get_tree().paused = !get_tree().paused
+		ui_canvas.visible = !ui_canvas.visible
 
 func spawn_wisps() -> void:
 	await Game.getWisps()
@@ -44,7 +49,7 @@ func spawn_door() -> void:
 	spawn_location.add_child(door_inst)
 
 func _on_item_found(item: String) -> void:
-	player_message.text = item + " Found!"
+	player_message.text = item + " Found"
 	ui_anims.play("message_fade")
 
 func _on_door_repaired(item: String) -> void:
@@ -57,3 +62,7 @@ func _on_door_finished() -> void:
 
 func _on_door_opened() -> void:
 	scene_anims.play("fade_out")
+
+func _on_pause_button_pressed() -> void:
+	get_tree().paused = false
+	ui_canvas.visible = false

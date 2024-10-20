@@ -245,7 +245,7 @@ shadow_color = Color(0.109804, 0.109804, 0.109804, 0.576471)
 shadow_offset = Vector2(0, 0)
 
 [sub_resource type="LabelSettings" id="LabelSettings_xxnqd"]
-line_spacing = -4.0
+line_spacing = 0.0
 font = ExtResource("11_ayhgb")
 font_size = 52
 outline_color = Color(0.277528, 0.277528, 0.277528, 1)
@@ -254,7 +254,7 @@ shadow_color = Color(0.109804, 0.109804, 0.109804, 0.576471)
 shadow_offset = Vector2(0, 0)
 
 [sub_resource type="LabelSettings" id="LabelSettings_60qe1"]
-line_spacing = -4.0
+line_spacing = 4.0
 font = ExtResource("11_ayhgb")
 font_size = 28
 outline_color = Color(0.277528, 0.277528, 0.277528, 1)
@@ -403,6 +403,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("12_e215k")
+theme_override_constants/h_separation = 6
 theme_override_font_sizes/font_size = 64
 text = "Start
 Game"
