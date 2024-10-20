@@ -15,13 +15,14 @@ var blessing_types := ["Speed", "Energy", "Banish", "Luck"]
 
 func _ready() -> void:
 	type = "wisp"
+	play_float_anim()
 	blessing = blessing_types.pick_random()
 	body_entered.connect(_on_body_entered)
 	body_exited.connect(_on_body_exited)
 	name_label.text = wisp_name
 	message_label.text = message
 	blessing_label.text= "Blessing 'o " + blessing
-	play_float_anim()
+	
 
 func _on_body_entered(body) -> void:
 	if body is StaticBody2D:
@@ -49,13 +50,13 @@ func play_float_anim() -> void:
 	var pos_offset_up := global_position.y - 3.0
 	var pos_offset_down := pos_offset_up + 6.0
 	var duration := 2.8
+	tween.set_parallel(false)
+	tween2.set_parallel(false)
 	
 	tween.tween_property(sprite, "global_position:y", pos_offset_up, duration)
 	tween.tween_property(sprite, "global_position:y", pos_offset_down, duration)
-	tween2.tween_property(sprite, "scale", sprite.scale * 1.125, duration * 2.1)
+	tween2.tween_property(sprite, "scale", sprite.scale * 1.15, duration * 2.1)
 	tween2.tween_property(sprite, "scale", sprite.scale * 0.9, duration * 2.1)
-	tween.set_loops()
-	tween2.set_loops()
 
 func bless(player: Player) -> void:
 	match blessing:

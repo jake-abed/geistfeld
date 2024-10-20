@@ -4,9 +4,7 @@ class_name Banish extends Area2D
 @export var radius := 50.0
 
 func _ready() -> void:
-	print(global_position)
 	global_position.y += 16
-	print(global_position)
 	area_entered.connect(_on_area_entered)
 	banish(radius)
 
@@ -18,6 +16,5 @@ func banish(r: float) -> void:
 
 func _on_area_entered(area) -> void:
 	if area is Geist:
-		print("banishing geist")
 		area.banish()
 		self.queue_free()

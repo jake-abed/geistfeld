@@ -24,7 +24,7 @@
 [ext_resource type="PackedScene" uid="uid://ctwpfrxf3cr7l" path="res://scenes/candle.tscn" id="10_h1kpw"]
 [ext_resource type="PackedScene" uid="uid://bj8a0f5r8vf6s" path="res://scenes/large_mushroom.tscn" id="11_6cy2h"]
 [ext_resource type="PackedScene" uid="uid://cvu5ywcldpsb6" path="res://scenes/mushroom.tscn" id="11_nffv2"]
-[ext_resource type="PackedScene" uid="uid://cn22qmsuuue30" path="res://scenes/trap_door.tscn" id="13_6fqk3"]
+[ext_resource type="PackedScene" uid="uid://c4a6qmt1w4f8" path="res://scenes/outhouse.tscn" id="14_e0ghl"]
 [ext_resource type="PackedScene" uid="uid://j5410f0gpbek" path="res://scenes/well.tscn" id="15_rbhqp"]
 [ext_resource type="PackedScene" uid="uid://c87u1ha5t57e5" path="res://scenes/campfire.tscn" id="18_yiuju"]
 [ext_resource type="PackedScene" uid="uid://b6jvx4t5eq18m" path="res://scenes/doghouse.tscn" id="19_qiox7"]
@@ -81,7 +81,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_qu5uk"]
 resource_name = "message_fade"
-length = 3.0
+length = 3.5
 step = 0.25
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -90,7 +90,7 @@ tracks/0/path = NodePath("CanvasLayer/UI/Panel:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5, 2.5, 3),
+"times": PackedFloat32Array(0, 0.5, 3, 3.5),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
@@ -147,17 +147,14 @@ text = "This is Crazy"
 label_settings = SubResource("LabelSettings_hlp30")
 
 [node name="Player" parent="." instance=ExtResource("1_8g5j1")]
-position = Vector2(223, 295)
-
-[node name="TrapDoor" parent="." instance=ExtResource("13_6fqk3")]
-position = Vector2(431, 355)
+position = Vector2(5720, 3361)
 
 [node name="Geist" parent="." groups=["geists"] instance=ExtResource("6_8tooo")]
 position = Vector2(6526, 3537)
 
 [node name="WestGrove" type="Node2D" parent="." groups=["door_spawns"]]
 y_sort_enabled = true
-position = Vector2(1103, 5949)
+position = Vector2(1711, 5111)
 script = ExtResource("4_idf06")
 location_name = "Western Grove"
 door_possible = true
@@ -249,9 +246,12 @@ position = Vector2(527, 625)
 [node name="Mushroom3" parent="WestGrove" instance=ExtResource("11_nffv2")]
 position = Vector2(1030, -146)
 
+[node name="Doghouse" parent="WestGrove" instance=ExtResource("19_qiox7")]
+position = Vector2(1405, 622)
+
 [node name="FairyCircle" type="Node2D" parent="." groups=["door_spawns"]]
 y_sort_enabled = true
-position = Vector2(8430, 5684)
+position = Vector2(7666, 5177)
 script = ExtResource("4_idf06")
 location_name = "Fairy Circle"
 door_possible = true
@@ -293,7 +293,7 @@ Tisk, this feels like a puzzle, but there is nary a hint of logic to it."
 
 [node name="NorthShrine" type="Node2D" parent="." groups=["door_spawns"]]
 y_sort_enabled = true
-position = Vector2(8103, 1019)
+position = Vector2(7654, 1742)
 script = ExtResource("4_idf06")
 location_name = "NorthernShrine"
 door_possible = true
@@ -324,16 +324,32 @@ position = Vector2(-473, 15)
 [node name="Candle2" parent="NorthShrine" instance=ExtResource("10_h1kpw")]
 position = Vector2(-157, -63)
 
-[node name="Outhouse" type="Node2D" parent="." groups=["door_spawns"]]
+[node name="Outhouse" type="Node2D" parent="."]
 y_sort_enabled = true
-position = Vector2(10229, 1557)
+position = Vector2(4639, 1160)
 script = ExtResource("4_idf06")
 location_name = "Outhouse"
 door_possible = true
 
+[node name="Outhouse" parent="Outhouse" instance=ExtResource("14_e0ghl")]
+position = Vector2(-128, -77)
+
+[node name="Rock" parent="Outhouse" instance=ExtResource("3_ongvj")]
+position = Vector2(284, 115)
+
+[node name="Candle" parent="Outhouse" instance=ExtResource("10_h1kpw")]
+position = Vector2(-193, -66)
+
+[node name="Candle2" parent="Outhouse" instance=ExtResource("10_h1kpw")]
+position = Vector2(-55, -100)
+
+[node name="Crate" parent="Outhouse" instance=ExtResource("4_duu2l")]
+position = Vector2(93, -140)
+item_name = "Crow Bar"
+
 [node name="Well" type="Node2D" parent="."]
 y_sort_enabled = true
-position = Vector2(6354, 3508)
+position = Vector2(6241, 3629)
 script = ExtResource("4_idf06")
 location_name = "Well"
 
@@ -356,9 +372,9 @@ position = Vector2(97, -92)
 [node name="Candle2" parent="Well" instance=ExtResource("10_h1kpw")]
 position = Vector2(217, -82)
 
-[node name="BeegMushroom" type="Node2D" parent="."]
+[node name="BeegMushroom" type="Node2D" parent="." groups=["door_spawns"]]
 y_sort_enabled = true
-position = Vector2(5155, 1003)
+position = Vector2(10239, 1915)
 script = ExtResource("4_idf06")
 location_name = "Well"
 
@@ -400,13 +416,9 @@ The oil can always seems to appear here fortunately. Every time I awaken, I come
 
 Everything goes well so long as I do not encounter that malevolent spirit on my trek."
 
-[node name="Crate" parent="BeegMushroom" instance=ExtResource("4_duu2l")]
-position = Vector2(72, -158)
-item_name = "Oil Can"
-
 [node name="SouthShrine" type="Node2D" parent="." groups=["door_spawns"]]
 y_sort_enabled = true
-position = Vector2(4706, 6324)
+position = Vector2(5031, 5708)
 script = ExtResource("4_idf06")
 location_name = "Southern Shrine"
 door_possible = true
@@ -452,22 +464,22 @@ position = Vector2(191, 95)
 
 [node name="WestCamp" type="Node2D" parent="." groups=["door_spawns"]]
 y_sort_enabled = true
-position = Vector2(2270, 3441)
+position = Vector2(3395, 3319)
 script = ExtResource("4_idf06")
 location_name = "Western Camp"
 door_possible = true
 
 [node name="Campfire" parent="WestCamp" instance=ExtResource("18_yiuju")]
-position = Vector2(133, 4)
+position = Vector2(113, 208)
 
 [node name="PineTree" parent="WestCamp" instance=ExtResource("7_5s2fi")]
 position = Vector2(680, -113)
 
 [node name="Rock" parent="WestCamp" instance=ExtResource("3_ongvj")]
-position = Vector2(-113, 5)
+position = Vector2(-133, 209)
 
 [node name="Rock2" parent="WestCamp" instance=ExtResource("3_ongvj")]
-position = Vector2(338, 156)
+position = Vector2(318, 360)
 
 [node name="Note" parent="WestCamp" instance=ExtResource("8_jn7no")]
 position = Vector2(683, -38)
@@ -477,38 +489,35 @@ Lest ye get confused, I am still terrified. I could have sworn I heard paw steps
 
 [node name="EastCamp" type="Node2D" parent="." groups=["door_spawns"]]
 y_sort_enabled = true
-position = Vector2(11693, 717)
+position = Vector2(11670, 955)
 script = ExtResource("4_idf06")
 location_name = "Eastern Camp"
 door_possible = true
 
 [node name="Campfire2" parent="EastCamp" instance=ExtResource("18_yiuju")]
-position = Vector2(180, 9)
+position = Vector2(267, -52)
 
 [node name="PineTree" parent="EastCamp" instance=ExtResource("7_5s2fi")]
-position = Vector2(846, -298)
+position = Vector2(859, -502)
 
 [node name="Rock3" parent="EastCamp" instance=ExtResource("3_ongvj")]
-position = Vector2(-17, -97)
+position = Vector2(70, -158)
 
 [node name="Rock" parent="EastCamp" instance=ExtResource("3_ongvj")]
-position = Vector2(354, -95)
+position = Vector2(441, -156)
 
 [node name="Rock2" parent="EastCamp" instance=ExtResource("3_ongvj")]
-position = Vector2(169, 210)
+position = Vector2(256, 149)
 
 [node name="PineTree2" parent="EastCamp" instance=ExtResource("7_5s2fi")]
 position = Vector2(-426, -224)
 
 [node name="EastGrove" type="Node2D" parent="." groups=["door_spawns"]]
 y_sort_enabled = true
-position = Vector2(10941, 3471)
+position = Vector2(10303, 3473)
 script = ExtResource("4_idf06")
 location_name = "Eastern Grove"
 door_possible = true
-
-[node name="PineTree" parent="EastGrove" instance=ExtResource("7_5s2fi")]
-position = Vector2(-10432, -2243)
 
 [node name="PineTree26" parent="EastGrove" instance=ExtResource("7_5s2fi")]
 position = Vector2(-21, -328)
@@ -575,7 +584,7 @@ message = "Ay, the trees do sway and the air is cold, but where is the wind? And
 
 [node name="NWGraveyard" type="Node2D" parent="."]
 y_sort_enabled = true
-position = Vector2(1983, 1011)
+position = Vector2(2194, 1360)
 script = ExtResource("4_idf06")
 location_name = "Northwestern Graveyard"
 
@@ -621,9 +630,21 @@ position = Vector2(-1835, -403)
 [node name="Mushroom2" parent="NWGraveyard" instance=ExtResource("11_nffv2")]
 position = Vector2(-1025, -705)
 
+[node name="Tombstone7" parent="NWGraveyard" instance=ExtResource("4_54odp")]
+position = Vector2(64, 745)
+
+[node name="Tombstone8" parent="NWGraveyard" instance=ExtResource("5_e6i5h")]
+position = Vector2(-393, 647)
+
+[node name="Candle" parent="NWGraveyard" instance=ExtResource("10_h1kpw")]
+position = Vector2(-343, 647)
+
+[node name="PineTree2" parent="NWGraveyard" instance=ExtResource("7_5s2fi")]
+position = Vector2(-1590, 3)
+
 [node name="SEGraveyard" type="Node2D" parent="." groups=["door_spawns"]]
 y_sort_enabled = true
-position = Vector2(11078, 6271)
+position = Vector2(10231, 5678)
 script = ExtResource("4_idf06")
 location_name = "Southeastern Graveyard"
 door_possible = true
@@ -692,6 +713,13 @@ position = Vector2(-93, -278)
 
 [node name="Candle2" parent="SEGraveyard" instance=ExtResource("10_h1kpw")]
 position = Vector2(94, 371)
+
+[node name="Crate" parent="SEGraveyard" instance=ExtResource("4_duu2l")]
+position = Vector2(678, -128)
+item_name = "Oil Can"
+
+[node name="Candle3" parent="SEGraveyard" instance=ExtResource("10_h1kpw")]
+position = Vector2(531, -59)
 
 [node name="Notes" type="Node2D" parent="."]
 y_sort_enabled = true
@@ -795,7 +823,6 @@ tile_set = SubResource("TileSet_gslox")
 position = Vector2(774, 452)
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
-visible = false
 light_mask = 15
 visibility_layer = 15
 color = Color(0, 0, 0, 1)
@@ -1755,9 +1782,6 @@ position = Vector2(12485, 7337)
 
 [node name="HorizontalFence99" parent="Fences" instance=ExtResource("7_wbrjn")]
 position = Vector2(12613, 7337)
-
-[node name="Doghouse" parent="." instance=ExtResource("19_qiox7")]
-position = Vector2(2488, 6583)
 
 [node name="UIAnims" type="AnimationPlayer" parent="."]
 libraries = {

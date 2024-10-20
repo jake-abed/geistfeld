@@ -104,6 +104,8 @@ func gloob_and_shoob() -> void:
 	tween.tween_property(self, "scale:y", initial_scale.y, 0.5)
 	squish_tween.tween_property(self, "scale:x", target_x_scale, 0.5)
 	squish_tween.tween_property(self, "scale:x", initial_scale.x, 0.5)
+	tween.play()
+	squish_tween.play()
 
 func reset_ghost() -> void:
 	choose_new_location()
@@ -138,5 +140,4 @@ func _on_banish_timeout() -> void:
 
 func _on_level_up_timeout() -> void:
 	level_up()
-	print("Leveling up to level ", level)
 	level_up_timer.wait_time = LEVEL_UP_TIME + level

@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=3 uid="uid://c4a6qmt1w4f8"]
+
+[ext_resource type="Texture2D" uid="uid://c5eqytsv17f7" path="res://assets/images/outhouse.png" id="1_xds7b"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_chl55"]
+radius = 19.0
+height = 72.0
+
+[node name="Outhouse" type="StaticBody2D"]
+y_sort_enabled = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+y_sort_enabled = true
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("1_xds7b")
+offset = Vector2(0, -330)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(2, -18)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_chl55")
+one_way_collision_margin = 0.0

@@ -28,7 +28,7 @@ var inventory := {
 	"Key": false,
 	"Oil Can": false,
 	"Crow Bar": false,
-	"Handle": true,
+	"Handle": false,
 	"Gormfeld": false
 }
 
@@ -76,7 +76,6 @@ func _physics_process(delta: float) -> void:
 		anim_player.play("idle")
 	
 	if Input.is_action_just_pressed("interact"):
-		print("interact pressed")
 		interact()
 	
 	if Input.is_action_just_pressed("banish") and can_banish:
@@ -85,9 +84,7 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 
 func interact() -> void:
-	print("trying to interact")
 	if len(interactables) == 0:
-		print("Nothing to interact with!")
 		return
 	match interactables[0].type:
 		"note":
@@ -103,7 +100,7 @@ func interact() -> void:
 			interactables[0].repair_door(self)
 
 func glow_light() -> void:
-	var tween := get_tree().create_tween()
+	var tween := create_tween()
 	var current: Vector2 = light.scale
 	var small: Vector2 = light.scale * 0.75
 	tween.set_ease(Tween.EASE_IN_OUT)
@@ -122,7 +119,7 @@ func _on_banish_timer_timeout() -> void:
 	banish_timer.wait_time = banish_cooldown
 
 func flicker_light() -> void:
-	var tween := get_tree().create_tween()
+	var tween := create_tween()
 	var low := randf_range(1, 1.1)
 	tween.set_ease(Tween.EASE_IN_OUT)
 	tween.set_parallel(false)
@@ -130,7 +127,6 @@ func flicker_light() -> void:
 	tween.tween_property(light, "energy", 1.25, 0.25)
 
 func banish() -> void:
-	print("banishing")
 	banishing = true
 	anim_player.play("banish")
 	can_banish = false
@@ -151,5 +147,4 @@ func has_all_necessary_items() -> bool:
 
 func die() -> void:
 	Game.player_death_location = global_position
-	self.queue_free()
-	get_tree().change_scene_to_file("res://scenes/you_died.tscn")
+	get_tree().call_deferred("change_scene_to_file", "res://scenes/you_died.tscn")

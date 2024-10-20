@@ -49,6 +49,7 @@ fill_to = Vector2(0.799145, 0.25641)
 
 [node name="Candle" type="Node2D"]
 y_sort_enabled = true
+scale = Vector2(0.5, 0.5)
 
 [node name="Sprite2D2" type="Sprite2D" parent="."]
 modulate = Color(1, 1, 1, 0.0901961)

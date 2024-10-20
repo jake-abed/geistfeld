@@ -36,16 +36,18 @@ func spawn_door() -> void:
 	var door_inst := door_scene.instantiate()
 	var spawn_location = door_spawns.pick_random()
 	door_inst.door_repaired.connect(_on_door_repaired)
+	door_inst.door_finished.connect(_on_door_finished)
 	door_location_name = spawn_location.location_name
 	spawn_location.add_child(door_inst)
-	print(door_location_name)
 
 func _on_item_found(item: String) -> void:
-	print(item + " found")
 	player_message.text = item + " Found!"
 	ui_anims.play("message_fade")
 
 func _on_door_repaired(item: String) -> void:
-	print(item + " used to repair door")
 	player_message.text = item + " Used to Repair Door"
+	ui_anims.play("message_fade")
+
+func _on_door_finished() -> void:
+	player_message.text = "Trap Door Repaired"
 	ui_anims.play("message_fade")
