@@ -19,11 +19,6 @@ func _ready() -> void:
 	pause_button.pressed.connect(_on_pause_button_pressed)
 	scene_anims.play("fade_in")
 
-func _process(_delta: float) -> void:
-	if Input.is_action_just_pressed("pause"):
-		get_tree().paused = !get_tree().paused
-		ui_canvas.visible = !ui_canvas.visible
-
 func spawn_wisps() -> void:
 	await Game.getWisps()
 	for wisp in Game.wisps:

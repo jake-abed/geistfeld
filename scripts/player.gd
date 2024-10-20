@@ -41,7 +41,9 @@ func _ready() -> void:
 	banish_timer.timeout.connect(_on_banish_timer_timeout)
 	anim_player.animation_finished.connect(_on_anim_finished)
 
-func _physics_process(delta: float) -> void:	
+func _physics_process(delta: float) -> void:
+	if get_tree().paused:
+		return
 	var x_input := Input.get_axis("move_left", "move_right")
 	var y_input := Input. get_axis("move_up", "move_down")
 	var direction := Vector2(x_input, y_input)
@@ -67,7 +69,7 @@ func _physics_process(delta: float) -> void:
 	if direction.length() > 1.0:
 		direction = direction.normalized()
 		
-	if (x_input || y_input) and not banishing:
+	if (x_input || y_input) and not banishing and not get_tree().paused:
 		velocity = velocity.lerp(direction * speed_scaling * base_speed, ACCEL * delta)
 	else:
 		velocity = velocity.lerp(Vector2(0.0, 0.0), ACCEL * delta)
@@ -77,10 +79,10 @@ func _physics_process(delta: float) -> void:
 	elif not banishing:
 		anim_player.play("idle")
 	
-	if Input.is_action_just_pressed("interact"):
+	if Input.is_action_just_pressed("interact") and not get_tree().paused:
 		interact()
 	
-	if Input.is_action_just_pressed("banish") and can_banish:
+	if Input.is_action_just_pressed("banish") and can_banish and not get_tree().paused:
 		banish()
 
 	move_and_slide()

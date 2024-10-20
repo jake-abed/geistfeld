@@ -206,6 +206,7 @@ shadow_color = Color(0.109804, 0.109804, 0.109804, 0.576471)
 shadow_offset = Vector2(0, 0)
 
 [node name="Geistfeld" type="Node2D"]
+process_mode = 1
 modulate = Color(1, 1, 1, 0)
 y_sort_enabled = true
 script = ExtResource("1_rdruu")
@@ -631,7 +632,7 @@ position = Vector2(256, 149)
 position = Vector2(-426, -224)
 
 [node name="Crate" parent="EastCamp" instance=ExtResource("4_duu2l")]
-position = Vector2(958, -819)
+position = Vector2(778, -725)
 item_name = "Gormfeld"
 
 [node name="EastGrove" type="Node2D" parent="." groups=["door_spawns"]]
@@ -861,11 +862,11 @@ y_sort_enabled = true
 [node name="IntroNote1" parent="Notes" instance=ExtResource("8_jn7no")]
 position = Vector2(555, 472)
 message = "Controls:
-
 WASD - Movement
 E - Interact
 Shift - Sprint
 Space - Banish
+G - Pause
 
 Banish allows you to repel the ghost for a short time. But beware, the timing is narrow and failure means death.
 
@@ -1878,6 +1879,21 @@ libraries = {
 "": SubResource("AnimationLibrary_7m7we")
 }
 
+[node name="PineTree" parent="." instance=ExtResource("7_5s2fi")]
+position = Vector2(1840, 3184)
+
+[node name="Rock2" parent="." instance=ExtResource("3_ongvj")]
+position = Vector2(4347, 4494)
+
+[node name="Mushroom" parent="." instance=ExtResource("11_nffv2")]
+position = Vector2(5416, 2356)
+
+[node name="Mushroom2" parent="." instance=ExtResource("11_nffv2")]
+position = Vector2(5287, 2172)
+
+[node name="Rock3" parent="." instance=ExtResource("3_ongvj")]
+position = Vector2(7399, 6510)
+
 [node name="UICanvasLayer" type="CanvasLayer" parent="."]
 process_mode = 3
 layer = 100
@@ -2101,7 +2117,7 @@ text = "WASD - Movement
 E - Interact
 Shift - Sprint
 Space - Banish
-Esccape - Pause"
+G - Pause"
 label_settings = SubResource("LabelSettings_3ai1i")
 
 [node name="Panel2" type="Panel" parent="UICanvasLayer/Control"]
@@ -2125,20 +2141,5 @@ theme_override_constants/h_separation = 6
 theme_override_font_sizes/font_size = 48
 text = "Return to
 Game"
-
-[node name="PineTree" parent="." instance=ExtResource("7_5s2fi")]
-position = Vector2(1840, 3184)
-
-[node name="Rock2" parent="." instance=ExtResource("3_ongvj")]
-position = Vector2(4347, 4494)
-
-[node name="Mushroom" parent="." instance=ExtResource("11_nffv2")]
-position = Vector2(5416, 2356)
-
-[node name="Mushroom2" parent="." instance=ExtResource("11_nffv2")]
-position = Vector2(5287, 2172)
-
-[node name="Rock3" parent="." instance=ExtResource("3_ongvj")]
-position = Vector2(7399, 6510)
 
 [editable path="SouthShrine/Obelisk2"]
