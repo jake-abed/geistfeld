@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://bkujd6deb5xho"]
 
-[ext_resource type="Script" path="res://scenes/splash.gd" id="1_0v20s"]
+[ext_resource type="Script" path="res://scripts/splash.gd" id="1_0v20s"]
 [ext_resource type="Texture2D" uid="uid://f0vi0i2s8t23" path="res://assets/images/genya-red-black.jpg" id="1_hn418"]
 
 [sub_resource type="Animation" id="Animation_2yxb8"]
@@ -15,7 +15,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Color(1, 1, 1, 1)]
+"values": [Color(1, 1, 1, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_hbipr"]
@@ -42,6 +42,7 @@ _data = {
 }
 
 [node name="GenyaGamesSplash" type="Control"]
+modulate = Color(1, 1, 1, 0)
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0

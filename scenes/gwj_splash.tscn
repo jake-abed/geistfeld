@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://b4pyq24y0pmqc"]
 
-[ext_resource type="Script" path="res://scenes/splash.gd" id="1_n4sre"]
+[ext_resource type="Script" path="res://scripts/splash.gd" id="1_n4sre"]
 [ext_resource type="Texture2D" uid="uid://b6p0ibgngrkjj" path="res://assets/images/gwj_splash.jpg" id="2_o4l3l"]
 
 [sub_resource type="Animation" id="Animation_2yxb8"]
@@ -15,7 +15,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Color(1, 1, 1, 1)]
+"values": [Color(1, 1, 1, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_hbipr"]
@@ -42,6 +42,7 @@ _data = {
 }
 
 [node name="GenyaGamesSplash" type="Control"]
+modulate = Color(1, 1, 1, 0)
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -51,7 +52,7 @@ grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 script = ExtResource("1_n4sre")
-next_scene = "res://scenes/geistfeld.tscn"
+next_scene = "res://scenes/title_screen.tscn"
 
 [node name="TextureRect" type="TextureRect" parent="."]
 layout_mode = 1

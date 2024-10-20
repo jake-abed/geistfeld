@@ -93,13 +93,23 @@ max_length = 36
 
 [node name="Button" type="Button" parent="Panel"]
 layout_mode = 1
-offset_left = 242.0
+offset_left = 352.0
 offset_top = 393.0
-offset_right = 449.0
+offset_right = 593.0
 offset_bottom = 450.0
 theme = ExtResource("1_hrr62")
-text = "SUBMIT"
+text = "Live In Death"
+
+[node name="Button2" type="Button" parent="Panel"]
+layout_mode = 1
+offset_left = 112.0
+offset_top = 396.0
+offset_right = 185.0
+offset_bottom = 445.0
+theme = ExtResource("1_hrr62")
+theme_override_font_sizes/font_size = 32
+text = "Ignore"
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("5_surkh")
-stream_paused = true
+autoplay = true

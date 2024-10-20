@@ -2,6 +2,7 @@ class_name TrapDoor extends Interactable
 
 signal door_repaired(item: String)
 signal door_finished()
+signal door_opened()
 
 @onready var sprite := $Sprite2D
 @onready var handle_sprite := $HandleSprite
@@ -9,6 +10,7 @@ signal door_finished()
 @onready var label := $Panel/NameLabel
 @onready var repair_audio := $RepairAudio
 @onready var open_audio := $OpenAudio
+@onready var you_escaped := load("res://scenes/you_escaped.tscn")
 
 var has_handle := false
 var has_oil := false
@@ -72,10 +74,12 @@ func open_door() -> void:
 	var geists = get_tree().get_nodes_in_group("geists")
 	for geist in geists:
 		if geist is Geist:
-			geist.banish()
+			if geist.player_targeted:
+				geist.banish()
+	door_opened.emit()
 	open_audio.play()
 	await open_audio.finished
-	get_tree().quit()
+	get_tree().change_scene_to_packed(you_escaped)
 
 func delete_collision_shape() -> void:
 	var collision_shape = get_node("CollisionShape2D")

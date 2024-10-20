@@ -8,13 +8,13 @@ var door_location_name: String
 @onready var player := $Player
 @onready var player_message := $CanvasLayer/UI/Panel/Label
 @onready var ui_anims := $UIAnims
-@onready var music_anims := $AudioStreamPlayer/AnimationPlayer
+@onready var scene_anims := $SceneAnims
 
 func _ready() -> void:
 	spawn_wisps()
 	spawn_door()
 	player.item_found.connect(_on_item_found)
-	music_anims.play("fade_music_in")
+	scene_anims.play("fade_in")
 
 func _process(_delta: float) -> void:
 	pass
@@ -39,6 +39,7 @@ func spawn_door() -> void:
 	var spawn_location = door_spawns.pick_random()
 	door_inst.door_repaired.connect(_on_door_repaired)
 	door_inst.door_finished.connect(_on_door_finished)
+	door_inst.door_opened.connect(_on_door_opened)
 	door_location_name = spawn_location.location_name
 	spawn_location.add_child(door_inst)
 
@@ -53,3 +54,6 @@ func _on_door_repaired(item: String) -> void:
 func _on_door_finished() -> void:
 	player_message.text = "Trap Door Repaired"
 	ui_anims.play("message_fade")
+
+func _on_door_opened() -> void:
+	scene_anims.play("fade_out")

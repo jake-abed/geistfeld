@@ -36,14 +36,14 @@ shadow_size = 0
 shadow_color = Color(0.109804, 0.109804, 0.109804, 0.576471)
 shadow_offset = Vector2(0, 0)
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_2cjby"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ibnqe"]
 texture = ExtResource("1_m0lys")
 texture_region_size = Vector2i(1536, 1024)
 0:0/0 = 0
 
 [sub_resource type="TileSet" id="TileSet_gslox"]
 tile_size = Vector2i(1536, 1024)
-sources/1 = SubResource("TileSetAtlasSource_2cjby")
+sources/1 = SubResource("TileSetAtlasSource_ibnqe")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_e5qmv"]
 size = Vector2(22, 128)
@@ -86,63 +86,98 @@ _data = {
 "message_fade": SubResource("Animation_qu5uk")
 }
 
-[sub_resource type="Animation" id="Animation_rg7b8"]
+[sub_resource type="Animation" id="Animation_aak7i"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath(".:volume_db")
+tracks/0/path = NodePath(".:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AudioStreamPlayer:volume_db")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
 "values": [-80.0]
 }
 
-[sub_resource type="Animation" id="Animation_kx3ch"]
-resource_name = "fade_music_in"
-length = 0.5
-step = 0.05
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:volume_db")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.3),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [-80.0, -80.0, 0.0]
-}
-
-[sub_resource type="Animation" id="Animation_o7473"]
-resource_name = "fade_music_out"
-length = 0.5
+[sub_resource type="Animation" id="Animation_2p5kg"]
+resource_name = "fade_in"
 step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath(".:volume_db")
+tracks/0/path = NodePath(".:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0.2, 0.4),
+"times": PackedFloat32Array(0, 1),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [0.0, -80.0]
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AudioStreamPlayer:volume_db")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [-80.0, -10.0]
 }
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_vtm1y"]
+[sub_resource type="Animation" id="Animation_vw1th"]
+resource_name = "fade_out"
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AudioStreamPlayer:volume_db")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [-10.0, -80.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_7m7we"]
 _data = {
-"RESET": SubResource("Animation_rg7b8"),
-"fade_music_in": SubResource("Animation_kx3ch"),
-"fade_music_out": SubResource("Animation_o7473")
+"RESET": SubResource("Animation_aak7i"),
+"fade_in": SubResource("Animation_2p5kg"),
+"fade_out": SubResource("Animation_vw1th")
 }
 
 [node name="Geistfeld" type="Node2D"]
+modulate = Color(1, 1, 1, 0)
 y_sort_enabled = true
 script = ExtResource("1_rdruu")
 
@@ -1788,9 +1823,9 @@ stream = ExtResource("29_fpqe3")
 volume_db = -80.0
 autoplay = true
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="AudioStreamPlayer"]
+[node name="SceneAnims" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_vtm1y")
+"": SubResource("AnimationLibrary_7m7we")
 }
 
 [editable path="SouthShrine/Obelisk2"]
