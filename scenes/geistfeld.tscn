@@ -3,15 +3,12 @@
 [ext_resource type="PackedScene" uid="uid://dms3slrv65dvl" path="res://scenes/player.tscn" id="1_8g5j1"]
 [ext_resource type="Texture2D" uid="uid://cq6ecyt6j4lfv" path="res://assets/images/bg_grass.jpg" id="1_m0lys"]
 [ext_resource type="Script" path="res://scripts/geistfeld.gd" id="1_rdruu"]
-[ext_resource type="Script" path="res://scripts/note.gd" id="2_q8bfy"]
 [ext_resource type="StyleBox" uid="uid://bwvbrshh8ilyo" path="res://scenes/ui_panel.tres" id="3_cnq2v"]
-[ext_resource type="Theme" uid="uid://cjbcircl2ubh2" path="res://assets/themes/note_theme.tres" id="3_ftcy8"]
 [ext_resource type="PackedScene" uid="uid://denylfj378nco" path="res://scenes/rock.tscn" id="3_ongvj"]
 [ext_resource type="PackedScene" uid="uid://bv01eh80ermx7" path="res://scenes/tombstone.tscn" id="4_54odp"]
 [ext_resource type="PackedScene" uid="uid://bui61sw03gp07" path="res://scenes/crate.tscn" id="4_duu2l"]
 [ext_resource type="Script" path="res://scripts/key_location.gd" id="4_idf06"]
 [ext_resource type="FontFile" uid="uid://b0ku14gk7g15g" path="res://assets/misc/Treamd.ttf" id="4_xfwxn"]
-[ext_resource type="Texture2D" uid="uid://cxxqaxdeprkef" path="res://assets/images/paper-note.png" id="5_d0khx"]
 [ext_resource type="PackedScene" uid="uid://c7dlvn8r6xo2c" path="res://scenes/tombstone_cross_top.tscn" id="5_e6i5h"]
 [ext_resource type="PackedScene" uid="uid://bakvjtn5sarqu" path="res://scenes/vertical_fence.tscn" id="6_3w8i5"]
 [ext_resource type="PackedScene" uid="uid://cke2ha77kmt1d" path="res://scenes/geist.tscn" id="6_8tooo"]
@@ -28,6 +25,7 @@
 [ext_resource type="PackedScene" uid="uid://j5410f0gpbek" path="res://scenes/well.tscn" id="15_rbhqp"]
 [ext_resource type="PackedScene" uid="uid://c87u1ha5t57e5" path="res://scenes/campfire.tscn" id="18_yiuju"]
 [ext_resource type="PackedScene" uid="uid://b6jvx4t5eq18m" path="res://scenes/doghouse.tscn" id="19_qiox7"]
+[ext_resource type="AudioStream" uid="uid://cxptrpqkdifs8" path="res://assets/audio/ambient_field.wav" id="29_fpqe3"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_hlp30"]
 line_spacing = -4.0
@@ -37,20 +35,6 @@ outline_color = Color(0.277528, 0.277528, 0.277528, 1)
 shadow_size = 0
 shadow_color = Color(0.109804, 0.109804, 0.109804, 0.576471)
 shadow_offset = Vector2(0, 0)
-
-[sub_resource type="LabelSettings" id="LabelSettings_oaexx"]
-line_spacing = -6.0
-font = ExtResource("4_xfwxn")
-font_size = 32
-font_color = Color(0, 0, 0, 1)
-outline_size = 1
-outline_color = Color(0.277528, 0.277528, 0.277528, 1)
-shadow_size = 3
-shadow_color = Color(0.109804, 0.109804, 0.109804, 0.576471)
-shadow_offset = Vector2(0, 0)
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_ds7em"]
-radius = 40.3113
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_2cjby"]
 texture = ExtResource("1_m0lys")
@@ -100,6 +84,62 @@ tracks/0/keys = {
 _data = {
 "RESET": SubResource("Animation_cssxr"),
 "message_fade": SubResource("Animation_qu5uk")
+}
+
+[sub_resource type="Animation" id="Animation_kx3ch"]
+resource_name = "fade_music_in"
+length = 0.5
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:volume_db")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [-80.0, -80.0, 0.0]
+}
+
+[sub_resource type="Animation" id="Animation_rg7b8"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:volume_db")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-80.0]
+}
+
+[sub_resource type="Animation" id="Animation_o7473"]
+resource_name = "fade_music_out"
+length = 0.5
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:volume_db")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.2, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, -80.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_vtm1y"]
+_data = {
+"RESET": SubResource("Animation_rg7b8"),
+"fade_music_in": SubResource("Animation_kx3ch"),
+"fade_music_out": SubResource("Animation_o7473")
 }
 
 [node name="Geistfeld" type="Node2D"]
@@ -760,65 +800,11 @@ message = "That damn trap door must guard an exit. But I cannot open it! Each ti
 
 It seems to be in a different place each time I awake though. And all the other notes strewn about the field seem to have clues... or they just idly chatter."
 
-[node name="IntroNote4" type="Area2D" parent="Notes" groups=["notes"]]
-position = Vector2(1093, 869)
-script = ExtResource("2_q8bfy")
+[node name="IntroNote4" parent="Notes" instance=ExtResource("8_jn7no")]
+position = Vector2(1081, 871)
 message = "The wisps o' blessings! The dead, oh the tragic dead! They seek to aid ye out the geistfeld. Legend has it they met their cruelest fate here in this cursed place.
 
 Oh, they rightly babble incoherently, but their assistance is too great to pass up. Take it and escape."
-type = "note"
-
-[node name="CanvasLayer" type="CanvasLayer" parent="Notes/IntroNote4"]
-layer = 15
-visible = false
-
-[node name="Control" type="Control" parent="Notes/IntroNote4/CanvasLayer"]
-z_index = 10
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -192.0
-offset_top = -256.0
-offset_right = -1088.0
-offset_bottom = -464.0
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_horizontal = 6
-size_flags_vertical = 6
-
-[node name="Panel" type="Panel" parent="Notes/IntroNote4/CanvasLayer/Control"]
-layout_direction = 1
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 3.832
-anchor_bottom = 1.906
-offset_left = 434.0
-offset_top = 111.0
-offset_right = -461.488
-offset_bottom = -96.8721
-theme = ExtResource("3_ftcy8")
-
-[node name="Label" type="Label" parent="Notes/IntroNote4/CanvasLayer/Control/Panel"]
-layout_mode = 0
-offset_left = 30.0
-offset_top = 25.0
-offset_right = 350.0
-offset_bottom = 477.0
-label_settings = SubResource("LabelSettings_oaexx")
-vertical_alignment = 1
-autowrap_mode = 3
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Notes/IntroNote4"]
-shape = SubResource("CircleShape2D_ds7em")
-
-[node name="Sprite2D" type="Sprite2D" parent="Notes/IntroNote4"]
-rotation = -5.76268
-scale = Vector2(0.05, 0.05)
-skew = 0.724312
-texture = ExtResource("5_d0khx")
 
 [node name="Fog" parent="." instance=ExtResource("10_e4pvg")]
 
@@ -832,7 +818,6 @@ tile_set = SubResource("TileSet_gslox")
 position = Vector2(774, 452)
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
-visible = false
 light_mask = 15
 visibility_layer = 15
 color = Color(0, 0, 0, 1)
@@ -1796,6 +1781,16 @@ position = Vector2(12613, 7337)
 [node name="UIAnims" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_4mir8")
+}
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("29_fpqe3")
+volume_db = -80.0
+autoplay = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="AudioStreamPlayer"]
+libraries = {
+"": SubResource("AnimationLibrary_vtm1y")
 }
 
 [editable path="SouthShrine/Obelisk2"]

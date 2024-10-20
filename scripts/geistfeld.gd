@@ -8,11 +8,13 @@ var door_location_name: String
 @onready var player := $Player
 @onready var player_message := $CanvasLayer/UI/Panel/Label
 @onready var ui_anims := $UIAnims
+@onready var music_anims := $AudioStreamPlayer/AnimationPlayer
 
 func _ready() -> void:
 	spawn_wisps()
 	spawn_door()
 	player.item_found.connect(_on_item_found)
+	music_anims.play("fade_music_in")
 
 func _process(_delta: float) -> void:
 	pass

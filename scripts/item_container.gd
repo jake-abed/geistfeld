@@ -4,6 +4,7 @@ class_name ItemContainer extends Interactable
 @export var contains_item := true
 
 @onready var panel := $Panel
+@onready var audio := $AudioStreamPlayer2D
 
 func _ready() -> void:
 	type = "item_container"
@@ -22,6 +23,9 @@ func _on_body_exited(body) -> void:
 		if index >= 0:
 			body.interactables.pop_at(index)
 		return
+
+func play_audio() -> void:
+	audio.play()
 
 func delete_collision_shape() -> void:
 	var collision_shape = get_node("CollisionShape2D")

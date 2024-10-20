@@ -4,6 +4,7 @@ class_name Note extends Interactable
 
 @onready var control := $CanvasLayer
 @onready var label := $CanvasLayer/Control/Panel/Label
+@onready var audio := $AudioStreamPlayer2D
 
 func _ready() -> void:
 	label.text = message
@@ -14,6 +15,8 @@ func _process(_d: float) -> void:
 	pass
 
 func toggle_note() -> void:
+	if not control.visible:
+		audio.play()
 	control.visible = !control.visible
 
 func _on_body_entered(body) -> void:

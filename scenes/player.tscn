@@ -1,7 +1,9 @@
-[gd_scene load_steps=13 format=3 uid="uid://dms3slrv65dvl"]
+[gd_scene load_steps=15 format=3 uid="uid://dms3slrv65dvl"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_wirdj"]
 [ext_resource type="Texture2D" uid="uid://bfntsm54oqry0" path="res://assets/images/player-sheet.png" id="2_ecwew"]
+[ext_resource type="AudioStream" uid="uid://b1d3e3g4j6w3i" path="res://assets/audio/banish_fx.wav" id="3_vreua"]
+[ext_resource type="AudioStream" uid="uid://dy78unxyjx5sy" path="res://assets/audio/wisp.wav" id="4_13tds"]
 
 [sub_resource type="Gradient" id="Gradient_umjpq"]
 offsets = PackedFloat32Array(0.02, 0.99)
@@ -157,3 +159,11 @@ autostart = true
 
 [node name="BanishTimer" type="Timer" parent="."]
 wait_time = 5.0
+
+[node name="BanishAudio" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_vreua")
+volume_db = -15.0
+
+[node name="BlessingAudio" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_13tds")
+volume_db = -15.0

@@ -1,7 +1,8 @@
-[gd_scene load_steps=10 format=3 uid="uid://cke2ha77kmt1d"]
+[gd_scene load_steps=11 format=3 uid="uid://cke2ha77kmt1d"]
 
 [ext_resource type="Script" path="res://scripts/geist.gd" id="1_5y0dw"]
 [ext_resource type="Texture2D" uid="uid://qxr6oy0dl2ue" path="res://assets/images/geist.png" id="2_2usc4"]
+[ext_resource type="AudioStream" uid="uid://nrg3elmp1ctc" path="res://assets/audio/ghost.wav" id="3_whlt1"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ypsw5"]
 radius = 15.0
@@ -66,7 +67,7 @@ z_index = 3
 script = ExtResource("1_5y0dw")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(3, 43)
+position = Vector2(5, 43)
 shape = SubResource("CapsuleShape2D_ypsw5")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -96,3 +97,8 @@ wait_time = 3.0
 libraries = {
 "": SubResource("AnimationLibrary_j81dx")
 }
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_whlt1")
+autoplay = true
+stream_paused = true

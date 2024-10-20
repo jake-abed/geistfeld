@@ -6,6 +6,8 @@ signal door_finished()
 @onready var sprite := $Sprite2D
 @onready var handle_sprite := $HandleSprite
 @onready var panel := $Panel
+@onready var repair_audio := $RepairAudio
+@onready var open_audio := $OpenAudio
 
 var has_handle := false
 var has_oil := false
@@ -27,18 +29,22 @@ func repair_door(p: Player) -> void:
 	if not has_handle and p.inventory["Handle"]:
 		add_handle()
 		has_handle = true
+		repair_audio.play()
 		door_repaired.emit("Handle")
 		return
 	if not has_oil and p.inventory["Oil Can"]:
 		has_oil = true
+		repair_audio.play()
 		door_repaired.emit("Oil Can")
 		return
 	if not has_crow_bar and p.inventory["Crow Bar"]:
 		has_crow_bar = true
+		repair_audio.play()
 		door_repaired.emit("Crow Bar")
 		return
 	if not has_key and p.inventory["Key"]:
 		has_key = true
+		repair_audio.play()
 		door_repaired.emit("Key")
 
 func is_door_repaired() -> bool:
@@ -61,6 +67,12 @@ func _on_body_exited(body: Node2D) -> void:
 		return
 
 func open_door() -> void:
+	var geists = get_tree().get_nodes_in_group("geists")
+	for geist in geists:
+		if geist is Geist:
+			geist.banish()
+	open_audio.play()
+	await open_audio.finished
 	get_tree().quit()
 
 func delete_collision_shape() -> void:

@@ -4,12 +4,12 @@ signal item_found(item: String)
 
 const ACCEL := 10.0
 
-var base_speed := 250.0
+var base_speed := 450.0
 var speed_scaling := 1.0
 var max_energy := 100.0
 var energy := 100.0
-var banish_cooldown := 5.0
-var banish_radius := 50.0
+var banish_cooldown := 7.0
+var banish_radius := 60.0
 var can_banish := true
 var banishing := false
 var facing_factor := 1.0
@@ -21,6 +21,8 @@ var banish_scene := preload("res://scenes/banish.tscn")
 @onready var light := $PointLight2D
 @onready var light_timer := $LightTimer
 @onready var banish_timer := $BanishTimer
+@onready var banish_audio := $BanishAudio
+@onready var blessing_audio := $BlessingAudio
 
 var interactables: Array[Interactable] = []
 
@@ -91,10 +93,12 @@ func interact() -> void:
 			interactables[0].toggle_note()
 		"wisp":
 			interactables[0].bless(self)
+			blessing_audio.play()
 		"item_container":
 			inventory[interactables[0].item_name] = true
 			interactables[0].contains_item = false
 			item_found.emit(interactables[0].item_name)
+			interactables[0].play_audio()
 			interactables[0].delete_collision_shape()
 		"door":
 			interactables[0].repair_door(self)
@@ -129,6 +133,7 @@ func flicker_light() -> void:
 func banish() -> void:
 	banishing = true
 	anim_player.play("banish")
+	banish_audio.play()
 	can_banish = false
 	var banish_inst := banish_scene.instantiate()
 	banish_inst.radius = banish_radius

@@ -15,6 +15,7 @@ const LEVEL_UP_TIME := 15.0
 @onready var level_up_timer := $LevelUpTimer
 @onready var banish_timer := $BanishTimer
 @onready var anim_player := $AnimationPlayer
+@onready var audio := $AudioStreamPlayer2D
 @onready var speed: float
 @onready var contact_radius: float
 @onready var level := 1
@@ -112,6 +113,7 @@ func reset_ghost() -> void:
 	speed = BASE_SPEED
 	contact_radius = BASE_RADIUS
 	level = 1
+	audio.max_distance = BASE_RADIUS + 250
 	level_up_timer.wait_time = LEVEL_UP_TIME
 
 func level_up() -> void:
@@ -121,6 +123,7 @@ func level_up() -> void:
 	speed *= 1.1
 	contact_radius *= 1.15
 	contact_shape.shape.radius = contact_radius
+	audio.max_distance = contact_radius + 250
 
 func level_down() -> void:
 	if level == 1:
@@ -129,6 +132,7 @@ func level_down() -> void:
 	speed /= 1.1
 	contact_radius /= 1.15
 	contact_shape.shape.radius = contact_radius
+	audio.max_distance = contact_radius + 250
 
 func banish() -> void:
 	banished = true

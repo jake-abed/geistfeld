@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://dun25w7jnnnam"]
+[gd_scene load_steps=8 format=3 uid="uid://dun25w7jnnnam"]
 
 [ext_resource type="Script" path="res://scripts/note.gd" id="1_utjcj"]
 [ext_resource type="Theme" uid="uid://cjbcircl2ubh2" path="res://assets/themes/note_theme.tres" id="2_3unht"]
 [ext_resource type="Texture2D" uid="uid://cxxqaxdeprkef" path="res://assets/images/paper-note.png" id="3_1q2xh"]
 [ext_resource type="FontFile" uid="uid://b0ku14gk7g15g" path="res://assets/misc/Treamd.ttf" id="3_yylbm"]
+[ext_resource type="AudioStream" uid="uid://vcn3k8lo5uqn" path="res://assets/audio/note_sfx.wav" id="5_x30tc"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_oaexx"]
 line_spacing = -6.0
@@ -74,3 +75,7 @@ rotation = -5.63916
 scale = Vector2(0.05, 0.05)
 skew = 0.724312
 texture = ExtResource("3_1q2xh")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_x30tc")
+volume_db = -10.0
