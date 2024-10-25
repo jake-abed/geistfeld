@@ -25,7 +25,8 @@ func _on_body_entered(body) -> void:
 
 func _on_body_exited(body) -> void:
 	if body is Player:
-		if body.interactables[0] == self:
-			body.interactables.pop_front()
-	if control.visible:
+		var index: int = body.interactables.find(self)
+		if index >= 0:
+			body.interactables.pop_at(index)
 		control.visible = false
+		return

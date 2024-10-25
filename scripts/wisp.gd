@@ -11,7 +11,7 @@ class_name Wisp extends Interactable
 @onready var sprite := $Sprite2D
 
 var blessing: String
-var blessing_types := ["Speed", "Energy", "Banish", "Luck"]
+var blessing_types := ["Speed", "Energy", "Banish"]
 
 func _ready() -> void:
 	type = "wisp"

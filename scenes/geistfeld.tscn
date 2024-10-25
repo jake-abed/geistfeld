@@ -632,7 +632,7 @@ position = Vector2(256, 149)
 position = Vector2(-426, -224)
 
 [node name="Crate" parent="EastCamp" instance=ExtResource("4_duu2l")]
-position = Vector2(778, -725)
+position = Vector2(771, -725)
 item_name = "Gormfeld"
 
 [node name="EastGrove" type="Node2D" parent="." groups=["door_spawns"]]

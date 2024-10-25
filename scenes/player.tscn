@@ -21,12 +21,12 @@ fill_to = Vector2(0.75, 0.292683)
 radius = 8.0
 height = 16.0
 
-[sub_resource type="Gradient" id="Gradient_mgn46"]
+[sub_resource type="Gradient" id="Gradient_rfcey"]
 offsets = PackedFloat32Array(0, 0.324675, 0.668831, 1)
 colors = PackedColorArray(0.873298, 0.873298, 0.873298, 0.729412, 0.556953, 0.556953, 0.556953, 0.607843, 0.31802, 0.31802, 0.31802, 0.670588, 0, 0, 0, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_pj5x5"]
-gradient = SubResource("Gradient_mgn46")
+gradient = SubResource("Gradient_rfcey")
 width = 256
 height = 256
 fill = 1
