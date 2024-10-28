@@ -98,5 +98,5 @@ text = "Return to Title"
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_gp3uf")
-volume_db = -15.0
+volume_db = -10.0
 autoplay = true

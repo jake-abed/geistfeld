@@ -7,5 +7,5 @@ line_spacing = -6.0
 font = ExtResource("1_dt8k8")
 font_size = 24
 font_color = Color(0, 0, 0, 1)
-shadow_color = Color(0.313726, 0.0156863, 0.00784314, 0.792157)
+shadow_color = Color(0.176471, 0.00392157, 0, 0.72549)
 shadow_offset = Vector2(0, 0)

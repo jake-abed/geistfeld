@@ -1,9 +1,9 @@
 class_name Geist extends Area2D
 
-const LEFT_BOUND := 1280
-const RIGHT_BOUND := 11550
+const LEFT_BOUND := 1000
+const RIGHT_BOUND := 9500
 const TOP_BOUND := 1000
-const BOTTOM_BOUND := 6380
+const BOTTOM_BOUND := 5250
 const BASE_SPEED := 100.0
 const BASE_RADIUS := 1300.0
 const LEVEL_UP_TIME := 15.0

@@ -1,9 +1,8 @@
-[gd_scene load_steps=60 format=4 uid="uid://bqyeli8brywwx"]
+[gd_scene load_steps=61 format=4 uid="uid://bqyeli8brywwx"]
 
 [ext_resource type="PackedScene" uid="uid://dms3slrv65dvl" path="res://scenes/player.tscn" id="1_8g5j1"]
 [ext_resource type="Texture2D" uid="uid://cq6ecyt6j4lfv" path="res://assets/images/bg_grass.jpg" id="1_m0lys"]
 [ext_resource type="Script" path="res://scripts/geistfeld.gd" id="1_rdruu"]
-[ext_resource type="StyleBox" uid="uid://bwvbrshh8ilyo" path="res://scenes/ui_panel.tres" id="3_cnq2v"]
 [ext_resource type="PackedScene" uid="uid://denylfj378nco" path="res://scenes/rock.tscn" id="3_ongvj"]
 [ext_resource type="PackedScene" uid="uid://bv01eh80ermx7" path="res://scenes/tombstone.tscn" id="4_54odp"]
 [ext_resource type="PackedScene" uid="uid://bui61sw03gp07" path="res://scenes/crate.tscn" id="4_duu2l"]
@@ -27,16 +26,21 @@
 [ext_resource type="PackedScene" uid="uid://b6jvx4t5eq18m" path="res://scenes/doghouse.tscn" id="19_qiox7"]
 [ext_resource type="Script" path="res://scenes/ui_canvas_layer.gd" id="27_1p1yb"]
 [ext_resource type="Theme" uid="uid://cjbcircl2ubh2" path="res://assets/themes/note_theme.tres" id="27_myvt1"]
+[ext_resource type="StyleBox" uid="uid://bd0hphvgp80j1" path="res://scenes/tab_selected.tres" id="28_1var5"]
 [ext_resource type="FontFile" uid="uid://dma2fo7yc01mb" path="res://assets/misc/Geist-Regular.ttf" id="28_37x43"]
 [ext_resource type="AudioStream" uid="uid://cxptrpqkdifs8" path="res://assets/audio/ambient_field.wav" id="29_fpqe3"]
+[ext_resource type="StyleBox" uid="uid://oo85mn4tps7f" path="res://scenes/tab_hoverd.tres" id="29_peour"]
+[ext_resource type="StyleBox" uid="uid://cpsf6cmloxjod" path="res://scenes/tab_unselected.tres" id="30_uimlc"]
+[ext_resource type="StyleBox" uid="uid://dhqeobn7afl7x" path="res://scenes/menu_tab_panel.tres" id="31_ag08w"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yagbh"]
 content_margin_left = 16.0
 content_margin_right = 16.0
-bg_color = Color(0.184314, 0.184314, 0.184314, 0.4)
+bg_color = Color(0, 0, 0, 0.160784)
 corner_radius_top_left = 8
 corner_radius_top_right = 8
-shadow_size = 4
+shadow_color = Color(0, 0, 0, 0.160784)
+shadow_size = 24
 anti_aliasing_size = 10.0
 
 [sub_resource type="LabelSettings" id="LabelSettings_hlp30"]
@@ -228,18 +232,6 @@ _data = {
 font = ExtResource("4_xfwxn")
 font_size = 64
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_aluu1"]
-content_margin_left = 16.0
-content_margin_right = 16.0
-bg_color = Color(0.0862745, 0.0862745, 0.0862745, 1)
-corner_radius_top_left = 8
-corner_radius_top_right = 8
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ym5q2"]
-bg_color = Color(0.0846899, 0.0846899, 0.0846899, 1)
-border_width_top = 2
-border_color = Color(0.0862745, 0.0862745, 0.0862745, 1)
-
 [sub_resource type="LabelSettings" id="LabelSettings_xypu0"]
 line_spacing = -4.0
 font = ExtResource("28_37x43")
@@ -312,11 +304,11 @@ label_settings = SubResource("LabelSettings_hlp30")
 position = Vector2(176, 293)
 
 [node name="Geist" parent="." groups=["geists"] instance=ExtResource("6_8tooo")]
-position = Vector2(6526, 3537)
+position = Vector2(5649, 3184)
 
 [node name="WGrove" type="Area2D" parent="." node_paths=PackedStringArray("map_label") groups=["door_spawns", "key_location"]]
 y_sort_enabled = true
-position = Vector2(1711, 5111)
+position = Vector2(1402, 4545)
 script = ExtResource("4_idf06")
 location_name = "Western Grove"
 door_possible = true
@@ -418,7 +410,7 @@ shape = SubResource("RectangleShape2D_qc4l3")
 
 [node name="FairyCircle" type="Area2D" parent="." node_paths=PackedStringArray("map_label") groups=["door_spawns", "key_location"]]
 y_sort_enabled = true
-position = Vector2(7666, 5177)
+position = Vector2(6906, 4489)
 script = ExtResource("4_idf06")
 location_name = "Fairy Circle"
 door_possible = true
@@ -464,7 +456,7 @@ shape = SubResource("CircleShape2D_320a7")
 
 [node name="NShrine" type="Area2D" parent="." node_paths=PackedStringArray("map_label") groups=["door_spawns", "key_location"]]
 y_sort_enabled = true
-position = Vector2(7654, 1742)
+position = Vector2(6306, 1404)
 script = ExtResource("4_idf06")
 location_name = "Northern Shrine"
 door_possible = true
@@ -502,7 +494,7 @@ shape = SubResource("RectangleShape2D_y6ox2")
 
 [node name="Outhouse" type="Area2D" parent="." node_paths=PackedStringArray("map_label") groups=["key_location"]]
 y_sort_enabled = true
-position = Vector2(4639, 1160)
+position = Vector2(4137, 932)
 script = ExtResource("4_idf06")
 location_name = "Outhouse"
 door_possible = true
@@ -536,7 +528,7 @@ shape = SubResource("CircleShape2D_atclq")
 
 [node name="Well" type="Area2D" parent="." node_paths=PackedStringArray("map_label") groups=["key_location"]]
 y_sort_enabled = true
-position = Vector2(6241, 3629)
+position = Vector2(5003, 3185)
 script = ExtResource("4_idf06")
 location_name = "Well"
 map_label = NodePath("../UICanvasLayer/Control/TabContainer/Map/Well")
@@ -566,7 +558,7 @@ shape = SubResource("RectangleShape2D_rrl61")
 
 [node name="GiantMushroom" type="Area2D" parent="." node_paths=PackedStringArray("map_label") groups=["door_spawns", "key_location"]]
 y_sort_enabled = true
-position = Vector2(10239, 1915)
+position = Vector2(8506, 1816)
 script = ExtResource("4_idf06")
 location_name = "Giant Mushroom"
 map_label = NodePath("../UICanvasLayer/Control/TabContainer/Map/GiantMushroom")
@@ -619,7 +611,7 @@ shape = SubResource("RectangleShape2D_jn4kj")
 
 [node name="SShrine" type="Area2D" parent="." node_paths=PackedStringArray("map_label") groups=["door_spawns", "key_location"]]
 y_sort_enabled = true
-position = Vector2(5031, 5708)
+position = Vector2(4680, 5116)
 script = ExtResource("4_idf06")
 location_name = "Southern Shrine"
 door_possible = true
@@ -674,7 +666,7 @@ shape = SubResource("RectangleShape2D_f4ijo")
 
 [node name="WCamp" type="Area2D" parent="." node_paths=PackedStringArray("map_label") groups=["door_spawns", "key_location"]]
 y_sort_enabled = true
-position = Vector2(3395, 3319)
+position = Vector2(2484, 2670)
 script = ExtResource("4_idf06")
 location_name = "Western Camp"
 door_possible = true
@@ -704,7 +696,7 @@ shape = SubResource("RectangleShape2D_46n8c")
 
 [node name="ECamp" type="Area2D" parent="." node_paths=PackedStringArray("map_label") groups=["door_spawns", "key_location"]]
 y_sort_enabled = true
-position = Vector2(11670, 955)
+position = Vector2(9482, 923)
 script = ExtResource("4_idf06")
 location_name = "Eastern Camp"
 door_possible = true
@@ -738,7 +730,7 @@ shape = SubResource("RectangleShape2D_dixdh")
 
 [node name="EGrove" type="Area2D" parent="." node_paths=PackedStringArray("map_label") groups=["door_spawns", "key_location"]]
 y_sort_enabled = true
-position = Vector2(10303, 3473)
+position = Vector2(8903, 3025)
 script = ExtResource("4_idf06")
 location_name = "Eastern Grove"
 door_possible = true
@@ -819,7 +811,7 @@ shape = SubResource("RectangleShape2D_7kgw0")
 
 [node name="NWGraveyard" type="Area2D" parent="." node_paths=PackedStringArray("map_label") groups=["key_location"]]
 y_sort_enabled = true
-position = Vector2(2194, 1360)
+position = Vector2(1832, 1018)
 script = ExtResource("4_idf06")
 location_name = "Northwestern Graveyard"
 map_label = NodePath("../UICanvasLayer/Control/TabContainer/Map/NWGraveyard")
@@ -863,7 +855,7 @@ position = Vector2(943, 529)
 position = Vector2(-16, -192)
 
 [node name="Mushroom" parent="NWGraveyard" instance=ExtResource("11_nffv2")]
-position = Vector2(-1835, -403)
+position = Vector2(-1733, -451)
 
 [node name="Mushroom2" parent="NWGraveyard" instance=ExtResource("11_nffv2")]
 position = Vector2(-1025, -705)
@@ -890,7 +882,7 @@ shape = SubResource("RectangleShape2D_ccbcj")
 
 [node name="SEGraveyard" type="Area2D" parent="." node_paths=PackedStringArray("map_label") groups=["door_spawns", "key_location"]]
 y_sort_enabled = true
-position = Vector2(10231, 5678)
+position = Vector2(9175, 5094)
 script = ExtResource("4_idf06")
 location_name = "Southeastern Graveyard"
 door_possible = true
@@ -932,9 +924,6 @@ position = Vector2(946, -163)
 [node name="PineTree2" parent="SEGraveyard" instance=ExtResource("7_5s2fi")]
 position = Vector2(-1237, 611)
 
-[node name="Rock" parent="SEGraveyard" instance=ExtResource("3_ongvj")]
-position = Vector2(1225, 90)
-
 [node name="Rock2" parent="SEGraveyard" instance=ExtResource("3_ongvj")]
 position = Vector2(-315, 445)
 
@@ -974,9 +963,10 @@ shape = SubResource("RectangleShape2D_rwg1t")
 
 [node name="Notes" type="Node2D" parent="."]
 y_sort_enabled = true
+position = Vector2(-219, -113)
 
 [node name="IntroNote1" parent="Notes" instance=ExtResource("8_jn7no")]
-position = Vector2(555, 472)
+position = Vector2(571, 505)
 message = "Controls:
 WASD - Movement
 E - Interact
@@ -989,7 +979,7 @@ Banish allows you to repel the ghost for a short time. But beware, the timing is
 Sprint and Banish have invisible cooldowns. Use them thoughtfully."
 
 [node name="IntroNote2" parent="Notes" instance=ExtResource("8_jn7no")]
-position = Vector2(727, 644)
+position = Vector2(664, 627)
 message = "Damn this geistfeld!
 
 Friend, if you're reading this, there remains hope. The geist stalks relentlessly. He wanders the Geistfeld. Get too close and he will pursue! The longer ye linger, the more quickly and terrible he becomes.
@@ -997,13 +987,13 @@ Friend, if you're reading this, there remains hope. The geist stalks relentlessl
 Ye may be the next to escape, though ye may end up a wisp o' blessings..."
 
 [node name="IntroNote3" parent="Notes" instance=ExtResource("8_jn7no")]
-position = Vector2(957, 714)
+position = Vector2(836, 635)
 message = "That damn trap door must guard an exit. But I cannot open it! Each time I awaken, it is rusted shut, jammed tight, missing the handle, and locked.
 
 It seems to be in a different place each time I awake though. And all the other notes strewn about the field seem to have clues... or they just idly chatter."
 
 [node name="IntroNote4" parent="Notes" instance=ExtResource("8_jn7no")]
-position = Vector2(1081, 871)
+position = Vector2(909, 753)
 message = "The wisps o' blessings! The dead, oh the tragic dead! They seek to aid ye out the geistfeld. Legend has it they met their cruelest fate here in this cursed place.
 
 Oh, they rightly babble incoherently, but their assistance is too great to pass up. Take it and escape."
@@ -1020,7 +1010,6 @@ tile_set = SubResource("TileSet_gslox")
 position = Vector2(774, 452)
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
-visible = false
 light_mask = 15
 visibility_layer = 15
 color = Color(0, 0, 0, 1)
@@ -1274,57 +1263,6 @@ position = Vector2(10309, 112)
 [node name="HorizontalFence181" parent="Fences" instance=ExtResource("7_wbrjn")]
 position = Vector2(10437, 112)
 
-[node name="HorizontalFence182" parent="Fences" instance=ExtResource("7_wbrjn")]
-position = Vector2(10565, 112)
-
-[node name="HorizontalFence183" parent="Fences" instance=ExtResource("7_wbrjn")]
-position = Vector2(10693, 112)
-
-[node name="HorizontalFence184" parent="Fences" instance=ExtResource("7_wbrjn")]
-position = Vector2(10821, 112)
-
-[node name="HorizontalFence185" parent="Fences" instance=ExtResource("7_wbrjn")]
-position = Vector2(10949, 112)
-
-[node name="HorizontalFence186" parent="Fences" instance=ExtResource("7_wbrjn")]
-position = Vector2(11077, 112)
-
-[node name="HorizontalFence187" parent="Fences" instance=ExtResource("7_wbrjn")]
-position = Vector2(11205, 112)
-
-[node name="HorizontalFence188" parent="Fences" instance=ExtResource("7_wbrjn")]
-position = Vector2(11333, 112)
-
-[node name="HorizontalFence189" parent="Fences" instance=ExtResource("7_wbrjn")]
-position = Vector2(11461, 112)
-
-[node name="HorizontalFence190" parent="Fences" instance=ExtResource("7_wbrjn")]
-position = Vector2(11589, 112)
-
-[node name="HorizontalFence191" parent="Fences" instance=ExtResource("7_wbrjn")]
-position = Vector2(11717, 112)
-
-[node name="HorizontalFence192" parent="Fences" instance=ExtResource("7_wbrjn")]
-position = Vector2(11845, 112)
-
-[node name="HorizontalFence193" parent="Fences" instance=ExtResource("7_wbrjn")]
-position = Vector2(11973, 112)
-
-[node name="HorizontalFence194" parent="Fences" instance=ExtResource("7_wbrjn")]
-position = Vector2(12101, 112)
-
-[node name="HorizontalFence195" parent="Fences" instance=ExtResource("7_wbrjn")]
-position = Vector2(12229, 112)
-
-[node name="HorizontalFence196" parent="Fences" instance=ExtResource("7_wbrjn")]
-position = Vector2(12357, 112)
-
-[node name="HorizontalFence197" parent="Fences" instance=ExtResource("7_wbrjn")]
-position = Vector2(12485, 112)
-
-[node name="HorizontalFence198" parent="Fences" instance=ExtResource("7_wbrjn")]
-position = Vector2(12613, 112)
-
 [node name="VerticalFence2" type="Node2D" parent="Fences"]
 y_sort_enabled = true
 position = Vector2(16, 64)
@@ -1460,19 +1398,19 @@ position = Vector2(16, 4800)
 position = Vector2(16, 4928)
 
 [node name="VerticalFence85" parent="Fences" instance=ExtResource("6_3w8i5")]
-position = Vector2(12669, 64)
+position = Vector2(10488, 64)
 
 [node name="VerticalFence82" parent="Fences" instance=ExtResource("6_3w8i5")]
-position = Vector2(12669, 192)
+position = Vector2(10488, 192)
 
 [node name="VerticalFence81" parent="Fences" instance=ExtResource("6_3w8i5")]
-position = Vector2(12669, 320)
+position = Vector2(10488, 320)
 
 [node name="VerticalFence84" parent="Fences" instance=ExtResource("6_3w8i5")]
-position = Vector2(12669, 448)
+position = Vector2(10488, 448)
 
 [node name="VerticalFence83" parent="Fences" instance=ExtResource("6_3w8i5")]
-position = Vector2(12669, 576)
+position = Vector2(10488, 576)
 
 [node name="VerticalFence38" parent="Fences" instance=ExtResource("6_3w8i5")]
 position = Vector2(16, 5056)
@@ -1481,76 +1419,76 @@ position = Vector2(16, 5056)
 position = Vector2(16, 5184)
 
 [node name="VerticalFence90" parent="Fences" instance=ExtResource("6_3w8i5")]
-position = Vector2(12669, 704)
+position = Vector2(10488, 704)
 
 [node name="VerticalFence87" parent="Fences" instance=ExtResource("6_3w8i5")]
-position = Vector2(12669, 832)
+position = Vector2(10488, 832)
 
 [node name="VerticalFence86" parent="Fences" instance=ExtResource("6_3w8i5")]
-position = Vector2(12669, 960)
+position = Vector2(10488, 960)
 
 [node name="VerticalFence89" parent="Fences" instance=ExtResource("6_3w8i5")]
-position = Vector2(12669, 1088)
+position = Vector2(10488, 1088)
 
 [node name="VerticalFence88" parent="Fences" instance=ExtResource("6_3w8i5")]
-position = Vector2(12669, 1216)
+position = Vector2(10488, 1216)
 
 [node name="VerticalFence95" parent="Fences" instance=ExtResource("6_3w8i5")]
-position = Vector2(12669, 1344)
+position = Vector2(10488, 1344)
 
 [node name="VerticalFence92" parent="Fences" instance=ExtResource("6_3w8i5")]
-position = Vector2(12669, 1472)
+position = Vector2(10488, 1472)
 
 [node name="VerticalFence91" parent="Fences" instance=ExtResource("6_3w8i5")]
-position = Vector2(12669, 1600)
+position = Vector2(10488, 1600)
 
 [node name="VerticalFence94" parent="Fences" instance=ExtResource("6_3w8i5")]
-position = Vector2(12669, 1728)
+position = Vector2(10488, 1728)
 
 [node name="VerticalFence93" parent="Fences" instance=ExtResource("6_3w8i5")]
-position = Vector2(12669, 1856)
+position = Vector2(10488, 1856)
 
 [node name="VerticalFence100" parent="Fences" instance=ExtResource("6_3w8i5")]
-position = Vector2(12669, 1984)
+position = Vector2(10488, 1984)
 
 [node name="VerticalFence97" parent="Fences" instance=ExtResource("6_3w8i5")]
-position = Vector2(12669, 2112)
+position = Vector2(10488, 2112)
 
 [node name="VerticalFence96" parent="Fences" instance=ExtResource("6_3w8i5")]
-position = Vector2(12669, 2240)
+position = Vector2(10488, 2240)
 
 [node name="VerticalFence99" parent="Fences" instance=ExtResource("6_3w8i5")]
-position = Vector2(12669, 2368)
+position = Vector2(10488, 2368)
 
 [node name="VerticalFence98" parent="Fences" instance=ExtResource("6_3w8i5")]
-position = Vector2(12669, 2496)
+position = Vector2(10488, 2496)
 
 [node name="VerticalFence105" parent="Fences" instance=ExtResource("6_3w8i5")]
-position = Vector2(12669, 2624)
+position = Vector2(10488, 2624)
 
 [node name="VerticalFence102" parent="Fences" instance=ExtResource("6_3w8i5")]
-position = Vector2(12669, 2752)
+position = Vector2(10488, 2752)
 
 [node name="VerticalFence101" parent="Fences" instance=ExtResource("6_3w8i5")]
-position = Vector2(12669, 2880)
+position = Vector2(10488, 2880)
 
 [node name="VerticalFence104" parent="Fences" instance=ExtResource("6_3w8i5")]
-position = Vector2(12669, 3008)
+position = Vector2(10488, 3008)
 
 [node name="VerticalFence110" parent="Fences" instance=ExtResource("6_3w8i5")]
-position = Vector2(12669, 3264)
+position = Vector2(10488, 3264)
 
 [node name="VerticalFence107" parent="Fences" instance=ExtResource("6_3w8i5")]
-position = Vector2(12669, 3392)
+position = Vector2(10488, 3392)
 
 [node name="VerticalFence106" parent="Fences" instance=ExtResource("6_3w8i5")]
-position = Vector2(12669, 3520)
+position = Vector2(10488, 3520)
 
 [node name="VerticalFence109" parent="Fences" instance=ExtResource("6_3w8i5")]
-position = Vector2(12669, 3648)
+position = Vector2(10488, 3648)
 
 [node name="VerticalFence108" parent="Fences" instance=ExtResource("6_3w8i5")]
-position = Vector2(12669, 3776)
+position = Vector2(10488, 3776)
 
 [node name="VerticalFence42" parent="Fences" instance=ExtResource("6_3w8i5")]
 position = Vector2(16, 5312)
@@ -1559,85 +1497,67 @@ position = Vector2(16, 5312)
 position = Vector2(16, 5440)
 
 [node name="VerticalFence115" parent="Fences" instance=ExtResource("6_3w8i5")]
-position = Vector2(12669, 3904)
+position = Vector2(10488, 3904)
 
 [node name="VerticalFence112" parent="Fences" instance=ExtResource("6_3w8i5")]
-position = Vector2(12669, 4032)
+position = Vector2(10488, 4032)
 
 [node name="VerticalFence103" parent="Fences" instance=ExtResource("6_3w8i5")]
-position = Vector2(12669, 3136)
+position = Vector2(10488, 3136)
 
 [node name="VerticalFence111" parent="Fences" instance=ExtResource("6_3w8i5")]
-position = Vector2(12669, 4160)
+position = Vector2(10488, 4160)
 
 [node name="VerticalFence114" parent="Fences" instance=ExtResource("6_3w8i5")]
-position = Vector2(12669, 4288)
+position = Vector2(10488, 4288)
 
 [node name="VerticalFence113" parent="Fences" instance=ExtResource("6_3w8i5")]
-position = Vector2(12669, 4416)
+position = Vector2(10488, 4416)
 
 [node name="VerticalFence120" parent="Fences" instance=ExtResource("6_3w8i5")]
-position = Vector2(12669, 4544)
+position = Vector2(10488, 4544)
 
 [node name="VerticalFence117" parent="Fences" instance=ExtResource("6_3w8i5")]
-position = Vector2(12669, 4672)
+position = Vector2(10488, 4672)
 
 [node name="VerticalFence116" parent="Fences" instance=ExtResource("6_3w8i5")]
-position = Vector2(12669, 4800)
+position = Vector2(10488, 4800)
 
 [node name="VerticalFence119" parent="Fences" instance=ExtResource("6_3w8i5")]
-position = Vector2(12669, 4928)
+position = Vector2(10488, 4928)
 
 [node name="VerticalFence118" parent="Fences" instance=ExtResource("6_3w8i5")]
-position = Vector2(12669, 5056)
+position = Vector2(10488, 5056)
 
 [node name="VerticalFence125" parent="Fences" instance=ExtResource("6_3w8i5")]
-position = Vector2(12669, 5184)
+position = Vector2(10488, 5184)
 
 [node name="VerticalFence122" parent="Fences" instance=ExtResource("6_3w8i5")]
-position = Vector2(12669, 5312)
+position = Vector2(10488, 5312)
 
 [node name="VerticalFence121" parent="Fences" instance=ExtResource("6_3w8i5")]
-position = Vector2(12669, 5440)
+position = Vector2(10488, 5440)
 
 [node name="VerticalFence124" parent="Fences" instance=ExtResource("6_3w8i5")]
-position = Vector2(12669, 5568)
+position = Vector2(10488, 5568)
 
 [node name="VerticalFence123" parent="Fences" instance=ExtResource("6_3w8i5")]
-position = Vector2(12669, 5696)
+position = Vector2(10488, 5696)
 
 [node name="VerticalFence130" parent="Fences" instance=ExtResource("6_3w8i5")]
-position = Vector2(12669, 5824)
+position = Vector2(10488, 5824)
 
 [node name="VerticalFence127" parent="Fences" instance=ExtResource("6_3w8i5")]
-position = Vector2(12669, 5952)
-
-[node name="VerticalFence126" parent="Fences" instance=ExtResource("6_3w8i5")]
-position = Vector2(12669, 6080)
-
-[node name="VerticalFence129" parent="Fences" instance=ExtResource("6_3w8i5")]
-position = Vector2(12669, 6208)
+position = Vector2(10488, 5952)
 
 [node name="VerticalFence128" parent="Fences" instance=ExtResource("6_3w8i5")]
-position = Vector2(12669, 6336)
-
-[node name="VerticalFence135" parent="Fences" instance=ExtResource("6_3w8i5")]
-position = Vector2(12669, 6464)
+position = Vector2(10488, 6051)
 
 [node name="VerticalFence44" parent="Fences" instance=ExtResource("6_3w8i5")]
 position = Vector2(16, 5568)
 
-[node name="VerticalFence132" parent="Fences" instance=ExtResource("6_3w8i5")]
-position = Vector2(12669, 6592)
-
 [node name="VerticalFence43" parent="Fences" instance=ExtResource("6_3w8i5")]
 position = Vector2(16, 5696)
-
-[node name="VerticalFence131" parent="Fences" instance=ExtResource("6_3w8i5")]
-position = Vector2(12669, 6720)
-
-[node name="VerticalFence134" parent="Fences" instance=ExtResource("6_3w8i5")]
-position = Vector2(12669, 6848)
 
 [node name="VerticalFence50" parent="Fences" instance=ExtResource("6_3w8i5")]
 position = Vector2(16, 5824)
@@ -1645,341 +1565,254 @@ position = Vector2(16, 5824)
 [node name="VerticalFence47" parent="Fences" instance=ExtResource("6_3w8i5")]
 position = Vector2(16, 5952)
 
-[node name="VerticalFence133" parent="Fences" instance=ExtResource("6_3w8i5")]
-position = Vector2(12669, 6976)
-
-[node name="VerticalFence140" parent="Fences" instance=ExtResource("6_3w8i5")]
-position = Vector2(12669, 7104)
-
-[node name="VerticalFence137" parent="Fences" instance=ExtResource("6_3w8i5")]
-position = Vector2(12669, 7232)
-
 [node name="VerticalFence46" parent="Fences" instance=ExtResource("6_3w8i5")]
 position = Vector2(16, 6080)
 
-[node name="VerticalFence49" parent="Fences" instance=ExtResource("6_3w8i5")]
-position = Vector2(16, 6208)
-
-[node name="VerticalFence48" parent="Fences" instance=ExtResource("6_3w8i5")]
-position = Vector2(16, 6336)
-
-[node name="VerticalFence55" parent="Fences" instance=ExtResource("6_3w8i5")]
-position = Vector2(16, 6464)
-
-[node name="VerticalFence52" parent="Fences" instance=ExtResource("6_3w8i5")]
-position = Vector2(16, 6592)
-
-[node name="VerticalFence51" parent="Fences" instance=ExtResource("6_3w8i5")]
-position = Vector2(16, 6720)
-
-[node name="VerticalFence54" parent="Fences" instance=ExtResource("6_3w8i5")]
-position = Vector2(16, 6848)
-
-[node name="VerticalFence53" parent="Fences" instance=ExtResource("6_3w8i5")]
-position = Vector2(16, 6976)
-
-[node name="VerticalFence60" parent="Fences" instance=ExtResource("6_3w8i5")]
-position = Vector2(16, 7104)
-
-[node name="VerticalFence57" parent="Fences" instance=ExtResource("6_3w8i5")]
-position = Vector2(16, 7233)
-
 [node name="HorizontalFence" parent="Fences" instance=ExtResource("7_wbrjn")]
-position = Vector2(69, 7337)
+position = Vector2(69, 6154)
 
 [node name="HorizontalFence2" parent="Fences" instance=ExtResource("7_wbrjn")]
-position = Vector2(197, 7337)
+position = Vector2(197, 6154)
 
 [node name="HorizontalFence3" parent="Fences" instance=ExtResource("7_wbrjn")]
-position = Vector2(325, 7337)
+position = Vector2(325, 6154)
 
 [node name="HorizontalFence4" parent="Fences" instance=ExtResource("7_wbrjn")]
-position = Vector2(453, 7337)
+position = Vector2(453, 6154)
 
 [node name="HorizontalFence5" parent="Fences" instance=ExtResource("7_wbrjn")]
-position = Vector2(581, 7337)
+position = Vector2(581, 6154)
 
 [node name="HorizontalFence6" parent="Fences" instance=ExtResource("7_wbrjn")]
-position = Vector2(709, 7337)
+position = Vector2(709, 6154)
 
 [node name="HorizontalFence7" parent="Fences" instance=ExtResource("7_wbrjn")]
-position = Vector2(837, 7337)
+position = Vector2(837, 6154)
 
 [node name="HorizontalFence8" parent="Fences" instance=ExtResource("7_wbrjn")]
-position = Vector2(965, 7337)
+position = Vector2(965, 6154)
 
 [node name="HorizontalFence9" parent="Fences" instance=ExtResource("7_wbrjn")]
-position = Vector2(1093, 7337)
+position = Vector2(1093, 6154)
 
 [node name="HorizontalFence10" parent="Fences" instance=ExtResource("7_wbrjn")]
-position = Vector2(1221, 7337)
+position = Vector2(1221, 6154)
 
 [node name="HorizontalFence11" parent="Fences" instance=ExtResource("7_wbrjn")]
-position = Vector2(1349, 7337)
+position = Vector2(1349, 6154)
 
 [node name="HorizontalFence12" parent="Fences" instance=ExtResource("7_wbrjn")]
-position = Vector2(1477, 7337)
+position = Vector2(1477, 6154)
 
 [node name="HorizontalFence13" parent="Fences" instance=ExtResource("7_wbrjn")]
-position = Vector2(1605, 7337)
+position = Vector2(1605, 6154)
 
 [node name="HorizontalFence14" parent="Fences" instance=ExtResource("7_wbrjn")]
-position = Vector2(1733, 7337)
+position = Vector2(1733, 6154)
 
 [node name="HorizontalFence15" parent="Fences" instance=ExtResource("7_wbrjn")]
-position = Vector2(1861, 7337)
+position = Vector2(1861, 6154)
 
 [node name="HorizontalFence16" parent="Fences" instance=ExtResource("7_wbrjn")]
-position = Vector2(1989, 7337)
+position = Vector2(1989, 6154)
 
 [node name="HorizontalFence17" parent="Fences" instance=ExtResource("7_wbrjn")]
-position = Vector2(2117, 7337)
+position = Vector2(2117, 6154)
 
 [node name="HorizontalFence18" parent="Fences" instance=ExtResource("7_wbrjn")]
-position = Vector2(2245, 7337)
+position = Vector2(2245, 6154)
 
 [node name="HorizontalFence19" parent="Fences" instance=ExtResource("7_wbrjn")]
-position = Vector2(2373, 7337)
+position = Vector2(2373, 6154)
 
 [node name="HorizontalFence20" parent="Fences" instance=ExtResource("7_wbrjn")]
-position = Vector2(2501, 7337)
+position = Vector2(2501, 6154)
 
 [node name="HorizontalFence21" parent="Fences" instance=ExtResource("7_wbrjn")]
-position = Vector2(2629, 7337)
+position = Vector2(2629, 6154)
 
 [node name="HorizontalFence22" parent="Fences" instance=ExtResource("7_wbrjn")]
-position = Vector2(2757, 7337)
+position = Vector2(2757, 6154)
 
 [node name="HorizontalFence23" parent="Fences" instance=ExtResource("7_wbrjn")]
-position = Vector2(2885, 7337)
+position = Vector2(2885, 6154)
 
 [node name="HorizontalFence24" parent="Fences" instance=ExtResource("7_wbrjn")]
-position = Vector2(3013, 7337)
+position = Vector2(3013, 6154)
 
 [node name="HorizontalFence25" parent="Fences" instance=ExtResource("7_wbrjn")]
-position = Vector2(3141, 7337)
+position = Vector2(3141, 6154)
 
 [node name="HorizontalFence26" parent="Fences" instance=ExtResource("7_wbrjn")]
-position = Vector2(3269, 7337)
+position = Vector2(3269, 6154)
 
 [node name="HorizontalFence27" parent="Fences" instance=ExtResource("7_wbrjn")]
-position = Vector2(3397, 7337)
+position = Vector2(3397, 6154)
 
 [node name="HorizontalFence28" parent="Fences" instance=ExtResource("7_wbrjn")]
-position = Vector2(3525, 7337)
+position = Vector2(3525, 6154)
 
 [node name="HorizontalFence29" parent="Fences" instance=ExtResource("7_wbrjn")]
-position = Vector2(3653, 7337)
+position = Vector2(3653, 6154)
 
 [node name="HorizontalFence30" parent="Fences" instance=ExtResource("7_wbrjn")]
-position = Vector2(3781, 7337)
+position = Vector2(3781, 6154)
 
 [node name="HorizontalFence31" parent="Fences" instance=ExtResource("7_wbrjn")]
-position = Vector2(3909, 7337)
+position = Vector2(3909, 6154)
 
 [node name="HorizontalFence32" parent="Fences" instance=ExtResource("7_wbrjn")]
-position = Vector2(4037, 7337)
+position = Vector2(4037, 6154)
 
 [node name="HorizontalFence33" parent="Fences" instance=ExtResource("7_wbrjn")]
-position = Vector2(4165, 7337)
+position = Vector2(4165, 6154)
 
 [node name="HorizontalFence34" parent="Fences" instance=ExtResource("7_wbrjn")]
-position = Vector2(4293, 7337)
+position = Vector2(4293, 6154)
 
 [node name="HorizontalFence35" parent="Fences" instance=ExtResource("7_wbrjn")]
-position = Vector2(4421, 7337)
+position = Vector2(4421, 6154)
 
 [node name="HorizontalFence36" parent="Fences" instance=ExtResource("7_wbrjn")]
-position = Vector2(4549, 7337)
+position = Vector2(4549, 6154)
 
 [node name="HorizontalFence37" parent="Fences" instance=ExtResource("7_wbrjn")]
-position = Vector2(4677, 7337)
+position = Vector2(4677, 6154)
 
 [node name="HorizontalFence38" parent="Fences" instance=ExtResource("7_wbrjn")]
-position = Vector2(4805, 7337)
+position = Vector2(4805, 6154)
 
 [node name="HorizontalFence39" parent="Fences" instance=ExtResource("7_wbrjn")]
-position = Vector2(4933, 7337)
+position = Vector2(4933, 6154)
 
 [node name="HorizontalFence40" parent="Fences" instance=ExtResource("7_wbrjn")]
-position = Vector2(5061, 7337)
+position = Vector2(5061, 6154)
 
 [node name="HorizontalFence41" parent="Fences" instance=ExtResource("7_wbrjn")]
-position = Vector2(5189, 7337)
+position = Vector2(5189, 6154)
 
 [node name="HorizontalFence42" parent="Fences" instance=ExtResource("7_wbrjn")]
-position = Vector2(5317, 7337)
+position = Vector2(5317, 6154)
 
 [node name="HorizontalFence43" parent="Fences" instance=ExtResource("7_wbrjn")]
-position = Vector2(5445, 7337)
+position = Vector2(5445, 6154)
 
 [node name="HorizontalFence44" parent="Fences" instance=ExtResource("7_wbrjn")]
-position = Vector2(5573, 7337)
+position = Vector2(5573, 6154)
 
 [node name="HorizontalFence45" parent="Fences" instance=ExtResource("7_wbrjn")]
-position = Vector2(5701, 7337)
+position = Vector2(5701, 6154)
 
 [node name="HorizontalFence46" parent="Fences" instance=ExtResource("7_wbrjn")]
-position = Vector2(5829, 7337)
+position = Vector2(5829, 6154)
 
 [node name="HorizontalFence47" parent="Fences" instance=ExtResource("7_wbrjn")]
-position = Vector2(5957, 7337)
+position = Vector2(5957, 6154)
 
 [node name="HorizontalFence48" parent="Fences" instance=ExtResource("7_wbrjn")]
-position = Vector2(6085, 7337)
+position = Vector2(6085, 6154)
 
 [node name="HorizontalFence49" parent="Fences" instance=ExtResource("7_wbrjn")]
-position = Vector2(6213, 7337)
+position = Vector2(6213, 6154)
 
 [node name="HorizontalFence50" parent="Fences" instance=ExtResource("7_wbrjn")]
-position = Vector2(6341, 7337)
+position = Vector2(6341, 6154)
 
 [node name="HorizontalFence51" parent="Fences" instance=ExtResource("7_wbrjn")]
-position = Vector2(6469, 7337)
+position = Vector2(6469, 6154)
 
 [node name="HorizontalFence52" parent="Fences" instance=ExtResource("7_wbrjn")]
-position = Vector2(6597, 7337)
+position = Vector2(6597, 6154)
 
 [node name="HorizontalFence53" parent="Fences" instance=ExtResource("7_wbrjn")]
-position = Vector2(6725, 7337)
+position = Vector2(6725, 6154)
 
 [node name="HorizontalFence54" parent="Fences" instance=ExtResource("7_wbrjn")]
-position = Vector2(6853, 7337)
+position = Vector2(6853, 6154)
 
 [node name="HorizontalFence55" parent="Fences" instance=ExtResource("7_wbrjn")]
-position = Vector2(6981, 7337)
+position = Vector2(6981, 6154)
 
 [node name="HorizontalFence56" parent="Fences" instance=ExtResource("7_wbrjn")]
-position = Vector2(7109, 7337)
+position = Vector2(7109, 6154)
 
 [node name="HorizontalFence57" parent="Fences" instance=ExtResource("7_wbrjn")]
-position = Vector2(7237, 7337)
+position = Vector2(7237, 6154)
 
 [node name="HorizontalFence58" parent="Fences" instance=ExtResource("7_wbrjn")]
-position = Vector2(7365, 7337)
+position = Vector2(7365, 6154)
 
 [node name="HorizontalFence59" parent="Fences" instance=ExtResource("7_wbrjn")]
-position = Vector2(7493, 7337)
+position = Vector2(7493, 6154)
 
 [node name="HorizontalFence60" parent="Fences" instance=ExtResource("7_wbrjn")]
-position = Vector2(7621, 7337)
+position = Vector2(7621, 6154)
 
 [node name="HorizontalFence61" parent="Fences" instance=ExtResource("7_wbrjn")]
-position = Vector2(7749, 7337)
+position = Vector2(7749, 6154)
 
 [node name="HorizontalFence62" parent="Fences" instance=ExtResource("7_wbrjn")]
-position = Vector2(7877, 7337)
+position = Vector2(7877, 6154)
 
 [node name="HorizontalFence63" parent="Fences" instance=ExtResource("7_wbrjn")]
-position = Vector2(8005, 7337)
+position = Vector2(8005, 6154)
 
 [node name="HorizontalFence64" parent="Fences" instance=ExtResource("7_wbrjn")]
-position = Vector2(8133, 7337)
+position = Vector2(8133, 6154)
 
 [node name="HorizontalFence65" parent="Fences" instance=ExtResource("7_wbrjn")]
-position = Vector2(8261, 7337)
+position = Vector2(8261, 6154)
 
 [node name="HorizontalFence66" parent="Fences" instance=ExtResource("7_wbrjn")]
-position = Vector2(8389, 7337)
+position = Vector2(8389, 6154)
 
 [node name="HorizontalFence67" parent="Fences" instance=ExtResource("7_wbrjn")]
-position = Vector2(8517, 7337)
+position = Vector2(8517, 6154)
 
 [node name="HorizontalFence68" parent="Fences" instance=ExtResource("7_wbrjn")]
-position = Vector2(8645, 7337)
+position = Vector2(8645, 6154)
 
 [node name="HorizontalFence69" parent="Fences" instance=ExtResource("7_wbrjn")]
-position = Vector2(8773, 7337)
+position = Vector2(8773, 6154)
 
 [node name="HorizontalFence70" parent="Fences" instance=ExtResource("7_wbrjn")]
-position = Vector2(8901, 7337)
+position = Vector2(8901, 6154)
 
 [node name="HorizontalFence71" parent="Fences" instance=ExtResource("7_wbrjn")]
-position = Vector2(9029, 7337)
+position = Vector2(9029, 6154)
 
 [node name="HorizontalFence72" parent="Fences" instance=ExtResource("7_wbrjn")]
-position = Vector2(9157, 7337)
+position = Vector2(9157, 6154)
 
 [node name="HorizontalFence73" parent="Fences" instance=ExtResource("7_wbrjn")]
-position = Vector2(9285, 7337)
+position = Vector2(9285, 6154)
 
 [node name="HorizontalFence74" parent="Fences" instance=ExtResource("7_wbrjn")]
-position = Vector2(9413, 7337)
+position = Vector2(9413, 6154)
 
 [node name="HorizontalFence75" parent="Fences" instance=ExtResource("7_wbrjn")]
-position = Vector2(9541, 7337)
+position = Vector2(9541, 6154)
 
 [node name="HorizontalFence76" parent="Fences" instance=ExtResource("7_wbrjn")]
-position = Vector2(9669, 7337)
+position = Vector2(9669, 6154)
 
 [node name="HorizontalFence77" parent="Fences" instance=ExtResource("7_wbrjn")]
-position = Vector2(9797, 7337)
+position = Vector2(9797, 6154)
 
 [node name="HorizontalFence78" parent="Fences" instance=ExtResource("7_wbrjn")]
-position = Vector2(9925, 7337)
+position = Vector2(9925, 6154)
 
 [node name="HorizontalFence79" parent="Fences" instance=ExtResource("7_wbrjn")]
-position = Vector2(10053, 7337)
+position = Vector2(10053, 6154)
 
 [node name="HorizontalFence80" parent="Fences" instance=ExtResource("7_wbrjn")]
-position = Vector2(10181, 7337)
+position = Vector2(10181, 6154)
 
 [node name="HorizontalFence81" parent="Fences" instance=ExtResource("7_wbrjn")]
-position = Vector2(10309, 7337)
+position = Vector2(10309, 6154)
 
 [node name="HorizontalFence82" parent="Fences" instance=ExtResource("7_wbrjn")]
-position = Vector2(10437, 7337)
-
-[node name="HorizontalFence83" parent="Fences" instance=ExtResource("7_wbrjn")]
-position = Vector2(10565, 7337)
-
-[node name="HorizontalFence84" parent="Fences" instance=ExtResource("7_wbrjn")]
-position = Vector2(10693, 7337)
-
-[node name="HorizontalFence85" parent="Fences" instance=ExtResource("7_wbrjn")]
-position = Vector2(10821, 7337)
-
-[node name="HorizontalFence86" parent="Fences" instance=ExtResource("7_wbrjn")]
-position = Vector2(10949, 7337)
-
-[node name="HorizontalFence87" parent="Fences" instance=ExtResource("7_wbrjn")]
-position = Vector2(11077, 7337)
-
-[node name="HorizontalFence88" parent="Fences" instance=ExtResource("7_wbrjn")]
-position = Vector2(11205, 7337)
-
-[node name="HorizontalFence89" parent="Fences" instance=ExtResource("7_wbrjn")]
-position = Vector2(11333, 7337)
-
-[node name="HorizontalFence90" parent="Fences" instance=ExtResource("7_wbrjn")]
-position = Vector2(11461, 7337)
-
-[node name="HorizontalFence91" parent="Fences" instance=ExtResource("7_wbrjn")]
-position = Vector2(11589, 7337)
-
-[node name="HorizontalFence92" parent="Fences" instance=ExtResource("7_wbrjn")]
-position = Vector2(11717, 7337)
-
-[node name="HorizontalFence93" parent="Fences" instance=ExtResource("7_wbrjn")]
-position = Vector2(11845, 7337)
-
-[node name="HorizontalFence94" parent="Fences" instance=ExtResource("7_wbrjn")]
-position = Vector2(11973, 7337)
-
-[node name="HorizontalFence95" parent="Fences" instance=ExtResource("7_wbrjn")]
-position = Vector2(12101, 7337)
-
-[node name="HorizontalFence96" parent="Fences" instance=ExtResource("7_wbrjn")]
-position = Vector2(12229, 7337)
-
-[node name="HorizontalFence97" parent="Fences" instance=ExtResource("7_wbrjn")]
-position = Vector2(12357, 7337)
-
-[node name="HorizontalFence98" parent="Fences" instance=ExtResource("7_wbrjn")]
-position = Vector2(12485, 7337)
-
-[node name="HorizontalFence99" parent="Fences" instance=ExtResource("7_wbrjn")]
-position = Vector2(12613, 7337)
+position = Vector2(10437, 6154)
 
 [node name="UIAnims" type="AnimationPlayer" parent="."]
 libraries = {
@@ -1997,19 +1830,19 @@ libraries = {
 }
 
 [node name="PineTree" parent="." instance=ExtResource("7_5s2fi")]
-position = Vector2(1840, 3184)
+position = Vector2(797, 2609)
 
 [node name="Rock2" parent="." instance=ExtResource("3_ongvj")]
-position = Vector2(4347, 4494)
+position = Vector2(4152, 3902)
 
 [node name="Mushroom" parent="." instance=ExtResource("11_nffv2")]
-position = Vector2(5416, 2356)
+position = Vector2(4606, 2055)
 
 [node name="Mushroom2" parent="." instance=ExtResource("11_nffv2")]
-position = Vector2(5287, 2172)
+position = Vector2(4525, 1882)
 
 [node name="Rock3" parent="." instance=ExtResource("3_ongvj")]
-position = Vector2(7399, 6510)
+position = Vector2(6691, 5480)
 
 [node name="UICanvasLayer" type="CanvasLayer" parent="."]
 process_mode = 3
@@ -2056,47 +1889,47 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -613.0
+offset_left = -534.0
 offset_top = -270.0
-offset_right = 616.0
-offset_bottom = 317.0
+offset_right = 542.0
+offset_bottom = 304.0
 grow_horizontal = 2
 grow_vertical = 2
 focus_mode = 2
 theme_override_colors/font_outline_color = Color(0.478431, 0, 0, 1)
 theme_override_colors/font_unselected_color = Color(0.74978, 0.74978, 0.74978, 1)
-theme_override_colors/font_hovered_color = Color(0.487756, 5.47487e-07, 3.36915e-07, 1)
+theme_override_colors/font_hovered_color = Color(0.779182, 0.485728, 1.92523e-07, 1)
 theme_override_colors/font_selected_color = Color(1, 1, 1, 1)
-theme_override_constants/outline_size = 4
+theme_override_constants/outline_size = 8
 theme_override_fonts/font = ExtResource("28_37x43")
 theme_override_font_sizes/font_size = 28
-theme_override_styles/tab_selected = ExtResource("3_cnq2v")
-theme_override_styles/tab_unselected = SubResource("StyleBoxFlat_aluu1")
+theme_override_styles/tab_focus = ExtResource("28_1var5")
+theme_override_styles/tab_selected = ExtResource("28_1var5")
+theme_override_styles/tab_hovered = ExtResource("29_peour")
+theme_override_styles/tab_unselected = ExtResource("30_uimlc")
 tab_alignment = 1
-current_tab = 2
-all_tabs_in_front = true
+current_tab = 0
 
 [node name="Controls" type="Panel" parent="UICanvasLayer/Control/TabContainer"]
-visible = false
 layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_ym5q2")
+theme_override_styles/panel = ExtResource("31_ag08w")
 metadata/_tab_index = 0
 
 [node name="KeyboardHeader" type="Label" parent="UICanvasLayer/Control/TabContainer/Controls"]
 layout_mode = 0
-offset_left = 197.0
-offset_top = 77.0
-offset_right = 421.0
-offset_bottom = 146.0
+offset_left = 147.0
+offset_top = 111.0
+offset_right = 371.0
+offset_bottom = 180.0
 text = "Keyboard"
 label_settings = SubResource("LabelSettings_xypu0")
 
 [node name="KeyboardControls" type="Label" parent="UICanvasLayer/Control/TabContainer/Controls"]
 layout_mode = 0
-offset_left = 197.0
-offset_top = 148.0
-offset_right = 470.0
-offset_bottom = 396.0
+offset_left = 147.0
+offset_top = 182.0
+offset_right = 420.0
+offset_bottom = 430.0
 text = "WASD - Movement
 E - Interact
 Shift - Sprint
@@ -2106,19 +1939,19 @@ label_settings = SubResource("LabelSettings_3ai1i")
 
 [node name="ControllerHeader" type="Label" parent="UICanvasLayer/Control/TabContainer/Controls"]
 layout_mode = 0
-offset_left = 577.0
-offset_top = 77.0
-offset_right = 801.0
-offset_bottom = 146.0
-text = "Keyboard"
+offset_left = 651.0
+offset_top = 111.0
+offset_right = 875.0
+offset_bottom = 180.0
+text = "Controller"
 label_settings = SubResource("LabelSettings_xypu0")
 
 [node name="ControllerControls" type="Label" parent="UICanvasLayer/Control/TabContainer/Controls"]
 layout_mode = 0
-offset_left = 577.0
-offset_top = 148.0
-offset_right = 850.0
-offset_bottom = 396.0
+offset_left = 651.0
+offset_top = 182.0
+offset_right = 977.0
+offset_bottom = 430.0
 text = "Left Stick - Movement
 X/Square - Interact
 LB/L1 - Sprint
@@ -2129,10 +1962,11 @@ label_settings = SubResource("LabelSettings_3ai1i")
 [node name="Notes" type="Panel" parent="UICanvasLayer/Control/TabContainer"]
 visible = false
 layout_mode = 2
+theme_override_styles/panel = ExtResource("31_ag08w")
 metadata/_tab_index = 1
 
 [node name="Map" type="Panel" parent="UICanvasLayer/Control/TabContainer"]
-unique_name_in_owner = true
+visible = false
 custom_minimum_size = Vector2(512, 0)
 layout_mode = 2
 focus_neighbor_left = NodePath("../Notes")
@@ -2143,10 +1977,10 @@ metadata/_tab_index = 2
 
 [node name="NWGraveyard" type="Label" parent="UICanvasLayer/Control/TabContainer/Map"]
 layout_mode = 0
-offset_left = 77.0
-offset_top = 76.0
-offset_right = 294.0
-offset_bottom = 169.0
+offset_left = 82.0
+offset_top = 71.0
+offset_right = 299.0
+offset_bottom = 164.0
 text = "?"
 label_settings = SubResource("LabelSettings_ey7gp")
 horizontal_alignment = 1
@@ -2154,9 +1988,9 @@ vertical_alignment = 1
 
 [node name="WGrove" type="Label" parent="UICanvasLayer/Control/TabContainer/Map"]
 layout_mode = 0
-offset_left = 134.0
+offset_left = 112.0
 offset_top = 359.0
-offset_right = 263.0
+offset_right = 241.0
 offset_bottom = 452.0
 text = "?"
 label_settings = SubResource("LabelSettings_ey7gp")
@@ -2165,10 +1999,10 @@ vertical_alignment = 1
 
 [node name="WCamp" type="Label" parent="UICanvasLayer/Control/TabContainer/Map"]
 layout_mode = 0
-offset_left = 223.0
-offset_top = 230.0
-offset_right = 352.0
-offset_bottom = 323.0
+offset_left = 195.0
+offset_top = 209.0
+offset_right = 324.0
+offset_bottom = 302.0
 text = "?"
 label_settings = SubResource("LabelSettings_ey7gp")
 horizontal_alignment = 1
@@ -2176,10 +2010,10 @@ vertical_alignment = 1
 
 [node name="NShrine" type="Label" parent="UICanvasLayer/Control/TabContainer/Map"]
 layout_mode = 0
-offset_left = 616.0
-offset_top = 103.0
-offset_right = 760.0
-offset_bottom = 196.0
+offset_left = 549.0
+offset_top = 65.0
+offset_right = 693.0
+offset_bottom = 158.0
 text = "?"
 label_settings = SubResource("LabelSettings_ey7gp")
 horizontal_alignment = 1
@@ -2187,10 +2021,10 @@ vertical_alignment = 1
 
 [node name="GiantMushroom" type="Label" parent="UICanvasLayer/Control/TabContainer/Map"]
 layout_mode = 0
-offset_left = 840.0
-offset_top = 126.0
-offset_right = 1009.0
-offset_bottom = 219.0
+offset_left = 741.0
+offset_top = 115.0
+offset_right = 910.0
+offset_bottom = 208.0
 text = "?"
 label_settings = SubResource("LabelSettings_ey7gp")
 horizontal_alignment = 1
@@ -2198,10 +2032,10 @@ vertical_alignment = 1
 
 [node name="EGrove" type="Label" parent="UICanvasLayer/Control/TabContainer/Map"]
 layout_mode = 0
-offset_left = 934.0
-offset_top = 247.0
-offset_right = 1052.0
-offset_bottom = 340.0
+offset_left = 840.0
+offset_top = 233.0
+offset_right = 958.0
+offset_bottom = 326.0
 text = "?"
 label_settings = SubResource("LabelSettings_ey7gp")
 horizontal_alignment = 1
@@ -2209,10 +2043,10 @@ vertical_alignment = 1
 
 [node name="SEGraveyard" type="Label" parent="UICanvasLayer/Control/TabContainer/Map"]
 layout_mode = 0
-offset_left = 912.0
-offset_top = 390.0
-offset_right = 1120.0
-offset_bottom = 483.0
+offset_left = 785.0
+offset_top = 392.0
+offset_right = 993.0
+offset_bottom = 485.0
 text = "?"
 label_settings = SubResource("LabelSettings_ey7gp")
 horizontal_alignment = 1
@@ -2220,10 +2054,10 @@ vertical_alignment = 1
 
 [node name="FairyCircle" type="Label" parent="UICanvasLayer/Control/TabContainer/Map"]
 layout_mode = 0
-offset_left = 771.0
-offset_top = 318.0
-offset_right = 889.0
-offset_bottom = 411.0
+offset_left = 660.0
+offset_top = 299.0
+offset_right = 778.0
+offset_bottom = 392.0
 text = "?"
 label_settings = SubResource("LabelSettings_ey7gp")
 horizontal_alignment = 1
@@ -2231,10 +2065,10 @@ vertical_alignment = 1
 
 [node name="SShrine" type="Label" parent="UICanvasLayer/Control/TabContainer/Map"]
 layout_mode = 0
-offset_left = 424.0
-offset_top = 353.0
-offset_right = 567.0
-offset_bottom = 446.0
+offset_left = 358.0
+offset_top = 342.0
+offset_right = 501.0
+offset_bottom = 435.0
 text = "?"
 label_settings = SubResource("LabelSettings_ey7gp")
 horizontal_alignment = 1
@@ -2242,10 +2076,10 @@ vertical_alignment = 1
 
 [node name="ECamp" type="Label" parent="UICanvasLayer/Control/TabContainer/Map"]
 layout_mode = 0
-offset_left = 1051.0
-offset_top = 38.0
-offset_right = 1169.0
-offset_bottom = 131.0
+offset_left = 909.0
+offset_top = 29.0
+offset_right = 1027.0
+offset_bottom = 122.0
 text = "?"
 label_settings = SubResource("LabelSettings_ey7gp")
 horizontal_alignment = 1
@@ -2253,10 +2087,10 @@ vertical_alignment = 1
 
 [node name="Well" type="Label" parent="UICanvasLayer/Control/TabContainer/Map"]
 layout_mode = 0
-offset_left = 564.0
-offset_top = 246.0
-offset_right = 696.0
-offset_bottom = 299.0
+offset_left = 472.0
+offset_top = 231.0
+offset_right = 604.0
+offset_bottom = 284.0
 text = "?"
 label_settings = SubResource("LabelSettings_ey7gp")
 horizontal_alignment = 1
@@ -2264,10 +2098,10 @@ vertical_alignment = 1
 
 [node name="Outhouse" type="Label" parent="UICanvasLayer/Control/TabContainer/Map"]
 layout_mode = 0
-offset_left = 353.0
-offset_top = 76.0
-offset_right = 505.0
-offset_bottom = 129.0
+offset_left = 327.0
+offset_top = 50.0
+offset_right = 479.0
+offset_bottom = 103.0
 text = "?"
 label_settings = SubResource("LabelSettings_ey7gp")
 horizontal_alignment = 1
