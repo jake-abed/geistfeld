@@ -40,6 +40,7 @@ func spawn_door() -> void:
 	door_inst.door_repaired.connect(_on_door_repaired)
 	door_inst.door_finished.connect(_on_door_finished)
 	door_inst.door_opened.connect(_on_door_opened)
+	door_inst.items_missing.connect(_on_items_missing)
 	door_location_name = spawn_location.location_name
 	spawn_location.add_child(door_inst)
 
@@ -57,6 +58,10 @@ func _on_door_finished() -> void:
 
 func _on_door_opened() -> void:
 	scene_anims.play("fade_out")
+
+func _on_items_missing(items: String) -> void:
+	player_message.text = "Items missing: " + items
+	ui_anims.play("message_fade")
 
 func _on_pause_button_pressed() -> void:
 	get_tree().paused = false

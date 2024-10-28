@@ -1,4 +1,4 @@
-[gd_scene load_steps=44 format=4 uid="uid://bqyeli8brywwx"]
+[gd_scene load_steps=47 format=4 uid="uid://bqyeli8brywwx"]
 
 [ext_resource type="PackedScene" uid="uid://dms3slrv65dvl" path="res://scenes/player.tscn" id="1_8g5j1"]
 [ext_resource type="Texture2D" uid="uid://cq6ecyt6j4lfv" path="res://assets/images/bg_grass.jpg" id="1_m0lys"]
@@ -27,6 +27,7 @@
 [ext_resource type="PackedScene" uid="uid://b6jvx4t5eq18m" path="res://scenes/doghouse.tscn" id="19_qiox7"]
 [ext_resource type="Script" path="res://scenes/ui_canvas_layer.gd" id="27_1p1yb"]
 [ext_resource type="Theme" uid="uid://cjbcircl2ubh2" path="res://assets/themes/note_theme.tres" id="27_myvt1"]
+[ext_resource type="FontFile" uid="uid://dma2fo7yc01mb" path="res://assets/misc/Geist-Regular.ttf" id="28_37x43"]
 [ext_resource type="AudioStream" uid="uid://cxptrpqkdifs8" path="res://assets/audio/ambient_field.wav" id="29_fpqe3"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_hlp30"]
@@ -182,14 +183,25 @@ _data = {
 font = ExtResource("4_xfwxn")
 font_size = 64
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_aluu1"]
+content_margin_left = 16.0
+content_margin_right = 16.0
+bg_color = Color(0.0862745, 0.0862745, 0.0862745, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+
 [sub_resource type="LabelSettings" id="LabelSettings_ey7gp"]
-font = ExtResource("4_xfwxn")
-font_size = 32
+font_size = 28
 font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ym5q2"]
+bg_color = Color(0.0846899, 0.0846899, 0.0846899, 1)
+border_width_top = 2
+border_color = Color(0.0862745, 0.0862745, 0.0862745, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_xypu0"]
 line_spacing = -4.0
-font = ExtResource("4_xfwxn")
+font = ExtResource("28_37x43")
 font_size = 52
 outline_color = Color(0.277528, 0.277528, 0.277528, 1)
 shadow_size = 0
@@ -198,8 +210,8 @@ shadow_offset = Vector2(0, 0)
 
 [sub_resource type="LabelSettings" id="LabelSettings_3ai1i"]
 line_spacing = 4.0
-font = ExtResource("4_xfwxn")
-font_size = 28
+font = ExtResource("28_37x43")
+font_size = 32
 outline_color = Color(0.277528, 0.277528, 0.277528, 1)
 shadow_size = 0
 shadow_color = Color(0.109804, 0.109804, 0.109804, 0.576471)
@@ -1931,193 +1943,233 @@ grow_horizontal = 2
 text = "Paused"
 label_settings = SubResource("LabelSettings_7kydu")
 
-[node name="Panel" type="Panel" parent="UICanvasLayer/Control"]
-custom_minimum_size = Vector2(512, 0)
+[node name="TabContainer" type="TabContainer" parent="UICanvasLayer/Control"]
 layout_mode = 1
-anchors_preset = 9
-anchor_bottom = 1.0
-offset_left = 962.0
-offset_top = 98.0
-offset_right = 1538.0
-offset_bottom = 290.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -625.0
+offset_top = -270.0
+offset_right = 349.0
+offset_bottom = 317.0
+grow_horizontal = 2
 grow_vertical = 2
-rotation = 1.5708
-theme = ExtResource("27_myvt1")
+theme_override_colors/font_outline_color = Color(0.478431, 0, 0, 1)
+theme_override_colors/font_unselected_color = Color(0.74978, 0.74978, 0.74978, 1)
+theme_override_colors/font_hovered_color = Color(0.487756, 5.47487e-07, 3.36915e-07, 1)
+theme_override_colors/font_selected_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("28_37x43")
+theme_override_font_sizes/font_size = 28
+theme_override_styles/tab_selected = ExtResource("3_cnq2v")
+theme_override_styles/tab_unselected = SubResource("StyleBoxFlat_aluu1")
+tab_alignment = 1
+current_tab = 2
+all_tabs_in_front = true
 
-[node name="Label" type="Label" parent="UICanvasLayer/Control/Panel"]
+[node name="Map" type="Panel" parent="UICanvasLayer/Control/TabContainer"]
+visible = false
+custom_minimum_size = Vector2(512, 0)
+layout_mode = 2
+theme = ExtResource("27_myvt1")
+metadata/_tab_index = 0
+
+[node name="NWGraveyard" type="Label" parent="UICanvasLayer/Control/TabContainer/Map"]
 layout_mode = 0
-offset_left = 60.0
-offset_top = 839.0
-offset_right = 205.0
-offset_bottom = 908.0
-rotation = -1.5708
+offset_left = 55.0
+offset_top = 51.0
+offset_right = 272.0
+offset_bottom = 144.0
 text = "Northwestern
 Graveyard"
 label_settings = SubResource("LabelSettings_ey7gp")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Label2" type="Label" parent="UICanvasLayer/Control/Panel"]
+[node name="WGrove" type="Label" parent="UICanvasLayer/Control/TabContainer/Map"]
 layout_mode = 0
-offset_left = 391.0
-offset_top = 786.0
-offset_right = 475.0
-offset_bottom = 839.0
-rotation = -1.5708
+offset_left = 83.0
+offset_top = 387.0
+offset_right = 212.0
+offset_bottom = 480.0
 text = "Western
 Grove"
 label_settings = SubResource("LabelSettings_ey7gp")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Label4" type="Label" parent="UICanvasLayer/Control/Panel"]
+[node name="WCamp" type="Label" parent="UICanvasLayer/Control/TabContainer/Map"]
 layout_mode = 0
-offset_left = 240.0
-offset_top = 717.0
-offset_right = 324.0
-offset_bottom = 786.0
-rotation = -1.5708
+offset_left = 145.0
+offset_top = 230.0
+offset_right = 274.0
+offset_bottom = 323.0
 text = "Western
 Camp"
 label_settings = SubResource("LabelSettings_ey7gp")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Label6" type="Label" parent="UICanvasLayer/Control/Panel"]
+[node name="NShrine" type="Label" parent="UICanvasLayer/Control/TabContainer/Map"]
 layout_mode = 0
-offset_left = 126.0
-offset_top = 428.0
-offset_right = 225.0
-offset_bottom = 497.0
-rotation = -1.5708
+offset_left = 487.0
+offset_top = 65.0
+offset_right = 631.0
+offset_bottom = 158.0
 text = "Northern
 Shrine"
 label_settings = SubResource("LabelSettings_ey7gp")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Label7" type="Label" parent="UICanvasLayer/Control/Panel"]
+[node name="GiantMushroom" type="Label" parent="UICanvasLayer/Control/TabContainer/Map"]
 layout_mode = 0
-offset_left = 158.0
-offset_top = 253.0
-offset_right = 276.0
-offset_bottom = 322.0
-rotation = -1.5708
+offset_left = 641.0
+offset_top = 123.0
+offset_right = 810.0
+offset_bottom = 216.0
 text = "Giant
 Mushroom"
 label_settings = SubResource("LabelSettings_ey7gp")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Label9" type="Label" parent="UICanvasLayer/Control/Panel"]
+[node name="EGrove" type="Label" parent="UICanvasLayer/Control/TabContainer/Map"]
 layout_mode = 0
-offset_left = 286.0
-offset_top = 244.0
-offset_right = 404.0
-offset_bottom = 313.0
-rotation = -1.5708
+offset_left = 728.0
+offset_top = 239.0
+offset_right = 846.0
+offset_bottom = 332.0
 text = "Eastern
 Grove"
 label_settings = SubResource("LabelSettings_ey7gp")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Label10" type="Label" parent="UICanvasLayer/Control/Panel"]
+[node name="SEGraveyard" type="Label" parent="UICanvasLayer/Control/TabContainer/Map"]
 layout_mode = 0
-offset_left = 414.0
-offset_top = 210.0
-offset_right = 532.0
-offset_bottom = 279.0
-rotation = -1.5708
+offset_left = 669.0
+offset_top = 391.0
+offset_right = 877.0
+offset_bottom = 484.0
 text = "Southeastern
 Graveyard"
 label_settings = SubResource("LabelSettings_ey7gp")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Label11" type="Label" parent="UICanvasLayer/Control/Panel"]
+[node name="FairyCircle" type="Label" parent="UICanvasLayer/Control/TabContainer/Map"]
 layout_mode = 0
-offset_left = 374.0
-offset_top = 407.0
-offset_right = 492.0
-offset_bottom = 476.0
-rotation = -1.5708
+offset_left = 531.0
+offset_top = 334.0
+offset_right = 649.0
+offset_bottom = 427.0
 text = "Fairy
 Circle"
 label_settings = SubResource("LabelSettings_ey7gp")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Label12" type="Label" parent="UICanvasLayer/Control/Panel"]
+[node name="SShrine" type="Label" parent="UICanvasLayer/Control/TabContainer/Map"]
 layout_mode = 0
-offset_left = 430.0
-offset_top = 593.0
-offset_right = 548.0
-offset_bottom = 662.0
-rotation = -1.5708
+offset_left = 309.0
+offset_top = 362.0
+offset_right = 452.0
+offset_bottom = 455.0
 text = "Southern
 Shrine"
 label_settings = SubResource("LabelSettings_ey7gp")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Label8" type="Label" parent="UICanvasLayer/Control/Panel"]
+[node name="ECamp" type="Label" parent="UICanvasLayer/Control/TabContainer/Map"]
 layout_mode = 0
-offset_left = 58.0
-offset_top = 166.0
-offset_right = 176.0
-offset_bottom = 235.0
-rotation = -1.5708
+offset_left = 786.0
+offset_top = 46.0
+offset_right = 904.0
+offset_bottom = 139.0
 text = "Eastern
 Camp"
 label_settings = SubResource("LabelSettings_ey7gp")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Label3" type="Label" parent="UICanvasLayer/Control/Panel"]
+[node name="Well" type="Label" parent="UICanvasLayer/Control/TabContainer/Map"]
 layout_mode = 0
-offset_left = 254.0
-offset_top = 509.0
-offset_right = 338.0
-offset_bottom = 562.0
-rotation = -1.5708
+offset_left = 430.0
+offset_top = 229.0
+offset_right = 562.0
+offset_bottom = 282.0
 text = "The Well"
 label_settings = SubResource("LabelSettings_ey7gp")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Label5" type="Label" parent="UICanvasLayer/Control/Panel"]
+[node name="Outhouse" type="Label" parent="UICanvasLayer/Control/TabContainer/Map"]
 layout_mode = 0
-offset_left = 94.0
-offset_top = 612.0
-offset_right = 189.0
-offset_bottom = 665.0
-rotation = -1.5708
+offset_left = 305.0
+offset_top = 112.0
+offset_right = 457.0
+offset_bottom = 165.0
 text = "Outhouse"
 label_settings = SubResource("LabelSettings_ey7gp")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="ControlsLabel" type="Label" parent="UICanvasLayer/Control"]
+[node name="Notes" type="Panel" parent="UICanvasLayer/Control/TabContainer"]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 1
+
+[node name="Controls" type="Panel" parent="UICanvasLayer/Control/TabContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_ym5q2")
+metadata/_tab_index = 2
+
+[node name="KeyboardHeader" type="Label" parent="UICanvasLayer/Control/TabContainer/Controls"]
 layout_mode = 0
-offset_left = 1010.0
-offset_top = 124.0
-offset_right = 1194.0
-offset_bottom = 189.0
-text = "Controls"
+offset_left = 197.0
+offset_top = 77.0
+offset_right = 421.0
+offset_bottom = 146.0
+text = "Keyboard"
 label_settings = SubResource("LabelSettings_xypu0")
 
-[node name="ControlsLabel2" type="Label" parent="UICanvasLayer/Control"]
+[node name="KeyboardControls" type="Label" parent="UICanvasLayer/Control/TabContainer/Controls"]
 layout_mode = 0
-offset_left = 1010.0
-offset_top = 174.0
-offset_right = 1215.0
-offset_bottom = 422.0
+offset_left = 197.0
+offset_top = 148.0
+offset_right = 470.0
+offset_bottom = 396.0
 text = "WASD - Movement
 E - Interact
 Shift - Sprint
 Space - Banish
-G - Pause"
+M - Pause"
+label_settings = SubResource("LabelSettings_3ai1i")
+
+[node name="ControllerHeader" type="Label" parent="UICanvasLayer/Control/TabContainer/Controls"]
+layout_mode = 0
+offset_left = 577.0
+offset_top = 77.0
+offset_right = 801.0
+offset_bottom = 146.0
+text = "Keyboard"
+label_settings = SubResource("LabelSettings_xypu0")
+
+[node name="ControllerControls" type="Label" parent="UICanvasLayer/Control/TabContainer/Controls"]
+layout_mode = 0
+offset_left = 577.0
+offset_top = 148.0
+offset_right = 850.0
+offset_bottom = 396.0
+text = "Left Stick - Movement
+X/Square - Interact
+LB/L1 - Sprint
+LT/L2 - Banish
+Start - Pause"
 label_settings = SubResource("LabelSettings_3ai1i")
 
 [node name="Panel2" type="Panel" parent="UICanvasLayer/Control"]

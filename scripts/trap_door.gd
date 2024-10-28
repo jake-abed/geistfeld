@@ -1,6 +1,7 @@
 class_name TrapDoor extends Interactable
 
 signal door_repaired(item: String)
+signal items_missing(items: String)
 signal door_finished()
 signal door_opened()
 
@@ -50,6 +51,8 @@ func repair_door(p: Player) -> void:
 		has_key = true
 		repair_audio.play()
 		door_repaired.emit("Key")
+		return
+	items_missing.emit(items_missing_message())
 
 func is_door_repaired() -> bool:
 	return has_handle and has_oil and has_crow_bar and has_key
@@ -85,3 +88,15 @@ func delete_collision_shape() -> void:
 	var collision_shape = get_node("CollisionShape2D")
 	if collision_shape:
 		collision_shape.queue_free()
+
+func items_missing_message() -> String:
+	var items: Array[String] = []
+	if not has_handle:
+		items.append("Handle")
+	if not has_crow_bar:
+		items.append("Crow Bar")
+	if not has_key:
+		items.append("Key")
+	if not has_oil:
+		items.append("Oil")
+	return ", ".join(items)
