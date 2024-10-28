@@ -1,4 +1,4 @@
-[gd_scene load_steps=47 format=4 uid="uid://bqyeli8brywwx"]
+[gd_scene load_steps=60 format=4 uid="uid://bqyeli8brywwx"]
 
 [ext_resource type="PackedScene" uid="uid://dms3slrv65dvl" path="res://scenes/player.tscn" id="1_8g5j1"]
 [ext_resource type="Texture2D" uid="uid://cq6ecyt6j4lfv" path="res://assets/images/bg_grass.jpg" id="1_m0lys"]
@@ -30,6 +30,15 @@
 [ext_resource type="FontFile" uid="uid://dma2fo7yc01mb" path="res://assets/misc/Geist-Regular.ttf" id="28_37x43"]
 [ext_resource type="AudioStream" uid="uid://cxptrpqkdifs8" path="res://assets/audio/ambient_field.wav" id="29_fpqe3"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yagbh"]
+content_margin_left = 16.0
+content_margin_right = 16.0
+bg_color = Color(0.184314, 0.184314, 0.184314, 0.4)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+shadow_size = 4
+anti_aliasing_size = 10.0
+
 [sub_resource type="LabelSettings" id="LabelSettings_hlp30"]
 line_spacing = -4.0
 font = ExtResource("4_xfwxn")
@@ -38,6 +47,42 @@ outline_color = Color(0.277528, 0.277528, 0.277528, 1)
 shadow_size = 0
 shadow_color = Color(0.109804, 0.109804, 0.109804, 0.576471)
 shadow_offset = Vector2(0, 0)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qc4l3"]
+size = Vector2(2499, 2139)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_320a7"]
+radius = 503.195
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_y6ox2"]
+size = Vector2(1228, 830)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_atclq"]
+radius = 400.18
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rrl61"]
+size = Vector2(1225, 762)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jn4kj"]
+size = Vector2(1284, 803)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_f4ijo"]
+size = Vector2(1651, 776)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_46n8c"]
+size = Vector2(1004, 544)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dixdh"]
+size = Vector2(1096, 722)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7kgw0"]
+size = Vector2(2575, 1353)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ccbcj"]
+size = Vector2(2048, 1270)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rwg1t"]
+size = Vector2(1949, 1326)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ibnqe"]
 texture = ExtResource("1_m0lys")
@@ -190,10 +235,6 @@ bg_color = Color(0.0862745, 0.0862745, 0.0862745, 1)
 corner_radius_top_left = 8
 corner_radius_top_right = 8
 
-[sub_resource type="LabelSettings" id="LabelSettings_ey7gp"]
-font_size = 28
-font_color = Color(0, 0, 0, 1)
-
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ym5q2"]
 bg_color = Color(0.0846899, 0.0846899, 0.0846899, 1)
 border_width_top = 2
@@ -216,6 +257,10 @@ outline_color = Color(0.277528, 0.277528, 0.277528, 1)
 shadow_size = 0
 shadow_color = Color(0.109804, 0.109804, 0.109804, 0.576471)
 shadow_offset = Vector2(0, 0)
+
+[sub_resource type="LabelSettings" id="LabelSettings_ey7gp"]
+font_size = 28
+font_color = Color(0, 0, 0, 1)
 
 [node name="Geistfeld" type="Node2D"]
 process_mode = 1
@@ -245,7 +290,7 @@ anchor_right = 1.0
 anchor_bottom = 0.5
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_styles/panel = ExtResource("3_cnq2v")
+theme_override_styles/panel = SubResource("StyleBoxFlat_yagbh")
 
 [node name="Label" type="Label" parent="CanvasLayer/UI/Panel"]
 layout_mode = 1
@@ -269,109 +314,115 @@ position = Vector2(176, 293)
 [node name="Geist" parent="." groups=["geists"] instance=ExtResource("6_8tooo")]
 position = Vector2(6526, 3537)
 
-[node name="WestGrove" type="Node2D" parent="." groups=["door_spawns"]]
+[node name="WGrove" type="Area2D" parent="." node_paths=PackedStringArray("map_label") groups=["door_spawns", "key_location"]]
 y_sort_enabled = true
 position = Vector2(1711, 5111)
 script = ExtResource("4_idf06")
 location_name = "Western Grove"
 door_possible = true
+map_label = NodePath("../UICanvasLayer/Control/TabContainer/Map/WGrove")
 
-[node name="PineTree2" parent="WestGrove" instance=ExtResource("7_5s2fi")]
+[node name="PineTree2" parent="WGrove" instance=ExtResource("7_5s2fi")]
 position = Vector2(65, -322)
 
-[node name="PineTree3" parent="WestGrove" instance=ExtResource("7_5s2fi")]
+[node name="PineTree3" parent="WGrove" instance=ExtResource("7_5s2fi")]
 position = Vector2(287, -263)
 
-[node name="PineTree4" parent="WestGrove" instance=ExtResource("7_5s2fi")]
+[node name="PineTree4" parent="WGrove" instance=ExtResource("7_5s2fi")]
 position = Vector2(-109, -245)
 
-[node name="PineTree5" parent="WestGrove" instance=ExtResource("7_5s2fi")]
+[node name="PineTree5" parent="WGrove" instance=ExtResource("7_5s2fi")]
 position = Vector2(-289, -342)
 
-[node name="PineTree6" parent="WestGrove" instance=ExtResource("7_5s2fi")]
+[node name="PineTree6" parent="WGrove" instance=ExtResource("7_5s2fi")]
 position = Vector2(-471, -121)
 
-[node name="PineTree7" parent="WestGrove" instance=ExtResource("7_5s2fi")]
+[node name="PineTree7" parent="WGrove" instance=ExtResource("7_5s2fi")]
 position = Vector2(-341, 9)
 
-[node name="PineTree8" parent="WestGrove" instance=ExtResource("7_5s2fi")]
+[node name="PineTree8" parent="WGrove" instance=ExtResource("7_5s2fi")]
 position = Vector2(-543, 218)
 
-[node name="PineTree9" parent="WestGrove" instance=ExtResource("7_5s2fi")]
+[node name="PineTree9" parent="WGrove" instance=ExtResource("7_5s2fi")]
 position = Vector2(511, -136)
 
-[node name="PineTree10" parent="WestGrove" instance=ExtResource("7_5s2fi")]
+[node name="PineTree10" parent="WGrove" instance=ExtResource("7_5s2fi")]
 position = Vector2(379, 33)
 
-[node name="PineTree11" parent="WestGrove" instance=ExtResource("7_5s2fi")]
+[node name="PineTree11" parent="WGrove" instance=ExtResource("7_5s2fi")]
 position = Vector2(560, 239)
 
-[node name="PineTree12" parent="WestGrove" instance=ExtResource("7_5s2fi")]
+[node name="PineTree12" parent="WGrove" instance=ExtResource("7_5s2fi")]
 position = Vector2(-403, 417)
 
-[node name="PineTree13" parent="WestGrove" instance=ExtResource("7_5s2fi")]
+[node name="PineTree13" parent="WGrove" instance=ExtResource("7_5s2fi")]
 position = Vector2(-219, 560)
 
-[node name="PineTree14" parent="WestGrove" instance=ExtResource("7_5s2fi")]
+[node name="PineTree14" parent="WGrove" instance=ExtResource("7_5s2fi")]
 position = Vector2(302, 344)
 
-[node name="PineTree15" parent="WestGrove" instance=ExtResource("7_5s2fi")]
+[node name="PineTree15" parent="WGrove" instance=ExtResource("7_5s2fi")]
 position = Vector2(164, 590)
 
-[node name="PineTree16" parent="WestGrove" instance=ExtResource("7_5s2fi")]
+[node name="PineTree16" parent="WGrove" instance=ExtResource("7_5s2fi")]
 position = Vector2(-500, 624)
 
-[node name="PineTree17" parent="WestGrove" instance=ExtResource("7_5s2fi")]
+[node name="PineTree17" parent="WGrove" instance=ExtResource("7_5s2fi")]
 position = Vector2(-34, 643)
 
-[node name="PineTree18" parent="WestGrove" instance=ExtResource("7_5s2fi")]
+[node name="PineTree18" parent="WGrove" instance=ExtResource("7_5s2fi")]
 position = Vector2(431, 569)
 
-[node name="PineTree19" parent="WestGrove" instance=ExtResource("7_5s2fi")]
+[node name="PineTree19" parent="WGrove" instance=ExtResource("7_5s2fi")]
 position = Vector2(-839, 429)
 
-[node name="PineTree20" parent="WestGrove" instance=ExtResource("7_5s2fi")]
+[node name="PineTree20" parent="WGrove" instance=ExtResource("7_5s2fi")]
 position = Vector2(-851, -357)
 
-[node name="PineTree21" parent="WestGrove" instance=ExtResource("7_5s2fi")]
+[node name="PineTree21" parent="WGrove" instance=ExtResource("7_5s2fi")]
 position = Vector2(-522, -851)
 
-[node name="PineTree22" parent="WestGrove" instance=ExtResource("7_5s2fi")]
+[node name="PineTree22" parent="WGrove" instance=ExtResource("7_5s2fi")]
 position = Vector2(602, -863)
 
-[node name="PineTree23" parent="WestGrove" instance=ExtResource("7_5s2fi")]
+[node name="PineTree23" parent="WGrove" instance=ExtResource("7_5s2fi")]
 position = Vector2(1130, 659)
 
-[node name="PineTree24" parent="WestGrove" instance=ExtResource("7_5s2fi")]
+[node name="PineTree24" parent="WGrove" instance=ExtResource("7_5s2fi")]
 position = Vector2(1109, -213)
 
-[node name="PineTree25" parent="WestGrove" instance=ExtResource("7_5s2fi")]
+[node name="PineTree25" parent="WGrove" instance=ExtResource("7_5s2fi")]
 position = Vector2(63, 1259)
 
-[node name="Note" parent="WestGrove" instance=ExtResource("8_jn7no")]
+[node name="Note" parent="WGrove" instance=ExtResource("8_jn7no")]
 position = Vector2(433, 3)
 message = "Geistfeld... tis not even proper German tongue if I am not mistaken. And what a queer field to be fenced in by impassable wooden stakes?
 
 And the well... my spine trembles terribly whenever I pass by. The smell is deathly and I could swear there are faint gurgling or cooing sounds emanating from the bottom."
 
-[node name="Mushroom" parent="WestGrove" instance=ExtResource("11_nffv2")]
+[node name="Mushroom" parent="WGrove" instance=ExtResource("11_nffv2")]
 position = Vector2(-679, 389)
 
-[node name="Mushroom2" parent="WestGrove" instance=ExtResource("11_nffv2")]
+[node name="Mushroom2" parent="WGrove" instance=ExtResource("11_nffv2")]
 position = Vector2(527, 625)
 
-[node name="Mushroom3" parent="WestGrove" instance=ExtResource("11_nffv2")]
+[node name="Mushroom3" parent="WGrove" instance=ExtResource("11_nffv2")]
 position = Vector2(1030, -146)
 
-[node name="Doghouse" parent="WestGrove" instance=ExtResource("19_qiox7")]
+[node name="Doghouse" parent="WGrove" instance=ExtResource("19_qiox7")]
 position = Vector2(1405, 622)
 
-[node name="FairyCircle" type="Node2D" parent="." groups=["door_spawns"]]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WGrove"]
+position = Vector2(261.5, 60.5)
+shape = SubResource("RectangleShape2D_qc4l3")
+
+[node name="FairyCircle" type="Area2D" parent="." node_paths=PackedStringArray("map_label") groups=["door_spawns", "key_location"]]
 y_sort_enabled = true
 position = Vector2(7666, 5177)
 script = ExtResource("4_idf06")
 location_name = "Fairy Circle"
 door_possible = true
+map_label = NodePath("../UICanvasLayer/Control/TabContainer/Map/FairyCircle")
 
 [node name="Mushroom" parent="FairyCircle" instance=ExtResource("11_nffv2")]
 position = Vector2(-211, -249)
@@ -408,26 +459,30 @@ My weariness has grown immeasurably, so I took a chance to lie down in the fairy
 
 Tisk, this feels like a puzzle, but there is nary a hint of logic to it."
 
-[node name="NorthShrine" type="Node2D" parent="." groups=["door_spawns"]]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FairyCircle"]
+shape = SubResource("CircleShape2D_320a7")
+
+[node name="NShrine" type="Area2D" parent="." node_paths=PackedStringArray("map_label") groups=["door_spawns", "key_location"]]
 y_sort_enabled = true
 position = Vector2(7654, 1742)
 script = ExtResource("4_idf06")
-location_name = "NorthernShrine"
+location_name = "Northern Shrine"
 door_possible = true
+map_label = NodePath("../UICanvasLayer/Control/TabContainer/Map/NShrine")
 
-[node name="Obelisk" parent="NorthShrine" instance=ExtResource("6_khlsi")]
+[node name="Obelisk" parent="NShrine" instance=ExtResource("6_khlsi")]
 position = Vector2(-235, -92)
 
-[node name="PineTree" parent="NorthShrine" instance=ExtResource("7_5s2fi")]
+[node name="PineTree" parent="NShrine" instance=ExtResource("7_5s2fi")]
 position = Vector2(319, -259)
 
-[node name="Rock" parent="NorthShrine" instance=ExtResource("3_ongvj")]
+[node name="Rock" parent="NShrine" instance=ExtResource("3_ongvj")]
 position = Vector2(-457, -57)
 
-[node name="PineTree2" parent="NorthShrine" instance=ExtResource("7_5s2fi")]
+[node name="PineTree2" parent="NShrine" instance=ExtResource("7_5s2fi")]
 position = Vector2(-639, -491)
 
-[node name="Note" parent="NorthShrine" instance=ExtResource("8_jn7no")]
+[node name="Note" parent="NShrine" instance=ExtResource("8_jn7no")]
 position = Vector2(-565, -43)
 message = "Funny, is it not? The symbols on this obelisk must carry some meaning...
 
@@ -435,18 +490,23 @@ Eye, cat, finger, tree, skull, candle, scythe... I have not seen these things ro
 
 Curse it all..."
 
-[node name="Candle" parent="NorthShrine" instance=ExtResource("10_h1kpw")]
+[node name="Candle" parent="NShrine" instance=ExtResource("10_h1kpw")]
 position = Vector2(-473, 15)
 
-[node name="Candle2" parent="NorthShrine" instance=ExtResource("10_h1kpw")]
+[node name="Candle2" parent="NShrine" instance=ExtResource("10_h1kpw")]
 position = Vector2(-157, -63)
 
-[node name="Outhouse" type="Node2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="NShrine"]
+position = Vector2(-227, -235)
+shape = SubResource("RectangleShape2D_y6ox2")
+
+[node name="Outhouse" type="Area2D" parent="." node_paths=PackedStringArray("map_label") groups=["key_location"]]
 y_sort_enabled = true
 position = Vector2(4639, 1160)
 script = ExtResource("4_idf06")
 location_name = "Outhouse"
 door_possible = true
+map_label = NodePath("../UICanvasLayer/Control/TabContainer/Map/Outhouse")
 
 [node name="Outhouse" parent="Outhouse" instance=ExtResource("14_e0ghl")]
 position = Vector2(-128, -77)
@@ -470,11 +530,16 @@ message = "An outhouse in this nightmarish place? Why? At least there's a crowba
 
 Curiously, the outhouse does not smell nearly as much as the well. The mushrooms of the fairy circle to the Southeast even smell more. What cursed magic makes an outhouse not smell?"
 
-[node name="Well" type="Node2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Outhouse"]
+position = Vector2(38, -53)
+shape = SubResource("CircleShape2D_atclq")
+
+[node name="Well" type="Area2D" parent="." node_paths=PackedStringArray("map_label") groups=["key_location"]]
 y_sort_enabled = true
 position = Vector2(6241, 3629)
 script = ExtResource("4_idf06")
 location_name = "Well"
+map_label = NodePath("../UICanvasLayer/Control/TabContainer/Map/Well")
 
 [node name="Crate" parent="Well" instance=ExtResource("4_duu2l")]
 position = Vector2(-202, -30)
@@ -495,43 +560,48 @@ position = Vector2(97, -92)
 [node name="Candle2" parent="Well" instance=ExtResource("10_h1kpw")]
 position = Vector2(217, -82)
 
-[node name="BeegMushroom" type="Node2D" parent="." groups=["door_spawns"]]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Well"]
+position = Vector2(264.5, -160)
+shape = SubResource("RectangleShape2D_rrl61")
+
+[node name="GiantMushroom" type="Area2D" parent="." node_paths=PackedStringArray("map_label") groups=["door_spawns", "key_location"]]
 y_sort_enabled = true
 position = Vector2(10239, 1915)
 script = ExtResource("4_idf06")
-location_name = "Well"
+location_name = "Giant Mushroom"
+map_label = NodePath("../UICanvasLayer/Control/TabContainer/Map/GiantMushroom")
 
-[node name="LargeMushroom" parent="BeegMushroom" instance=ExtResource("11_6cy2h")]
+[node name="LargeMushroom" parent="GiantMushroom" instance=ExtResource("11_6cy2h")]
 position = Vector2(-225, -66)
 
-[node name="Mushroom" parent="BeegMushroom" instance=ExtResource("11_nffv2")]
+[node name="Mushroom" parent="GiantMushroom" instance=ExtResource("11_nffv2")]
 position = Vector2(-465, 175)
 
-[node name="Mushroom2" parent="BeegMushroom" instance=ExtResource("11_nffv2")]
+[node name="Mushroom2" parent="GiantMushroom" instance=ExtResource("11_nffv2")]
 position = Vector2(365, -170)
 
-[node name="Mushroom3" parent="BeegMushroom" instance=ExtResource("11_nffv2")]
+[node name="Mushroom3" parent="GiantMushroom" instance=ExtResource("11_nffv2")]
 position = Vector2(353, 324)
 
-[node name="Mushroom4" parent="BeegMushroom" instance=ExtResource("11_nffv2")]
+[node name="Mushroom4" parent="GiantMushroom" instance=ExtResource("11_nffv2")]
 position = Vector2(-555, -336)
 
-[node name="Mushroom5" parent="BeegMushroom" instance=ExtResource("11_nffv2")]
+[node name="Mushroom5" parent="GiantMushroom" instance=ExtResource("11_nffv2")]
 position = Vector2(62, -398)
 
-[node name="PineTree" parent="BeegMushroom" instance=ExtResource("7_5s2fi")]
+[node name="PineTree" parent="GiantMushroom" instance=ExtResource("7_5s2fi")]
 position = Vector2(891, 424)
 
-[node name="PineTree2" parent="BeegMushroom" instance=ExtResource("7_5s2fi")]
+[node name="PineTree2" parent="GiantMushroom" instance=ExtResource("7_5s2fi")]
 position = Vector2(-1100, -424)
 
-[node name="Rock" parent="BeegMushroom" instance=ExtResource("3_ongvj")]
+[node name="Rock" parent="GiantMushroom" instance=ExtResource("3_ongvj")]
 position = Vector2(728, -330)
 
-[node name="Campfire" parent="BeegMushroom" instance=ExtResource("18_yiuju")]
+[node name="Campfire" parent="GiantMushroom" instance=ExtResource("18_yiuju")]
 position = Vector2(159, 33)
 
-[node name="Note" parent="BeegMushroom" instance=ExtResource("8_jn7no")]
+[node name="Note" parent="GiantMushroom" instance=ExtResource("8_jn7no")]
 position = Vector2(-180, 7)
 message = "What an odd mushroom? I swear that I have never seen one this big. Tis as tall as a small tree and wide as a damn bear.
 
@@ -539,40 +609,45 @@ The door sometimes appears here. Without fail, the graveyard to the far South, p
 
 Everything goes well so long as I do not encounter that malevolent spirit on my trek."
 
-[node name="Crate" parent="BeegMushroom" instance=ExtResource("4_duu2l")]
+[node name="Crate" parent="GiantMushroom" instance=ExtResource("4_duu2l")]
 position = Vector2(109, -210)
 contains_item = false
 
-[node name="SouthShrine" type="Node2D" parent="." groups=["door_spawns"]]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GiantMushroom"]
+position = Vector2(60, -9.5)
+shape = SubResource("RectangleShape2D_jn4kj")
+
+[node name="SShrine" type="Area2D" parent="." node_paths=PackedStringArray("map_label") groups=["door_spawns", "key_location"]]
 y_sort_enabled = true
 position = Vector2(5031, 5708)
 script = ExtResource("4_idf06")
 location_name = "Southern Shrine"
 door_possible = true
+map_label = NodePath("../UICanvasLayer/Control/TabContainer/Map/SShrine")
 
-[node name="Obelisk" parent="SouthShrine" instance=ExtResource("6_khlsi")]
+[node name="Obelisk" parent="SShrine" instance=ExtResource("6_khlsi")]
 position = Vector2(274, 57)
 
-[node name="Obelisk2" parent="SouthShrine" instance=ExtResource("6_khlsi")]
+[node name="Obelisk2" parent="SShrine" instance=ExtResource("6_khlsi")]
 position = Vector2(-289, 57)
 
-[node name="Sprite2D" parent="SouthShrine/Obelisk2" index="0"]
+[node name="Sprite2D" parent="SShrine/Obelisk2" index="0"]
 position = Vector2(-8, 53)
 flip_h = true
 
-[node name="CollisionShape2D" parent="SouthShrine/Obelisk2" index="1"]
+[node name="CollisionShape2D" parent="SShrine/Obelisk2" index="1"]
 position = Vector2(-4.50049, 19)
 
-[node name="Rock" parent="SouthShrine" instance=ExtResource("3_ongvj")]
+[node name="Rock" parent="SShrine" instance=ExtResource("3_ongvj")]
 position = Vector2(-4, 310)
 
-[node name="PineTree" parent="SouthShrine" instance=ExtResource("7_5s2fi")]
+[node name="PineTree" parent="SShrine" instance=ExtResource("7_5s2fi")]
 position = Vector2(-681, 638)
 
-[node name="PineTree2" parent="SouthShrine" instance=ExtResource("7_5s2fi")]
+[node name="PineTree2" parent="SShrine" instance=ExtResource("7_5s2fi")]
 position = Vector2(886, 314)
 
-[node name="Note" parent="SouthShrine" instance=ExtResource("8_jn7no")]
+[node name="Note" parent="SShrine" instance=ExtResource("8_jn7no")]
 position = Vector2(369, 78)
 message = "No more! No more of this nonsense! I cannot take it. What an awful place. The wisps help, they lie, they babble...
 
@@ -580,154 +655,174 @@ Will I be a fool in death? Speaking incoherently... I'm best off going to sleep 
 
 Who cares if the geist kills me?"
 
-[node name="Candle" parent="SouthShrine" instance=ExtResource("10_h1kpw")]
+[node name="Candle" parent="SShrine" instance=ExtResource("10_h1kpw")]
 position = Vector2(-210, 90)
 
-[node name="Candle2" parent="SouthShrine" instance=ExtResource("10_h1kpw")]
+[node name="Candle2" parent="SShrine" instance=ExtResource("10_h1kpw")]
 position = Vector2(-367, 122)
 
-[node name="Candle3" parent="SouthShrine" instance=ExtResource("10_h1kpw")]
+[node name="Candle3" parent="SShrine" instance=ExtResource("10_h1kpw")]
 position = Vector2(191, 95)
 
-[node name="Crate2" parent="SouthShrine" instance=ExtResource("4_duu2l")]
+[node name="Crate2" parent="SShrine" instance=ExtResource("4_duu2l")]
 position = Vector2(1054, 381)
 contains_item = false
 
-[node name="WestCamp" type="Node2D" parent="." groups=["door_spawns"]]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SShrine"]
+position = Vector2(178.5, 232)
+shape = SubResource("RectangleShape2D_f4ijo")
+
+[node name="WCamp" type="Area2D" parent="." node_paths=PackedStringArray("map_label") groups=["door_spawns", "key_location"]]
 y_sort_enabled = true
 position = Vector2(3395, 3319)
 script = ExtResource("4_idf06")
 location_name = "Western Camp"
 door_possible = true
+map_label = NodePath("../UICanvasLayer/Control/TabContainer/Map/WCamp")
 
-[node name="Campfire" parent="WestCamp" instance=ExtResource("18_yiuju")]
+[node name="Campfire" parent="WCamp" instance=ExtResource("18_yiuju")]
 position = Vector2(113, 208)
 
-[node name="PineTree" parent="WestCamp" instance=ExtResource("7_5s2fi")]
+[node name="PineTree" parent="WCamp" instance=ExtResource("7_5s2fi")]
 position = Vector2(680, -113)
 
-[node name="Rock" parent="WestCamp" instance=ExtResource("3_ongvj")]
+[node name="Rock" parent="WCamp" instance=ExtResource("3_ongvj")]
 position = Vector2(-133, 209)
 
-[node name="Rock2" parent="WestCamp" instance=ExtResource("3_ongvj")]
+[node name="Rock2" parent="WCamp" instance=ExtResource("3_ongvj")]
 position = Vector2(318, 360)
 
-[node name="Note" parent="WestCamp" instance=ExtResource("8_jn7no")]
+[node name="Note" parent="WCamp" instance=ExtResource("8_jn7no")]
 position = Vector2(683, -38)
 message = "This cursed field makes me appreciate the warmth of the fire so much more. The air is unnaturally cold, hued with a sickly green tint and hanging heavy. The fire clears that up a bit.
 
 Lest ye get confused, I am still terrified. I could have sworn I heard paw steps and growling East of the grove below. Although I have not seen any animals in the Geistfeld. Truly strange..."
 
-[node name="EastCamp" type="Node2D" parent="." groups=["door_spawns"]]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WCamp"]
+position = Vector2(225, 161)
+shape = SubResource("RectangleShape2D_46n8c")
+
+[node name="ECamp" type="Area2D" parent="." node_paths=PackedStringArray("map_label") groups=["door_spawns", "key_location"]]
 y_sort_enabled = true
 position = Vector2(11670, 955)
 script = ExtResource("4_idf06")
 location_name = "Eastern Camp"
 door_possible = true
+map_label = NodePath("../UICanvasLayer/Control/TabContainer/Map/ECamp")
 
-[node name="Campfire2" parent="EastCamp" instance=ExtResource("18_yiuju")]
+[node name="Campfire2" parent="ECamp" instance=ExtResource("18_yiuju")]
 position = Vector2(267, -52)
 
-[node name="PineTree" parent="EastCamp" instance=ExtResource("7_5s2fi")]
+[node name="PineTree" parent="ECamp" instance=ExtResource("7_5s2fi")]
 position = Vector2(859, -502)
 
-[node name="Rock3" parent="EastCamp" instance=ExtResource("3_ongvj")]
+[node name="Rock3" parent="ECamp" instance=ExtResource("3_ongvj")]
 position = Vector2(70, -158)
 
-[node name="Rock" parent="EastCamp" instance=ExtResource("3_ongvj")]
+[node name="Rock" parent="ECamp" instance=ExtResource("3_ongvj")]
 position = Vector2(441, -156)
 
-[node name="Rock2" parent="EastCamp" instance=ExtResource("3_ongvj")]
+[node name="Rock2" parent="ECamp" instance=ExtResource("3_ongvj")]
 position = Vector2(256, 149)
 
-[node name="PineTree2" parent="EastCamp" instance=ExtResource("7_5s2fi")]
+[node name="PineTree2" parent="ECamp" instance=ExtResource("7_5s2fi")]
 position = Vector2(-426, -224)
 
-[node name="Crate" parent="EastCamp" instance=ExtResource("4_duu2l")]
+[node name="Crate" parent="ECamp" instance=ExtResource("4_duu2l")]
 position = Vector2(771, -725)
 item_name = "Gormfeld"
 
-[node name="EastGrove" type="Node2D" parent="." groups=["door_spawns"]]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ECamp"]
+position = Vector2(253, -107)
+shape = SubResource("RectangleShape2D_dixdh")
+
+[node name="EGrove" type="Area2D" parent="." node_paths=PackedStringArray("map_label") groups=["door_spawns", "key_location"]]
 y_sort_enabled = true
 position = Vector2(10303, 3473)
 script = ExtResource("4_idf06")
 location_name = "Eastern Grove"
 door_possible = true
+map_label = NodePath("../UICanvasLayer/Control/TabContainer/Map/EGrove")
 
-[node name="PineTree26" parent="EastGrove" instance=ExtResource("7_5s2fi")]
+[node name="PineTree26" parent="EGrove" instance=ExtResource("7_5s2fi")]
 position = Vector2(-21, -328)
 
-[node name="PineTree27" parent="EastGrove" instance=ExtResource("7_5s2fi")]
+[node name="PineTree27" parent="EGrove" instance=ExtResource("7_5s2fi")]
 position = Vector2(-354, -137)
 
-[node name="PineTree28" parent="EastGrove" instance=ExtResource("7_5s2fi")]
+[node name="PineTree28" parent="EGrove" instance=ExtResource("7_5s2fi")]
 position = Vector2(167, -242)
 
-[node name="PineTree29" parent="EastGrove" instance=ExtResource("7_5s2fi")]
+[node name="PineTree29" parent="EGrove" instance=ExtResource("7_5s2fi")]
 position = Vector2(-184, -217)
 
-[node name="PineTree30" parent="EastGrove" instance=ExtResource("7_5s2fi")]
+[node name="PineTree30" parent="EGrove" instance=ExtResource("7_5s2fi")]
 position = Vector2(392, -202)
 
-[node name="PineTree31" parent="EastGrove" instance=ExtResource("7_5s2fi")]
+[node name="PineTree31" parent="EGrove" instance=ExtResource("7_5s2fi")]
 position = Vector2(-469, 599)
 
-[node name="PineTree32" parent="EastGrove" instance=ExtResource("7_5s2fi")]
+[node name="PineTree32" parent="EGrove" instance=ExtResource("7_5s2fi")]
 position = Vector2(580, 595)
 
-[node name="PineTree33" parent="EastGrove" instance=ExtResource("7_5s2fi")]
+[node name="PineTree33" parent="EGrove" instance=ExtResource("7_5s2fi")]
 position = Vector2(377, 559)
 
-[node name="PineTree34" parent="EastGrove" instance=ExtResource("7_5s2fi")]
+[node name="PineTree34" parent="EGrove" instance=ExtResource("7_5s2fi")]
 position = Vector2(-703, 592)
 
-[node name="PineTree36" parent="EastGrove" instance=ExtResource("7_5s2fi")]
+[node name="PineTree36" parent="EGrove" instance=ExtResource("7_5s2fi")]
 position = Vector2(-7, 572)
 
-[node name="PineTree37" parent="EastGrove" instance=ExtResource("7_5s2fi")]
+[node name="PineTree37" parent="EGrove" instance=ExtResource("7_5s2fi")]
 position = Vector2(150, 655)
 
-[node name="PineTree35" parent="EastGrove" instance=ExtResource("7_5s2fi")]
+[node name="PineTree35" parent="EGrove" instance=ExtResource("7_5s2fi")]
 position = Vector2(-248, 641)
 
-[node name="PineTree38" parent="EastGrove" instance=ExtResource("7_5s2fi")]
+[node name="PineTree38" parent="EGrove" instance=ExtResource("7_5s2fi")]
 position = Vector2(-533, -231)
 
-[node name="PineTree39" parent="EastGrove" instance=ExtResource("7_5s2fi")]
+[node name="PineTree39" parent="EGrove" instance=ExtResource("7_5s2fi")]
 position = Vector2(-702, -147)
 
-[node name="PineTree40" parent="EastGrove" instance=ExtResource("7_5s2fi")]
+[node name="PineTree40" parent="EGrove" instance=ExtResource("7_5s2fi")]
 position = Vector2(-898, 910)
 
-[node name="PineTree41" parent="EastGrove" instance=ExtResource("7_5s2fi")]
+[node name="PineTree41" parent="EGrove" instance=ExtResource("7_5s2fi")]
 position = Vector2(-1378, 532)
 
-[node name="PineTree42" parent="EastGrove" instance=ExtResource("7_5s2fi")]
+[node name="PineTree42" parent="EGrove" instance=ExtResource("7_5s2fi")]
 position = Vector2(-1240, -322)
 
-[node name="PineTree43" parent="EastGrove" instance=ExtResource("7_5s2fi")]
+[node name="PineTree43" parent="EGrove" instance=ExtResource("7_5s2fi")]
 position = Vector2(1031, -117)
 
-[node name="PineTree44" parent="EastGrove" instance=ExtResource("7_5s2fi")]
+[node name="PineTree44" parent="EGrove" instance=ExtResource("7_5s2fi")]
 position = Vector2(1144, 705)
 
-[node name="Note" parent="EastGrove" instance=ExtResource("8_jn7no")]
+[node name="Note" parent="EGrove" instance=ExtResource("8_jn7no")]
 position = Vector2(-750, 585)
 message = "Ay, the trees do sway and the air is cold, but where is the wind? And the damn fires do not cease... What is this damn place? The still air makes me feel sickly.
 
 My bowels churn terribly... I saw an outhouse earlier, but the door was jammed shut. I forgot to check the crate nearby, perhaps it contains a way to pry the door open.
 "
 
-[node name="Doghouse" parent="EastGrove" instance=ExtResource("19_qiox7")]
+[node name="Doghouse" parent="EGrove" instance=ExtResource("19_qiox7")]
 position = Vector2(-588, -117)
 item_name = ""
 contains_item = false
 
-[node name="NWGraveyard" type="Node2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EGrove"]
+position = Vector2(-102.5, 158.5)
+shape = SubResource("RectangleShape2D_7kgw0")
+
+[node name="NWGraveyard" type="Area2D" parent="." node_paths=PackedStringArray("map_label") groups=["key_location"]]
 y_sort_enabled = true
 position = Vector2(2194, 1360)
 script = ExtResource("4_idf06")
 location_name = "Northwestern Graveyard"
+map_label = NodePath("../UICanvasLayer/Control/TabContainer/Map/NWGraveyard")
 
 [node name="Tombstone" parent="NWGraveyard" instance=ExtResource("4_54odp")]
 position = Vector2(-248, 184)
@@ -789,12 +884,17 @@ position = Vector2(-1590, 3)
 position = Vector2(1, -23)
 contains_item = false
 
-[node name="SEGraveyard" type="Node2D" parent="." groups=["door_spawns"]]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="NWGraveyard"]
+position = Vector2(-27, 212)
+shape = SubResource("RectangleShape2D_ccbcj")
+
+[node name="SEGraveyard" type="Area2D" parent="." node_paths=PackedStringArray("map_label") groups=["door_spawns", "key_location"]]
 y_sort_enabled = true
 position = Vector2(10231, 5678)
 script = ExtResource("4_idf06")
 location_name = "Southeastern Graveyard"
 door_possible = true
+map_label = NodePath("../UICanvasLayer/Control/TabContainer/Map/SEGraveyard")
 
 [node name="Tombstone" parent="SEGraveyard" instance=ExtResource("4_54odp")]
 position = Vector2(328, -52)
@@ -868,6 +968,10 @@ item_name = "Oil Can"
 [node name="Candle3" parent="SEGraveyard" instance=ExtResource("10_h1kpw")]
 position = Vector2(531, -59)
 
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SEGraveyard"]
+position = Vector2(116.5, 111)
+shape = SubResource("RectangleShape2D_rwg1t")
+
 [node name="Notes" type="Node2D" parent="."]
 y_sort_enabled = true
 
@@ -916,6 +1020,7 @@ tile_set = SubResource("TileSet_gslox")
 position = Vector2(774, 452)
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
+visible = false
 light_mask = 15
 visibility_layer = 15
 color = Color(0, 0, 0, 1)
@@ -1929,6 +2034,7 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
+focus_mode = 2
 
 [node name="Label" type="Label" parent="UICanvasLayer/Control"]
 layout_mode = 1
@@ -1950,12 +2056,13 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -625.0
+offset_left = -613.0
 offset_top = -270.0
-offset_right = 349.0
+offset_right = 616.0
 offset_bottom = 317.0
 grow_horizontal = 2
 grow_vertical = 2
+focus_mode = 2
 theme_override_colors/font_outline_color = Color(0.478431, 0, 0, 1)
 theme_override_colors/font_unselected_color = Color(0.74978, 0.74978, 0.74978, 1)
 theme_override_colors/font_hovered_color = Color(0.487756, 5.47487e-07, 3.36915e-07, 1)
@@ -1969,164 +2076,11 @@ tab_alignment = 1
 current_tab = 2
 all_tabs_in_front = true
 
-[node name="Map" type="Panel" parent="UICanvasLayer/Control/TabContainer"]
-visible = false
-custom_minimum_size = Vector2(512, 0)
-layout_mode = 2
-theme = ExtResource("27_myvt1")
-metadata/_tab_index = 0
-
-[node name="NWGraveyard" type="Label" parent="UICanvasLayer/Control/TabContainer/Map"]
-layout_mode = 0
-offset_left = 55.0
-offset_top = 51.0
-offset_right = 272.0
-offset_bottom = 144.0
-text = "Northwestern
-Graveyard"
-label_settings = SubResource("LabelSettings_ey7gp")
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="WGrove" type="Label" parent="UICanvasLayer/Control/TabContainer/Map"]
-layout_mode = 0
-offset_left = 83.0
-offset_top = 387.0
-offset_right = 212.0
-offset_bottom = 480.0
-text = "Western
-Grove"
-label_settings = SubResource("LabelSettings_ey7gp")
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="WCamp" type="Label" parent="UICanvasLayer/Control/TabContainer/Map"]
-layout_mode = 0
-offset_left = 145.0
-offset_top = 230.0
-offset_right = 274.0
-offset_bottom = 323.0
-text = "Western
-Camp"
-label_settings = SubResource("LabelSettings_ey7gp")
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="NShrine" type="Label" parent="UICanvasLayer/Control/TabContainer/Map"]
-layout_mode = 0
-offset_left = 487.0
-offset_top = 65.0
-offset_right = 631.0
-offset_bottom = 158.0
-text = "Northern
-Shrine"
-label_settings = SubResource("LabelSettings_ey7gp")
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="GiantMushroom" type="Label" parent="UICanvasLayer/Control/TabContainer/Map"]
-layout_mode = 0
-offset_left = 641.0
-offset_top = 123.0
-offset_right = 810.0
-offset_bottom = 216.0
-text = "Giant
-Mushroom"
-label_settings = SubResource("LabelSettings_ey7gp")
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="EGrove" type="Label" parent="UICanvasLayer/Control/TabContainer/Map"]
-layout_mode = 0
-offset_left = 728.0
-offset_top = 239.0
-offset_right = 846.0
-offset_bottom = 332.0
-text = "Eastern
-Grove"
-label_settings = SubResource("LabelSettings_ey7gp")
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="SEGraveyard" type="Label" parent="UICanvasLayer/Control/TabContainer/Map"]
-layout_mode = 0
-offset_left = 669.0
-offset_top = 391.0
-offset_right = 877.0
-offset_bottom = 484.0
-text = "Southeastern
-Graveyard"
-label_settings = SubResource("LabelSettings_ey7gp")
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="FairyCircle" type="Label" parent="UICanvasLayer/Control/TabContainer/Map"]
-layout_mode = 0
-offset_left = 531.0
-offset_top = 334.0
-offset_right = 649.0
-offset_bottom = 427.0
-text = "Fairy
-Circle"
-label_settings = SubResource("LabelSettings_ey7gp")
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="SShrine" type="Label" parent="UICanvasLayer/Control/TabContainer/Map"]
-layout_mode = 0
-offset_left = 309.0
-offset_top = 362.0
-offset_right = 452.0
-offset_bottom = 455.0
-text = "Southern
-Shrine"
-label_settings = SubResource("LabelSettings_ey7gp")
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="ECamp" type="Label" parent="UICanvasLayer/Control/TabContainer/Map"]
-layout_mode = 0
-offset_left = 786.0
-offset_top = 46.0
-offset_right = 904.0
-offset_bottom = 139.0
-text = "Eastern
-Camp"
-label_settings = SubResource("LabelSettings_ey7gp")
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Well" type="Label" parent="UICanvasLayer/Control/TabContainer/Map"]
-layout_mode = 0
-offset_left = 430.0
-offset_top = 229.0
-offset_right = 562.0
-offset_bottom = 282.0
-text = "The Well"
-label_settings = SubResource("LabelSettings_ey7gp")
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Outhouse" type="Label" parent="UICanvasLayer/Control/TabContainer/Map"]
-layout_mode = 0
-offset_left = 305.0
-offset_top = 112.0
-offset_right = 457.0
-offset_bottom = 165.0
-text = "Outhouse"
-label_settings = SubResource("LabelSettings_ey7gp")
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Notes" type="Panel" parent="UICanvasLayer/Control/TabContainer"]
-visible = false
-layout_mode = 2
-metadata/_tab_index = 1
-
 [node name="Controls" type="Panel" parent="UICanvasLayer/Control/TabContainer"]
+visible = false
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_ym5q2")
-metadata/_tab_index = 2
+metadata/_tab_index = 0
 
 [node name="KeyboardHeader" type="Label" parent="UICanvasLayer/Control/TabContainer/Controls"]
 layout_mode = 0
@@ -2172,26 +2126,151 @@ LT/L2 - Banish
 Start - Pause"
 label_settings = SubResource("LabelSettings_3ai1i")
 
-[node name="Panel2" type="Panel" parent="UICanvasLayer/Control"]
+[node name="Notes" type="Panel" parent="UICanvasLayer/Control/TabContainer"]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 1
+
+[node name="Map" type="Panel" parent="UICanvasLayer/Control/TabContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(512, 0)
+layout_mode = 2
+focus_neighbor_left = NodePath("../Notes")
+focus_previous = NodePath("../Notes")
+focus_mode = 2
+theme = ExtResource("27_myvt1")
+metadata/_tab_index = 2
+
+[node name="NWGraveyard" type="Label" parent="UICanvasLayer/Control/TabContainer/Map"]
 layout_mode = 0
-offset_left = 999.0
-offset_top = 437.0
-offset_right = 1191.0
-offset_bottom = 661.0
-theme = ExtResource("27_myvt1")
+offset_left = 77.0
+offset_top = 76.0
+offset_right = 294.0
+offset_bottom = 169.0
+text = "?"
+label_settings = SubResource("LabelSettings_ey7gp")
+horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="Button" type="Button" parent="UICanvasLayer/Control/Panel2"]
-z_index = 1
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme = ExtResource("27_myvt1")
-theme_override_constants/h_separation = 6
-theme_override_font_sizes/font_size = 48
-text = "Return to
-Game"
+[node name="WGrove" type="Label" parent="UICanvasLayer/Control/TabContainer/Map"]
+layout_mode = 0
+offset_left = 134.0
+offset_top = 359.0
+offset_right = 263.0
+offset_bottom = 452.0
+text = "?"
+label_settings = SubResource("LabelSettings_ey7gp")
+horizontal_alignment = 1
+vertical_alignment = 1
 
-[editable path="SouthShrine/Obelisk2"]
+[node name="WCamp" type="Label" parent="UICanvasLayer/Control/TabContainer/Map"]
+layout_mode = 0
+offset_left = 223.0
+offset_top = 230.0
+offset_right = 352.0
+offset_bottom = 323.0
+text = "?"
+label_settings = SubResource("LabelSettings_ey7gp")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="NShrine" type="Label" parent="UICanvasLayer/Control/TabContainer/Map"]
+layout_mode = 0
+offset_left = 616.0
+offset_top = 103.0
+offset_right = 760.0
+offset_bottom = 196.0
+text = "?"
+label_settings = SubResource("LabelSettings_ey7gp")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="GiantMushroom" type="Label" parent="UICanvasLayer/Control/TabContainer/Map"]
+layout_mode = 0
+offset_left = 840.0
+offset_top = 126.0
+offset_right = 1009.0
+offset_bottom = 219.0
+text = "?"
+label_settings = SubResource("LabelSettings_ey7gp")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="EGrove" type="Label" parent="UICanvasLayer/Control/TabContainer/Map"]
+layout_mode = 0
+offset_left = 934.0
+offset_top = 247.0
+offset_right = 1052.0
+offset_bottom = 340.0
+text = "?"
+label_settings = SubResource("LabelSettings_ey7gp")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SEGraveyard" type="Label" parent="UICanvasLayer/Control/TabContainer/Map"]
+layout_mode = 0
+offset_left = 912.0
+offset_top = 390.0
+offset_right = 1120.0
+offset_bottom = 483.0
+text = "?"
+label_settings = SubResource("LabelSettings_ey7gp")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="FairyCircle" type="Label" parent="UICanvasLayer/Control/TabContainer/Map"]
+layout_mode = 0
+offset_left = 771.0
+offset_top = 318.0
+offset_right = 889.0
+offset_bottom = 411.0
+text = "?"
+label_settings = SubResource("LabelSettings_ey7gp")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SShrine" type="Label" parent="UICanvasLayer/Control/TabContainer/Map"]
+layout_mode = 0
+offset_left = 424.0
+offset_top = 353.0
+offset_right = 567.0
+offset_bottom = 446.0
+text = "?"
+label_settings = SubResource("LabelSettings_ey7gp")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ECamp" type="Label" parent="UICanvasLayer/Control/TabContainer/Map"]
+layout_mode = 0
+offset_left = 1051.0
+offset_top = 38.0
+offset_right = 1169.0
+offset_bottom = 131.0
+text = "?"
+label_settings = SubResource("LabelSettings_ey7gp")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Well" type="Label" parent="UICanvasLayer/Control/TabContainer/Map"]
+layout_mode = 0
+offset_left = 564.0
+offset_top = 246.0
+offset_right = 696.0
+offset_bottom = 299.0
+text = "?"
+label_settings = SubResource("LabelSettings_ey7gp")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Outhouse" type="Label" parent="UICanvasLayer/Control/TabContainer/Map"]
+layout_mode = 0
+offset_left = 353.0
+offset_top = 76.0
+offset_right = 505.0
+offset_bottom = 129.0
+text = "?"
+label_settings = SubResource("LabelSettings_ey7gp")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[editable path="SShrine/Obelisk2"]

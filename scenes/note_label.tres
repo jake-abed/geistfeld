@@ -1,0 +1,11 @@
+[gd_resource type="LabelSettings" load_steps=2 format=3 uid="uid://dbfb5snbbmogp"]
+
+[ext_resource type="FontFile" uid="uid://dma2fo7yc01mb" path="res://assets/misc/Geist-Regular.ttf" id="1_dt8k8"]
+
+[resource]
+line_spacing = -6.0
+font = ExtResource("1_dt8k8")
+font_size = 24
+font_color = Color(0, 0, 0, 1)
+shadow_color = Color(0.313726, 0.0156863, 0.00784314, 0.792157)
+shadow_offset = Vector2(0, 0)

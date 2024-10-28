@@ -1,9 +1,9 @@
 extends CanvasLayer
 
-@onready var button := $Control/Panel2/Button
+@onready var control_tab := $Control/TabContainer
 
 func _ready() -> void:
-	button.pressed.connect(_on_button_pressed)
+	visibility_changed.connect(_on_visibility_changed)
 
 func _process(_delta) -> void:
 	if Input.is_action_just_pressed("pause"):
@@ -14,6 +14,6 @@ func _process(_delta) -> void:
 			show()
 			get_tree().paused = true
 
-func _on_button_pressed() -> void:
-	hide()
-	get_tree().paused = false
+func _on_visibility_changed() -> void:
+	if visible:
+		control_tab.get_tab_bar().call_deferred("grab_focus")

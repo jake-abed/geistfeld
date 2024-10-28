@@ -9,14 +9,16 @@ var door_location_name: String
 @onready var player_message := $CanvasLayer/UI/Panel/Label
 @onready var ui_anims := $UIAnims
 @onready var ui_canvas := $UICanvasLayer
-@onready var pause_button := $UICanvasLayer/Control/Panel2/Button
 @onready var scene_anims := $SceneAnims
 
 func _ready() -> void:
 	spawn_wisps()
 	spawn_door()
 	player.item_found.connect(_on_item_found)
-	pause_button.pressed.connect(_on_pause_button_pressed)
+	for area in get_tree().get_nodes_in_group("key_location"):
+		if area is KeyLocation:
+			area.entering_location.connect(_on_location_entered)
+			area.location_found.connect(_on_location_found)
 	scene_anims.play("fade_in")
 
 func spawn_wisps() -> void:
@@ -45,15 +47,23 @@ func spawn_door() -> void:
 	spawn_location.add_child(door_inst)
 
 func _on_item_found(item: String) -> void:
+	if ui_anims.is_playing():
+		await ui_anims.animation_finished
 	player_message.text = item + " Found"
 	ui_anims.play("message_fade")
 
 func _on_door_repaired(item: String) -> void:
 	player_message.text = item + " Used to Repair Door"
+	if ui_anims.is_playing():
+		ui_anims.seek(0.5)
 	ui_anims.play("message_fade")
 
 func _on_door_finished() -> void:
+	if ui_anims.is_playing():
+		await ui_anims.animation_finished
 	player_message.text = "Trap Door Repaired"
+	if ui_anims.is_playing():
+		ui_anims.seek(0.5)
 	ui_anims.play("message_fade")
 
 func _on_door_opened() -> void:
@@ -61,8 +71,23 @@ func _on_door_opened() -> void:
 
 func _on_items_missing(items: String) -> void:
 	player_message.text = "Items missing: " + items
+	if ui_anims.is_playing():
+		ui_anims.seek(0.5)
 	ui_anims.play("message_fade")
 
 func _on_pause_button_pressed() -> void:
 	get_tree().paused = false
 	ui_canvas.visible = false
+
+func _on_location_entered(name: String) -> void:
+	if ui_anims.is_playing():
+		return	
+	player_message.text = name
+	ui_anims.play("message_fade")
+
+func _on_location_found(location: KeyLocation) -> void:
+	if ui_anims.is_playing():
+		await ui_anims.animation_finished
+	location.map_label.text = location.location_name.replace(" ", "\n")
+	player_message.text = location.location_name + " Found"
+	ui_anims.play("message_fade")

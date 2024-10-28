@@ -1,21 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://dun25w7jnnnam"]
+[gd_scene load_steps=7 format=3 uid="uid://dun25w7jnnnam"]
 
 [ext_resource type="Script" path="res://scripts/note.gd" id="1_utjcj"]
 [ext_resource type="Theme" uid="uid://cjbcircl2ubh2" path="res://assets/themes/note_theme.tres" id="2_3unht"]
 [ext_resource type="Texture2D" uid="uid://cxxqaxdeprkef" path="res://assets/images/paper-note.png" id="3_1q2xh"]
-[ext_resource type="FontFile" uid="uid://b0ku14gk7g15g" path="res://assets/misc/Treamd.ttf" id="3_yylbm"]
+[ext_resource type="LabelSettings" uid="uid://dbfb5snbbmogp" path="res://scenes/note_label.tres" id="3_bq2mt"]
 [ext_resource type="AudioStream" uid="uid://vcn3k8lo5uqn" path="res://assets/audio/note_sfx.wav" id="5_x30tc"]
-
-[sub_resource type="LabelSettings" id="LabelSettings_oaexx"]
-line_spacing = -6.0
-font = ExtResource("3_yylbm")
-font_size = 32
-font_color = Color(0, 0, 0, 1)
-outline_size = 1
-outline_color = Color(0.277528, 0.277528, 0.277528, 1)
-shadow_size = 3
-shadow_color = Color(0.109804, 0.109804, 0.109804, 0.576471)
-shadow_offset = Vector2(0, 0)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ds7em"]
 radius = 40.3113
@@ -63,7 +52,7 @@ offset_left = 30.0
 offset_top = 25.0
 offset_right = 350.0
 offset_bottom = 477.0
-label_settings = SubResource("LabelSettings_oaexx")
+label_settings = ExtResource("3_bq2mt")
 vertical_alignment = 1
 autowrap_mode = 3
 

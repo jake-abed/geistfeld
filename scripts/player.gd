@@ -34,6 +34,8 @@ var inventory := {
 	"Gormfeld": false
 }
 
+var areas_found := {}
+
 func _ready() -> void:
 	anim_player.play("idle")
 	glow_light()
