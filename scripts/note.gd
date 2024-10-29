@@ -5,6 +5,7 @@ class_name Note extends Interactable
 @onready var control := $CanvasLayer
 @onready var label := $CanvasLayer/Control/Panel/Label
 @onready var audio := $AudioStreamPlayer2D
+@onready var tip := $Panel
 
 func _ready() -> void:
 	label.text = message
@@ -21,10 +22,12 @@ func toggle_note() -> void:
 
 func _on_body_entered(body) -> void:
 	if body is Player:
+		tip.show()
 		body.interactables.push_back(self)
 
 func _on_body_exited(body) -> void:
 	if body is Player:
+		tip.hide()
 		var index: int = body.interactables.find(self)
 		if index >= 0:
 			body.interactables.pop_at(index)

@@ -1,20 +1,13 @@
-[gd_resource type="Theme" load_steps=7 format=3 uid="uid://cjbcircl2ubh2"]
+[gd_resource type="Theme" load_steps=8 format=3 uid="uid://cjbcircl2ubh2"]
 
 [ext_resource type="FontFile" uid="uid://b0ku14gk7g15g" path="res://assets/misc/Treamd.ttf" id="1_5mxv0"]
 [ext_resource type="Texture2D" uid="uid://cxxqaxdeprkef" path="res://assets/images/paper-note.png" id="1_ywflb"]
 [ext_resource type="StyleBox" uid="uid://r7gfo0ghlage" path="res://assets/themes/note_button_underlined.tres" id="2_eob0y"]
+[ext_resource type="StyleBox" uid="uid://cdtriid4cito" path="res://assets/themes/flat_input_default.tres" id="3_b8vlr"]
+[ext_resource type="FontFile" uid="uid://dma2fo7yc01mb" path="res://assets/misc/Geist-Regular.ttf" id="3_vdlyh"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nlujh"]
 bg_color = Color(0.619608, 0.592157, 0.611765, 0)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vcio3"]
-bg_color = Color(0.901961, 0.709804, 0.631373, 0)
-border_width_bottom = 3
-border_color = Color(0, 0, 0, 1)
-expand_margin_left = 2.0
-expand_margin_top = 2.0
-expand_margin_right = 2.0
-expand_margin_bottom = 2.0
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_idhag"]
 texture = ExtResource("1_ywflb")
@@ -34,7 +27,13 @@ Button/styles/normal = SubResource("StyleBoxFlat_nlujh")
 Button/styles/pressed = ExtResource("2_eob0y")
 LineEdit/colors/font_color = Color(0, 0, 0, 1)
 LineEdit/colors/font_placeholder_color = Color(0.20871, 0.20871, 0.20871, 0.615686)
-LineEdit/font_sizes/font_size = 36
-LineEdit/fonts/font = ExtResource("1_5mxv0")
-LineEdit/styles/normal = SubResource("StyleBoxFlat_vcio3")
+LineEdit/font_sizes/font_size = 28
+LineEdit/fonts/font = ExtResource("3_vdlyh")
+LineEdit/styles/normal = ExtResource("3_b8vlr")
 Panel/styles/panel = SubResource("StyleBoxTexture_idhag")
+TextEdit/colors/caret_background_color = Color(0, 0, 0, 1)
+TextEdit/colors/font_color = Color(0, 0, 0, 1)
+TextEdit/colors/font_placeholder_color = Color(0.207843, 0.207843, 0.207843, 0.615686)
+TextEdit/font_sizes/font_size = 24
+TextEdit/fonts/font = ExtResource("3_vdlyh")
+TextEdit/styles/normal = ExtResource("3_b8vlr")

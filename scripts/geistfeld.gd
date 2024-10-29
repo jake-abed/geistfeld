@@ -10,6 +10,9 @@ var door_location_name: String
 @onready var ui_anims := $UIAnims
 @onready var ui_canvas := $UICanvasLayer
 @onready var scene_anims := $SceneAnims
+@onready var blank_note := %BlankNote
+@onready var item_vbox := %ItemVBoxContainer
+@onready var blank_item := %BlankItem
 
 func _ready() -> void:
 	spawn_wisps()
@@ -52,6 +55,8 @@ func _on_item_found(item: String) -> void:
 		await ui_anims.animation_finished
 	player_message.text = item + " Found"
 	ui_anims.play("message_fade")
+	if item != "Nothing":
+		add_item_to_inventory(item)
 
 func _on_door_repaired(item: String) -> void:
 	player_message.text = item + " Used to Repair Door"
@@ -60,8 +65,6 @@ func _on_door_repaired(item: String) -> void:
 	ui_anims.play("message_fade")
 
 func _on_door_finished() -> void:
-	if ui_anims.is_playing():
-		await ui_anims.animation_finished
 	player_message.text = "Trap Door Repaired"
 	if ui_anims.is_playing():
 		ui_anims.seek(0.5)
@@ -96,7 +99,15 @@ func _on_location_found(location: KeyLocation) -> void:
 func _on_blessing_received(blessing: String) -> void:
 	match blessing:
 		"Speed":
-			%SpeedLevel.text = str(player.blessing_level[blessing]) + " "
+			%SpeedLevel.text = str(player.blessing_level[blessing])
 		"Energy":
-			%EnergyLevel.text= str(player.blessing_level[blessing]) + " "
-		"Banish": %BanishLevel.text = str(player.blessing_level[blessing]) + " "
+			%EnergyLevel.text= str(player.blessing_level[blessing])
+		"Banish": %BanishLevel.text = str(player.blessing_level[blessing])
+
+func add_item_to_inventory(item: String) -> void:
+	var blank_item_copy := blank_item.duplicate()
+	item_vbox.add_child(blank_item_copy)
+	print(blank_item_copy)
+	blank_item.text = item
+	item_vbox.add_child(blank_item_copy)
+	blank_item = blank_item_copy

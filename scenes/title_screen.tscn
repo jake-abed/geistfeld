@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=4 uid="uid://cugn70e7bbn6b"]
+[gd_scene load_steps=33 format=4 uid="uid://cugn70e7bbn6b"]
 
 [ext_resource type="Script" path="res://scripts/title_screen.gd" id="1_uctl6"]
 [ext_resource type="Texture2D" uid="uid://cq6ecyt6j4lfv" path="res://assets/images/bg_grass.jpg" id="2_7siof"]
@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://dun25w7jnnnam" path="res://scenes/note.tscn" id="9_a4o6j"]
 [ext_resource type="PackedScene" uid="uid://tuhyfaf8tq1a" path="res://scenes/wisp.tscn" id="10_8wbo0"]
 [ext_resource type="FontFile" uid="uid://b0ku14gk7g15g" path="res://assets/misc/Treamd.ttf" id="11_ayhgb"]
+[ext_resource type="FontFile" uid="uid://dma2fo7yc01mb" path="res://assets/misc/Geist-Regular.ttf" id="12_dgvuj"]
 [ext_resource type="Theme" uid="uid://cjbcircl2ubh2" path="res://assets/themes/note_theme.tres" id="12_e215k"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_nbajj"]
@@ -246,17 +247,17 @@ shadow_offset = Vector2(0, 0)
 
 [sub_resource type="LabelSettings" id="LabelSettings_xxnqd"]
 line_spacing = 0.0
-font = ExtResource("11_ayhgb")
-font_size = 52
+font = ExtResource("12_dgvuj")
+font_size = 36
 outline_color = Color(0.277528, 0.277528, 0.277528, 1)
 shadow_size = 0
 shadow_color = Color(0.109804, 0.109804, 0.109804, 0.576471)
 shadow_offset = Vector2(0, 0)
 
 [sub_resource type="LabelSettings" id="LabelSettings_60qe1"]
-line_spacing = 4.0
-font = ExtResource("11_ayhgb")
-font_size = 28
+line_spacing = 0.0
+font = ExtResource("12_dgvuj")
+font_size = 24
 outline_color = Color(0.277528, 0.277528, 0.277528, 1)
 shadow_size = 0
 shadow_color = Color(0.109804, 0.109804, 0.109804, 0.576471)
@@ -369,24 +370,24 @@ label_settings = SubResource("LabelSettings_2y734")
 
 [node name="ControlsLabel" type="Label" parent="CanvasLayer/UI"]
 layout_mode = 0
-offset_left = 962.0
-offset_top = 82.0
-offset_right = 1146.0
-offset_bottom = 147.0
+offset_left = 980.0
+offset_top = 120.0
+offset_right = 1164.0
+offset_bottom = 185.0
 text = "Controls"
 label_settings = SubResource("LabelSettings_xxnqd")
 
 [node name="ControlsLabel2" type="Label" parent="CanvasLayer/UI"]
 layout_mode = 0
-offset_left = 962.0
-offset_top = 132.0
-offset_right = 1167.0
-offset_bottom = 380.0
+offset_left = 980.0
+offset_top = 175.0
+offset_right = 1219.0
+offset_bottom = 353.0
 text = "WASD - Movement
 E - Interact
 Shift - Sprint
 Space - Banish
-G - Pause"
+M - Pause/Map"
 label_settings = SubResource("LabelSettings_60qe1")
 
 [node name="Panel" type="Panel" parent="CanvasLayer/UI"]

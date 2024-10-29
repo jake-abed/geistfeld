@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://cbjy82knwjkpe"]
+[gd_scene load_steps=7 format=3 uid="uid://cbjy82knwjkpe"]
 
 [ext_resource type="Script" path="res://scripts/you_died.gd" id="1_fg6mw"]
 [ext_resource type="Theme" uid="uid://cjbcircl2ubh2" path="res://assets/themes/note_theme.tres" id="1_hrr62"]
 [ext_resource type="FontFile" uid="uid://b0ku14gk7g15g" path="res://assets/misc/Treamd.ttf" id="2_ibuce"]
 [ext_resource type="LabelSettings" uid="uid://3ngeua8xxa3e" path="res://assets/themes/note_label.tres" id="3_riw06"]
+[ext_resource type="StyleBox" uid="uid://r7gfo0ghlage" path="res://assets/themes/note_button_underlined.tres" id="5_h7jqg"]
 [ext_resource type="AudioStream" uid="uid://bxlvfcwvcsbe5" path="res://assets/audio/yr_dead.wav" id="5_surkh"]
 
 [node name="YouDied" type="Control"]
@@ -59,9 +60,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -310.0
-offset_top = -129.0
+offset_top = -125.0
 offset_right = 313.0
-offset_bottom = -66.0
+offset_bottom = -62.0
 grow_horizontal = 2
 grow_vertical = 2
 text = "Fear not, for death is not the end. You will become a wisp 'o blessings and offer aid to the living."
@@ -71,10 +72,10 @@ autowrap_mode = 3
 
 [node name="NameEdit" type="LineEdit" parent="Panel"]
 layout_mode = 0
-offset_left = 116.0
-offset_top = 229.0
-offset_right = 389.0
-offset_bottom = 274.0
+offset_left = 57.0
+offset_top = 231.0
+offset_right = 409.0
+offset_bottom = 277.0
 tooltip_text = "Max 12 characters."
 theme = ExtResource("1_hrr62")
 placeholder_text = "Enter your name..."
@@ -82,30 +83,32 @@ max_length = 12
 
 [node name="MessageEdit" type="LineEdit" parent="Panel"]
 layout_mode = 0
-offset_left = 112.0
-offset_top = 313.0
-offset_right = 586.0
-offset_bottom = 358.0
-tooltip_text = "Max 36 characters"
+offset_left = 55.0
+offset_top = 300.0
+offset_right = 649.0
+offset_bottom = 344.0
+tooltip_text = "Max 48 characters"
 theme = ExtResource("1_hrr62")
+theme_override_font_sizes/font_size = 22
+theme_override_styles/normal = ExtResource("5_h7jqg")
 placeholder_text = "Pass along a message..."
-max_length = 36
+max_length = 48
 
 [node name="Button" type="Button" parent="Panel"]
 layout_mode = 1
 offset_left = 352.0
-offset_top = 393.0
+offset_top = 403.0
 offset_right = 593.0
-offset_bottom = 450.0
+offset_bottom = 460.0
 theme = ExtResource("1_hrr62")
 text = "Live In Death"
 
 [node name="Button2" type="Button" parent="Panel"]
 layout_mode = 1
 offset_left = 112.0
-offset_top = 396.0
+offset_top = 406.0
 offset_right = 185.0
-offset_bottom = 445.0
+offset_bottom = 455.0
 theme = ExtResource("1_hrr62")
 theme_override_font_sizes/font_size = 32
 text = "Ignore"

@@ -47,16 +47,19 @@ func play_float_anim() -> void:
 	var tween2 := create_tween()
 	tween.set_trans(Tween.TRANS_SINE)
 	
-	var pos_offset_up := global_position.y - 3.0
-	var pos_offset_down := pos_offset_up + 6.0
-	var duration := 2.8
+	var pos_offset_up := global_position.y - 5.0
+	var pos_offset_down := pos_offset_up + 9.0
+	var duration_one := randf_range(2.5, 3.5)
+	var duration_two := randf_range(0.8, 1.2)
 	tween.set_parallel(false)
 	tween2.set_parallel(false)
+	tween.set_loops(0)
+	tween2.set_loops(0)
 	
-	tween.tween_property(sprite, "global_position:y", pos_offset_up, duration)
-	tween.tween_property(sprite, "global_position:y", pos_offset_down, duration)
-	tween2.tween_property(sprite, "scale", sprite.scale * 1.15, duration * 2.1)
-	tween2.tween_property(sprite, "scale", sprite.scale * 0.9, duration * 2.1)
+	tween.tween_property(sprite, "global_position:y", pos_offset_up, duration_one)
+	tween.tween_property(sprite, "global_position:y", pos_offset_down, duration_one)
+	tween2.tween_property(sprite, "scale", sprite.scale * 1.15, duration_two)
+	tween2.tween_property(sprite, "scale", sprite.scale * 0.9, duration_two)
 
 func bless(player: Player) -> void:
 	player.receive_blessing(blessing)
