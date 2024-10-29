@@ -59,19 +59,5 @@ func play_float_anim() -> void:
 	tween2.tween_property(sprite, "scale", sprite.scale * 0.9, duration * 2.1)
 
 func bless(player: Player) -> void:
-	match blessing:
-		"Speed":
-			player.base_speed += 25
-		"Energy":
-			player.max_energy += 15
-			player.energy += 15
-		"Banish":
-			player.banish_cooldown -= 0.5
-			player.banish_radius += 7.0
-		"Luck":
-			var geists: Array[Node] = get_tree().get_nodes_in_group("geists")
-			for geist in geists:
-				if geist is Geist:
-					geist.level_down()
-	
+	player.receive_blessing(blessing)
 	self.queue_free()

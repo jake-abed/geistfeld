@@ -1,6 +1,7 @@
 class_name Player extends CharacterBody2D
 
 signal item_found(item: String)
+signal blessing_received(blessing: String)
 
 const ACCEL := 10.0
 
@@ -23,6 +24,12 @@ var banish_scene := preload("res://scenes/banish.tscn")
 @onready var banish_timer := $BanishTimer
 @onready var banish_audio := $BanishAudio
 @onready var blessing_audio := $BlessingAudio
+
+var blessing_level := {
+	"Speed": 0,
+	"Energy": 0,
+	"Banish": 0
+}
 
 var interactables: Array[Interactable] = []
 
@@ -160,3 +167,17 @@ func has_all_necessary_items() -> bool:
 func die() -> void:
 	Game.player_death_location = global_position
 	get_tree().call_deferred("change_scene_to_file", "res://scenes/you_died.tscn")
+
+func receive_blessing(blessing: String) -> void:
+	blessing_level[blessing] += 1
+	match blessing:
+		"Speed":
+			base_speed += 15
+		"Energy":
+			max_energy += 15
+			energy += 15
+		"Banish":
+			if banish_cooldown > 1.0:
+				banish_cooldown -= 0.5
+			banish_radius += 7.0
+	blessing_received.emit(blessing)

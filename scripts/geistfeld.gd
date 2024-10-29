@@ -15,6 +15,7 @@ func _ready() -> void:
 	spawn_wisps()
 	spawn_door()
 	player.item_found.connect(_on_item_found)
+	player.blessing_received.connect(_on_blessing_received)
 	for area in get_tree().get_nodes_in_group("key_location"):
 		if area is KeyLocation:
 			area.entering_location.connect(_on_location_entered)
@@ -91,3 +92,11 @@ func _on_location_found(location: KeyLocation) -> void:
 	location.map_label.text = location.location_name.replace(" ", "\n")
 	player_message.text = location.location_name + " Found"
 	ui_anims.play("message_fade")
+
+func _on_blessing_received(blessing: String) -> void:
+	match blessing:
+		"Speed":
+			%SpeedLevel.text = str(player.blessing_level[blessing]) + " "
+		"Energy":
+			%EnergyLevel.text= str(player.blessing_level[blessing]) + " "
+		"Banish": %BanishLevel.text = str(player.blessing_level[blessing]) + " "
