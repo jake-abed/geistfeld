@@ -13,6 +13,7 @@ signal door_opened()
 @onready var repair_audio := $RepairAudio
 @onready var open_audio := $OpenAudio
 @onready var you_escaped := load("res://scenes/you_escaped.tscn")
+@onready var visible_area := $VisibleArea
 
 var has_handle := false
 var has_oil := false
@@ -63,9 +64,6 @@ func add_handle() -> void:
 
 func _on_body_entered(body: Node2D) -> void:
 	if body is Player:
-		if !body.trapdoor_found:
-			body.trapdoor_found = true
-			door_found.emit()
 		panel.visible = true
 		body.interactables.push_back(self)
 
@@ -104,3 +102,9 @@ func items_missing_message() -> String:
 	if not has_oil:
 		items.append("Oil")
 	return ", ".join(items)
+
+func _on_visible_area_body_entered(body: Node2D) -> void:
+	if body is Player:
+		if !body.trapdoor_found:
+			body.trapdoor_found = true
+			door_found.emit()

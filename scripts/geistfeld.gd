@@ -53,9 +53,10 @@ func spawn_door() -> void:
 
 func add_item_to_inventory(item: String) -> void:
 	var blank_item_copy := blank_item.duplicate()
+	blank_item = blank_item_copy
 	item_vbox.add_child(blank_item_copy)
 	blank_item.text = item
-	#item_vbox.add_child(blank_item_copy)
+	
 
 # Here be signal functions
 
