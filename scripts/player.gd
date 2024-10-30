@@ -14,6 +14,7 @@ var banish_radius := 60.0
 var can_banish := true
 var banishing := false
 var facing_factor := 1.0
+var trapdoor_found := false
 
 var banish_scene := preload("res://scenes/banish.tscn")
 
@@ -96,6 +97,40 @@ func _physics_process(delta: float) -> void:
 
 	move_and_slide()
 
+func has_all_necessary_items() -> bool:
+	return (inventory["Key"] and
+	inventory["Oil Can"] and
+	inventory ["Crow Bar"] and
+	inventory["Handle"])
+
+func die() -> void:
+	Game.player_death_location = global_position
+	get_tree().call_deferred("change_scene_to_file", "res://scenes/you_died.tscn")
+
+func banish() -> void:
+	banishing = true
+	anim_player.play("banish")
+	banish_audio.play()
+	can_banish = false
+	var banish_inst := banish_scene.instantiate()
+	banish_inst.radius = banish_radius
+	add_child(banish_inst)
+	banish_timer.start()
+
+func receive_blessing(blessing: String) -> void:
+	blessing_level[blessing] += 1
+	match blessing:
+		"Speed":
+			base_speed += 15
+		"Energy":
+			max_energy += 15
+			energy += 15
+		"Banish":
+			if banish_cooldown > 1.0:
+				banish_cooldown -= 0.5
+			banish_radius += 7.0
+	blessing_received.emit(blessing)
+
 func interact() -> void:
 	if len(interactables) == 0:
 		return
@@ -128,14 +163,6 @@ func glow_light() -> void:
 	tween.tween_property(light, "scale", small, randf_range(2, 3))
 	tween.tween_property(light, "scale", current, randf_range(2, 3))
 
-func _on_light_timer_timeout() -> void:
-	flicker_light()
-	light_timer.wait_time = randf_range(0.25, 3)
-
-func _on_banish_timer_timeout() -> void:
-	can_banish = true
-	banish_timer.wait_time = banish_cooldown
-
 func flicker_light() -> void:
 	var tween := create_tween()
 	var low := randf_range(1, 1.1)
@@ -144,40 +171,16 @@ func flicker_light() -> void:
 	tween.tween_property(light, "energy", low, 0.25)
 	tween.tween_property(light, "energy", 1.25, 0.25)
 
-func banish() -> void:
-	banishing = true
-	anim_player.play("banish")
-	banish_audio.play()
-	can_banish = false
-	var banish_inst := banish_scene.instantiate()
-	banish_inst.radius = banish_radius
-	add_child(banish_inst)
-	banish_timer.start()
+# Here be signal functions.
+
+func _on_light_timer_timeout() -> void:
+	flicker_light()
+	light_timer.wait_time = randf_range(0.25, 3)
+
+func _on_banish_timer_timeout() -> void:
+	can_banish = true
+	banish_timer.wait_time = banish_cooldown
 
 func _on_anim_finished(anim) -> void:
 	if anim == "banish":
 		banishing = false
-
-func has_all_necessary_items() -> bool:
-	return (inventory["Key"] and
-	inventory["Oil Can"] and
-	inventory ["Crow Bar"] and
-	inventory["Handle"])
-
-func die() -> void:
-	Game.player_death_location = global_position
-	get_tree().call_deferred("change_scene_to_file", "res://scenes/you_died.tscn")
-
-func receive_blessing(blessing: String) -> void:
-	blessing_level[blessing] += 1
-	match blessing:
-		"Speed":
-			base_speed += 15
-		"Energy":
-			max_energy += 15
-			energy += 15
-		"Banish":
-			if banish_cooldown > 1.0:
-				banish_cooldown -= 0.5
-			banish_radius += 7.0
-	blessing_received.emit(blessing)

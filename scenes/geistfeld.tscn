@@ -24,15 +24,15 @@
 [ext_resource type="PackedScene" uid="uid://j5410f0gpbek" path="res://scenes/well.tscn" id="15_rbhqp"]
 [ext_resource type="PackedScene" uid="uid://c87u1ha5t57e5" path="res://scenes/campfire.tscn" id="18_yiuju"]
 [ext_resource type="PackedScene" uid="uid://b6jvx4t5eq18m" path="res://scenes/doghouse.tscn" id="19_qiox7"]
-[ext_resource type="Script" path="res://scenes/ui_canvas_layer.gd" id="27_1p1yb"]
+[ext_resource type="Script" path="res://scripts/ui_canvas_layer.gd" id="27_1p1yb"]
 [ext_resource type="Theme" uid="uid://cjbcircl2ubh2" path="res://assets/themes/note_theme.tres" id="27_myvt1"]
-[ext_resource type="StyleBox" uid="uid://bd0hphvgp80j1" path="res://scenes/tab_selected.tres" id="28_1var5"]
+[ext_resource type="StyleBox" uid="uid://bd0hphvgp80j1" path="res://assets/themes/tab_selected.tres" id="28_1var5"]
 [ext_resource type="FontFile" uid="uid://dma2fo7yc01mb" path="res://assets/misc/Geist-Regular.ttf" id="28_37x43"]
 [ext_resource type="AudioStream" uid="uid://cxptrpqkdifs8" path="res://assets/audio/ambient_field.wav" id="29_fpqe3"]
-[ext_resource type="StyleBox" uid="uid://oo85mn4tps7f" path="res://scenes/tab_hoverd.tres" id="29_peour"]
-[ext_resource type="StyleBox" uid="uid://cpsf6cmloxjod" path="res://scenes/tab_unselected.tres" id="30_uimlc"]
-[ext_resource type="StyleBox" uid="uid://dhqeobn7afl7x" path="res://scenes/menu_tab_panel.tres" id="31_ag08w"]
-[ext_resource type="LabelSettings" uid="uid://dbfb5snbbmogp" path="res://scenes/note_label.tres" id="33_yeo7p"]
+[ext_resource type="StyleBox" uid="uid://oo85mn4tps7f" path="res://assets/themes/tab_hoverd.tres" id="29_peour"]
+[ext_resource type="StyleBox" uid="uid://cpsf6cmloxjod" path="res://assets/themes/tab_unselected.tres" id="30_uimlc"]
+[ext_resource type="StyleBox" uid="uid://dhqeobn7afl7x" path="res://assets/themes/menu_tab_panel.tres" id="31_ag08w"]
+[ext_resource type="LabelSettings" uid="uid://dbfb5snbbmogp" path="res://assets/themes/note_label_2.tres" id="33_yeo7p"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yagbh"]
 content_margin_left = 16.0
@@ -1870,7 +1870,6 @@ position = Vector2(6691, 5480)
 [node name="UICanvasLayer" type="CanvasLayer" parent="."]
 process_mode = 3
 layer = 100
-visible = false
 script = ExtResource("27_1p1yb")
 
 [node name="ColorRect" type="ColorRect" parent="UICanvasLayer"]
@@ -2093,6 +2092,7 @@ horizontal_alignment = 1
 [node name="BlankItem" type="Label" parent="UICanvasLayer/Control/TabContainer/Info/HBoxContainer2/ItemsPanel/ItemVBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
+label_settings = ExtResource("33_yeo7p")
 
 [node name="NotesPanel" type="Panel" parent="UICanvasLayer/Control/TabContainer/Info/HBoxContainer2"]
 layout_mode = 2
@@ -2133,10 +2133,11 @@ text = "You must find a crow bar, handle, key, and oil can to fix the trapdoor."
 label_settings = ExtResource("33_yeo7p")
 autowrap_mode = 3
 
-[node name="BlankNote" type="Label" parent="UICanvasLayer/Control/TabContainer/Info/HBoxContainer2/NotesPanel/VBoxContainer"]
+[node name="TrapDoorLocationNote" type="Label" parent="UICanvasLayer/Control/TabContainer/Info/HBoxContainer2/NotesPanel/VBoxContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(360, 60)
 layout_mode = 2
+text = "You have not found the trap door yet."
 label_settings = ExtResource("33_yeo7p")
 autowrap_mode = 3
 

@@ -1,5 +1,6 @@
 class_name TrapDoor extends Interactable
 
+signal door_found()
 signal door_repaired(item: String)
 signal items_missing(items: String)
 signal door_finished()
@@ -62,6 +63,9 @@ func add_handle() -> void:
 
 func _on_body_entered(body: Node2D) -> void:
 	if body is Player:
+		if !body.trapdoor_found:
+			body.trapdoor_found = true
+			door_found.emit()
 		panel.visible = true
 		body.interactables.push_back(self)
 

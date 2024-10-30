@@ -10,9 +10,9 @@ var door_location_name: String
 @onready var ui_anims := $UIAnims
 @onready var ui_canvas := $UICanvasLayer
 @onready var scene_anims := $SceneAnims
-@onready var blank_note := %BlankNote
 @onready var item_vbox := %ItemVBoxContainer
 @onready var blank_item := %BlankItem
+@onready var trap_door_note := %TrapDoorLocationNote
 
 func _ready() -> void:
 	spawn_wisps()
@@ -43,12 +43,21 @@ func spawn_wisps() -> void:
 func spawn_door() -> void:
 	var door_inst := door_scene.instantiate()
 	var spawn_location = door_spawns.pick_random()
+	door_inst.door_found.connect(_on_door_found)
 	door_inst.door_repaired.connect(_on_door_repaired)
 	door_inst.door_finished.connect(_on_door_finished)
 	door_inst.door_opened.connect(_on_door_opened)
 	door_inst.items_missing.connect(_on_items_missing)
 	door_location_name = spawn_location.location_name
 	spawn_location.add_child(door_inst)
+
+func add_item_to_inventory(item: String) -> void:
+	var blank_item_copy := blank_item.duplicate()
+	item_vbox.add_child(blank_item_copy)
+	blank_item.text = item
+	#item_vbox.add_child(blank_item_copy)
+
+# Here be signal functions
 
 func _on_item_found(item: String) -> void:
 	if ui_anims.is_playing():
@@ -83,10 +92,10 @@ func _on_pause_button_pressed() -> void:
 	get_tree().paused = false
 	ui_canvas.visible = false
 
-func _on_location_entered(name: String) -> void:
+func _on_location_entered(location_name: String) -> void:
 	if ui_anims.is_playing():
 		return	
-	player_message.text = name
+	player_message.text = location_name
 	ui_anims.play("message_fade")
 
 func _on_location_found(location: KeyLocation) -> void:
@@ -104,10 +113,5 @@ func _on_blessing_received(blessing: String) -> void:
 			%EnergyLevel.text= str(player.blessing_level[blessing])
 		"Banish": %BanishLevel.text = str(player.blessing_level[blessing])
 
-func add_item_to_inventory(item: String) -> void:
-	var blank_item_copy := blank_item.duplicate()
-	item_vbox.add_child(blank_item_copy)
-	print(blank_item_copy)
-	blank_item.text = item
-	item_vbox.add_child(blank_item_copy)
-	blank_item = blank_item_copy
+func _on_door_found() -> void:
+	trap_door_note.text = "You found the trap door in the " + door_location_name

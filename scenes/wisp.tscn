@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://scripts/wisp.gd" id="1_pejbm"]
 [ext_resource type="Texture2D" uid="uid://dt2nasn3gd6ss" path="res://assets/images/wisp.png" id="2_h26gr"]
 [ext_resource type="FontFile" uid="uid://dma2fo7yc01mb" path="res://assets/misc/Geist-Regular.ttf" id="3_fhhh4"]
-[ext_resource type="StyleBox" uid="uid://bwvbrshh8ilyo" path="res://scenes/ui_panel.tres" id="3_frqr7"]
+[ext_resource type="StyleBox" uid="uid://bwvbrshh8ilyo" path="res://assets/themes/ui_panel.tres" id="3_frqr7"]
 
 [sub_resource type="Gradient" id="Gradient_1bs6y"]
 offsets = PackedFloat32Array(0, 0.222222, 0.555556, 0.760943, 1)
