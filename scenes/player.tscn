@@ -1,9 +1,10 @@
-[gd_scene load_steps=15 format=3 uid="uid://dms3slrv65dvl"]
+[gd_scene load_steps=17 format=3 uid="uid://dms3slrv65dvl"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_wirdj"]
 [ext_resource type="Texture2D" uid="uid://bfntsm54oqry0" path="res://assets/images/player-sheet.png" id="2_ecwew"]
 [ext_resource type="AudioStream" uid="uid://b1d3e3g4j6w3i" path="res://assets/audio/banish_fx.wav" id="3_vreua"]
 [ext_resource type="AudioStream" uid="uid://dy78unxyjx5sy" path="res://assets/audio/wisp.wav" id="4_13tds"]
+[ext_resource type="AudioStream" uid="uid://dd3oohn7r1clv" path="res://assets/audio/breathing.wav" id="5_mxd5b"]
 
 [sub_resource type="Gradient" id="Gradient_umjpq"]
 offsets = PackedFloat32Array(0.02, 0.99)
@@ -108,6 +109,9 @@ _data = {
 "move": SubResource("Animation_j6ys5")
 }
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_uh5uo"]
+radius = 60.0
+
 [node name="Player" type="CharacterBody2D"]
 y_sort_enabled = true
 script = ExtResource("1_wirdj")
@@ -133,7 +137,7 @@ shape = SubResource("CapsuleShape2D_w8jg2")
 process_callback = 0
 limit_left = -24
 limit_top = -52
-limit_right = 12684
+limit_right = 10700
 limit_bottom = 7356
 position_smoothing_enabled = true
 position_smoothing_speed = 10.0
@@ -160,6 +164,9 @@ autostart = true
 [node name="BanishTimer" type="Timer" parent="."]
 wait_time = 5.0
 
+[node name="BreathingTimer" type="Timer" parent="."]
+wait_time = 1.6
+
 [node name="BanishAudio" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_vreua")
 volume_db = -15.0
@@ -167,3 +174,12 @@ volume_db = -15.0
 [node name="BlessingAudio" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_13tds")
 volume_db = -15.0
+
+[node name="BreathingAudio" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_mxd5b")
+
+[node name="BanishArea" type="Area2D" parent="."]
+position = Vector2(0, 16)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BanishArea"]
+shape = SubResource("CircleShape2D_uh5uo")

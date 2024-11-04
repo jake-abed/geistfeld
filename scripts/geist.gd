@@ -6,7 +6,7 @@ const TOP_BOUND := 1000
 const BOTTOM_BOUND := 5250
 const BASE_SPEED := 100.0
 const BASE_RADIUS := 1300.0
-const LEVEL_UP_TIME := 15.0
+const LEVEL_UP_TIME := 10.0
 
 @onready var sprite := $Sprite2D
 @onready var light := $PointLight2D
@@ -16,6 +16,7 @@ const LEVEL_UP_TIME := 15.0
 @onready var banish_timer := $BanishTimer
 @onready var anim_player := $AnimationPlayer
 @onready var audio := $AudioStreamPlayer2D
+@onready var banish_cue := $BanishCue
 @onready var speed: float
 @onready var contact_radius: float
 @onready var level := 1
@@ -117,7 +118,7 @@ func reset_ghost() -> void:
 	level_up_timer.wait_time = LEVEL_UP_TIME
 
 func level_up() -> void:
-	if level > 14:
+	if level > 19:
 		return
 	level += 1
 	speed *= 1.1
@@ -145,3 +146,21 @@ func _on_banish_timeout() -> void:
 func _on_level_up_timeout() -> void:
 	level_up()
 	level_up_timer.wait_time = LEVEL_UP_TIME + level
+
+func _on_shader_player_finished(_s: String) -> void:
+	pass
+
+func shine() -> void:
+	#var tween := create_tween()
+	#tween.set_ease(Tween.EASE_IN_OUT)
+	#tween.tween_property(sprite.material, "shader_param/flash_amount", 1, 0.1)
+	sprite.material.set_shader_parameter("flash_amount", 1)
+	banish_cue.seek(0.22)
+	banish_cue.pitch_scale = randf_range(0.97, 1.15)
+	banish_cue.play()
+
+func stop_shine() -> void:
+	#var tween := create_tween()
+	#tween.set_ease(Tween.EASE_IN_OUT)
+	#tween.tween_property(sprite.material, "shader_param/flash_amount", 0, 0.1)
+	sprite.material.set_shader_parameter("flash_amount", 0)

@@ -1,0 +1,13 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://ixtpecs62t1"]
+
+[ext_resource type="Shader" path="res://scripts/geist_shine.gdshader" id="1_swqbk"]
+
+[resource]
+shader = ExtResource("1_swqbk")
+shader_parameter/color_a = Color(0.701961, 0.701961, 0.701961, 0)
+shader_parameter/color_b = Color(1, 1, 1, 0.992157)
+shader_parameter/colors_affect_alpha = true
+shader_parameter/flash_amount = 0.0
+shader_parameter/flash_speed = 25.0
+shader_parameter/transparency = 1.0
+shader_parameter/intensity = 0.2

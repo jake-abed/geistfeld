@@ -11,7 +11,7 @@ func _ready() -> void:
 func banish(r: float) -> void:
 	var tween := create_tween()
 	collision_shape.shape.radius = 0.1
-	tween.tween_property(collision_shape.shape, "radius", r, 0.15)
+	tween.tween_property(collision_shape.shape, "radius", r, 0.05)
 	await tween.finished
 	self.queue_free()
 
