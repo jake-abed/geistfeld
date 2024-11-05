@@ -108,4 +108,4 @@ autoplay = true
 [node name="BanishCue" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("5_b15tx")
 volume_db = 3.0
-pitch_scale = 1.2
+pitch_scale = 1.4

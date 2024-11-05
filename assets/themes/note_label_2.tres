@@ -3,9 +3,9 @@
 [ext_resource type="FontFile" uid="uid://dma2fo7yc01mb" path="res://assets/misc/Geist-Regular.ttf" id="1_dt8k8"]
 
 [resource]
-line_spacing = -6.0
+line_spacing = -5.0
 font = ExtResource("1_dt8k8")
-font_size = 24
+font_size = 22
 font_color = Color(0, 0, 0, 1)
 shadow_color = Color(0.176471, 0.00392157, 0, 0.72549)
 shadow_offset = Vector2(0, 0)

@@ -155,8 +155,8 @@ func shine() -> void:
 	#tween.set_ease(Tween.EASE_IN_OUT)
 	#tween.tween_property(sprite.material, "shader_param/flash_amount", 1, 0.1)
 	sprite.material.set_shader_parameter("flash_amount", 1)
-	banish_cue.seek(0.22)
-	banish_cue.pitch_scale = randf_range(0.97, 1.15)
+	banish_cue.seek(0.20)
+	banish_cue.pitch_scale = randf_range(1.4, 1.6)
 	banish_cue.play()
 
 func stop_shine() -> void:

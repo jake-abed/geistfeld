@@ -124,6 +124,7 @@ func die() -> void:
 func banish() -> void:
 	banishing = true
 	anim_player.play("banish")
+	banish_audio.pitch_scale = randf_range(0.98, 1.025)
 	banish_audio.play()
 	can_banish = false
 	var banish_inst := banish_scene.instantiate()
@@ -155,6 +156,7 @@ func interact() -> void:
 			interactables[0].toggle_note()
 		"wisp":
 			interactables[0].bless(self)
+			blessing_audio.pitch_scale = randf_range(0.98, 1.025)
 			blessing_audio.play()
 		"item_container":
 			if interactables[0].item_name != "":
@@ -201,8 +203,8 @@ func _on_banish_timer_timeout() -> void:
 	banish_timer.wait_time = banish_cooldown
 
 func _on_breathing_timer_timeout() -> void:
-	breathing_audio.pitch_scale = randf_range(1.0, 1.2)
-	breathing_timer.wait_time = randf_range(1.55, 1.7)
+	breathing_audio.pitch_scale = randf_range(1.0, 1.08)
+	breathing_timer.wait_time = randf_range(1.25, 1.35)
 	breathing_audio.stop()
 	breathing_audio.seek(0.0)
 	if !can_sprint:

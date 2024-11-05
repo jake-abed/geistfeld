@@ -110,7 +110,7 @@ _data = {
 }
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_uh5uo"]
-radius = 60.0
+radius = 55.0
 
 [node name="Player" type="CharacterBody2D"]
 y_sort_enabled = true
@@ -137,8 +137,8 @@ shape = SubResource("CapsuleShape2D_w8jg2")
 process_callback = 0
 limit_left = -24
 limit_top = -52
-limit_right = 10700
-limit_bottom = 7356
+limit_right = 10550
+limit_bottom = 6170
 position_smoothing_enabled = true
 position_smoothing_speed = 10.0
 
@@ -165,18 +165,19 @@ autostart = true
 wait_time = 5.0
 
 [node name="BreathingTimer" type="Timer" parent="."]
-wait_time = 1.6
+wait_time = 1.35
 
 [node name="BanishAudio" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_vreua")
-volume_db = -15.0
+volume_db = -13.0
 
 [node name="BlessingAudio" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_13tds")
-volume_db = -15.0
+volume_db = -13.0
 
 [node name="BreathingAudio" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("5_mxd5b")
+volume_db = 1.0
 
 [node name="BanishArea" type="Area2D" parent="."]
 position = Vector2(0, 16)
